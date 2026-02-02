@@ -1,0 +1,378 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mathematics - Grade 8 CAPS | ClassDoodle</title>
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/textbook.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../index.html" class="nav-logo">ðŸŽ“ ClassDoodle</a>
+            <div class="nav-title">Mathematics - Grade 8</div>
+            <button onclick="window.print()" class="download-btn">ðŸ“¥ Download PDF</button>
+        </div>
+    </nav>
+
+    <div class="container textbook-container">
+        <aside class="sidebar">
+            <h3>ðŸ“š Chapters</h3>
+            <ul class="chapter-list">
+                <li><a href="#chapter1" class="active">1. Integers</a></li>
+                <li><a href="#chapter2">2. Exponents</a></li>
+                <li><a href="#chapter3">3. Patterns & Sequences</a></li>
+                <li><a href="#chapter4">4. Functions & Relationships</a></li>
+                <li><a href="#chapter5">5. Algebraic Expressions</a></li>
+                <li><a href="#chapter6">6. Equations</a></li>
+                <li><a href="#chapter7">7. Graphs</a></li>
+                <li><a href="#chapter8">8. Geometry of 2D Shapes</a></li>
+                <li><a href="#chapter9">9. Pythagoras Theorem</a></li>
+                <li><a href="#chapter10">10. Area & Perimeter</a></li>
+                <li><a href="#chapter11">11. Surface Area & Volume</a></li>
+                <li><a href="#chapter12">12. Data Handling</a></li>
+                <li><a href="#chapter13">13. Probability</a></li>
+            </ul>
+        </aside>
+
+        <main class="content">
+            <!-- Chapter 1: Integers -->
+            <section id="chapter1" class="chapter">
+                <h1 class="chapter-title">Chapter 1: Integers - The Ups and Downs of Numbers! ðŸŽ¢</h1>
+                
+                <div class="intro-box">
+                    <h2>What Are Integers? (In Plain English!)</h2>
+                    <p>Think of integers as the "elevator numbers" in a building. You can go UP to positive floors (1, 2, 3...), DOWN to basement levels (âˆ’1, âˆ’2, âˆ’3...), or stay on the ground floor (0). That's it!</p>
+                    
+                    <div class="note-card" style="background: rgba(99, 102, 241, 0.1); border-left: 4px solid #6366f1; padding: 1rem; margin-top: 1rem; border-radius: 8px;">
+                        <p><strong>ðŸ“š Quick Definition:</strong> Integers are all whole numbers including positives (+1, +2, +3...), negatives (âˆ’1, âˆ’2, âˆ’3...), and zero (0).</p>
+                        <p style="margin-top: 0.5rem;"><strong>ðŸš« NOT Integers:</strong> Fractions (Â½), Decimals (3.5), âˆš2, Ï€</p>
+                    </div>
+                </div>
+
+                <div class="concept-box">
+                    <h3>ðŸŽ¯ The Big Picture</h3>
+                    <p><strong>Integers = Whole numbers that can be positive, negative, or zero</strong></p>
+                    <p>Examples: ..., -3, -2, -1, 0, 1, 2, 3, ...</p>
+                    <p class="note">ðŸ’¡ <strong>Dummies Tip:</strong> NO fractions, NO decimals - just nice, clean whole numbers!</p>
+                    
+                    <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(34, 197, 94, 0.1); border-radius: 10px;">
+                        <h4 style="color: #22c55e; margin-bottom: 0.75rem;">ðŸ“ Study Notes: Types of Integers</h4>
+                        <ul style="margin-left: 1.5rem;">
+                            <li><strong>Positive Integers:</strong> 1, 2, 3, 4, 5... (Numbers greater than zero)</li>
+                            <li><strong>Negative Integers:</strong> -1, -2, -3, -4, -5... (Numbers less than zero)</li>
+                            <li><strong>Zero:</strong> The neutral number that is neither positive nor negative</li>
+                        </ul>
+                        
+                        <div style="margin-top: 1rem; padding: 0.75rem; background: rgba(251, 191, 36, 0.15); border-radius: 8px;">
+                            <p style="margin: 0;"><strong>ðŸŽ“ Pro Tip:</strong> Zero is the "Switzerland" of numbers - it's neutral! It doesn't take sides.</p>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(236, 72, 153, 0.1); border-radius: 10px;">
+                        <h4 style="color: #ec4899; margin-bottom: 0.75rem;">ðŸŒ Real-World Applications</h4>
+                        <ul style="margin-left: 1.5rem;">
+                            <li><strong>Temperature:</strong> -5Â°C (below freezing), 0Â°C (freezing point), 25Â°C (warm day)</li>
+                            <li><strong>Money:</strong> R50 (you have money), R0 (broke), -R100 (you owe money/debt)</li>
+                            <li><strong>Altitude:</strong> 1000m (above sea level), 0m (sea level), -400m (below sea level)</li>
+                            <li><strong>Time:</strong> +2 hours ahead, 0 (current time), -3 hours behind</li>
+                            <li><strong>Sports:</strong> +5 points (winning), 0 (tied), -3 points (losing/penalty)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="visual-diagram">
+                    <h3>ðŸ“Š The Number Line - Your New Best Friend</h3>
+                    <svg width="100%" height="120" viewBox="0 0 800 120" style="max-width: 800px;">
+                        <!-- Number line -->
+                        <defs>
+                            <marker id="arrowhead-ch1" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                <polygon points="0 0, 10 3.5, 0 7" fill="#6366f1" />
+                            </marker>
+                        </defs>
+                        
+                        <line x1="50" y1="60" x2="750" y2="60" stroke="#6366f1" stroke-width="3" marker-end="url(#arrowhead-ch1)"/>
+                        
+                        <!-- Negative numbers -->
+                        <line x1="150" y1="50" x2="150" y2="70" stroke="#ec4899" stroke-width="3"/>
+                        <text x="150" y="90" text-anchor="middle" font-size="18" fill="#ec4899" font-weight="bold">-4</text>
+                        
+                        <line x1="230" y1="50" x2="230" y2="70" stroke="#ec4899" stroke-width="3"/>
+                        <text x="230" y="90" text-anchor="middle" font-size="18" fill="#ec4899" font-weight="bold">-3</text>
+                        
+                        <line x1="310" y1="50" x2="310" y2="70" stroke="#ec4899" stroke-width="3"/>
+                        <text x="310" y="90" text-anchor="middle" font-size="18" fill="#ec4899" font-weight="bold">-2</text>
+                        
+                        <line x1="390" y1="50" x2="390" y2="70" stroke="#ec4899" stroke-width="3"/>
+                        <text x="390" y="90" text-anchor="middle" font-size="18" fill="#ec4899" font-weight="bold">-1</text>
+                        
+                        <!-- Zero -->
+                        <circle cx="470" cy="60" r="8" fill="#10b981"/>
+                        <text x="470" y="95" text-anchor="middle" font-size="20" fill="#10b981" font-weight="bold">0</text>
+                        <text x="470" y="30" text-anchor="middle" font-size="14" fill="#10b981">Neither positive nor negative!</text>
+                        
+                        <!-- Positive numbers -->
+                        <line x1="550" y1="50" x2="550" y2="70" stroke="#6366f1" stroke-width="3"/>
+                        <text x="550" y="90" text-anchor="middle" font-size="18" fill="#6366f1" font-weight="bold">1</text>
+                        
+                        <line x1="630" y1="50" x2="630" y2="70" stroke="#6366f1" stroke-width="3"/>
+                        <text x="630" y="90" text-anchor="middle" font-size="18" fill="#6366f1" font-weight="bold">2</text>
+                        
+                        <line x1="710" y1="50" x2="710" y2="70" stroke="#6366f1" stroke-width="3"/>
+                        <text x="710" y="90" text-anchor="middle" font-size="18" fill="#6366f1" font-weight="bold">3</text>
+                        
+                        <!-- Labels -->
+                        <text x="230" y="20" text-anchor="middle" font-size="16" fill="#ec4899" font-weight="bold">â† NEGATIVE</text>
+                        <text x="630" y="20" text-anchor="middle" font-size="16" fill="#6366f1" font-weight="bold">POSITIVE â†’</text>
+                    </svg>
+                </div>
+
+                <div class="example-box">
+                    <h3>ðŸŒŸ Example 1: Adding Integers (The Easy Way!)</h3>
+                    <p><strong>Problem:</strong> What is 5 + (-3)?</p>
+                    
+                    <div class="solution">
+                        <p><strong>The "Dummies" Method:</strong></p>
+                        <ol>
+                            <li><strong>Start at 5</strong> on the number line</li>
+                            <li><strong>Adding a negative</strong> means "move LEFT"</li>
+                            <li>Move LEFT 3 spaces: 5 â†’ 4 â†’ 3 â†’ 2</li>
+                            <li><strong>Answer: 2</strong></li>
+                        </ol>
+                        
+                        <svg width="100%" height="100" viewBox="0 0 600 100" style="max-width: 600px; margin: 1rem 0;">
+                            <line x1="50" y1="50" x2="550" y2="50" stroke="#cbd5e1" stroke-width="2"/>
+                            
+                            <text x="150" y="75" text-anchor="middle" font-size="16">0</text>
+                            <text x="250" y="75" text-anchor="middle" font-size="16">2</text>
+                            <text x="350" y="75" text-anchor="middle" font-size="16">5</text>
+                            
+                            <!-- Start point -->
+                            <circle cx="350" cy="50" r="10" fill="#10b981" opacity="0.5"/>
+                            <text x="350" y="25" text-anchor="middle" font-size="14" fill="#10b981" font-weight="bold">START</text>
+                            
+                            <!-- Arrow showing movement -->
+                            <path d="M 340 50 L 260 50" stroke="#ec4899" stroke-width="3" fill="none" marker-end="url(#arrowhead2)"/>
+                            <text x="300" y="35" text-anchor="middle" font-size="14" fill="#ec4899">Move 3 left</text>
+                            
+                            <!-- End point -->
+                            <circle cx="250" cy="50" r="10" fill="#6366f1"/>
+                            <text x="250" y="95" text-anchor="middle" font-size="14" fill="#6366f1" font-weight="bold">ANSWER = 2</text>
+                            
+                            <defs>
+                                <marker id="arrowhead2" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                    <polygon points="0 0, 10 3.5, 0 7" fill="#ec4899" />
+                                </marker>
+                            </defs>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="rules-box">
+                    <h3>ðŸ“ The Super Simple Rules</h3>
+                    
+                    <div class="rule">
+                        <h4>Rule 1: Adding Integers</h4>
+                        <ul>
+                            <li><strong>Same signs?</strong> Add them and keep the sign
+                                <br>Example: 3 + 5 = 8 or (-3) + (-5) = -8</li>
+                            <li><strong>Different signs?</strong> Subtract the smaller from the larger, use the sign of the larger
+                                <br>Example: 7 + (-4) = 3 or (-7) + 4 = -3</li>
+                        </ul>
+                        
+                        <div style="margin-top: 1rem; padding: 1rem; background: rgba(6, 182, 212, 0.1); border-radius: 8px;">
+                            <p style="margin: 0;"><strong>ðŸ§  Memory Trick:</strong> Think of adding as "bringing together." If both are going the same direction (both positive or both negative), they team up and get stronger!</p>
+                        </div>
+                    </div>
+                    
+                    <div class="rule">
+                        <h4>Rule 2: Subtracting Integers (The Secret Trick!)</h4>
+                        <p><strong>ðŸŽ¯ GOLDEN RULE: Subtracting = Adding the opposite</strong></p>
+                        <ul>
+                            <li>5 - 3 = 5 + (-3) = 2</li>
+                            <li>5 - (-3) = 5 + 3 = 8 â† Two negatives make a positive!</li>
+                            <li>-5 - 3 = -5 + (-3) = -8</li>
+                        </ul>
+                        
+                        <div style="margin-top: 1rem; padding: 1rem; background: rgba(245, 158, 11, 0.1); border-radius: 8px;">
+                            <p style="margin: 0; margin-bottom: 0.5rem;"><strong>ðŸ’¡ Why does - - = + ?</strong></p>
+                            <p style="margin: 0;">Think of it like this: "I will NOT NOT go" = "I WILL go"</p>
+                            <p style="margin: 0.5rem 0 0 0;">Or: "Taking away a debt" = "Gaining money"</p>
+                        </div>
+                    </div>
+                    
+                    <div class="rule">
+                        <h4>Rule 3: Multiplying & Dividing Integers</h4>
+                        <table class="sign-table">
+                            <tr>
+                                <th>Operation</th>
+                                <th>Result</th>
+                                <th>Example</th>
+                            </tr>
+                            <tr>
+                                <td>Positive Ã— Positive</td>
+                                <td class="positive">Positive</td>
+                                <td>3 Ã— 4 = 12</td>
+                            </tr>
+                            <tr>
+                                <td>Negative Ã— Negative</td>
+                                <td class="positive">Positive</td>
+                                <td>(-3) Ã— (-4) = 12</td>
+                            </tr>
+                            <tr>
+                                <td>Positive Ã— Negative</td>
+                                <td class="negative">Negative</td>
+                                <td>3 Ã— (-4) = -12</td>
+                            </tr>
+                            <tr>
+                                <td>Negative Ã— Positive</td>
+                                <td class="negative">Negative</td>
+                                <td>(-3) Ã— 4 = -12</td>
+                            </tr>
+                        </table>
+                        <p class="note">ðŸ’¡ <strong>Easy Memory Trick:</strong> Same signs = Positive, Different signs = Negative!</p>
+                        
+                        <div style="margin-top: 1rem; padding: 1rem; background: rgba(236, 72, 153, 0.1); border-radius: 8px;">
+                            <p style="margin: 0; margin-bottom: 0.5rem;"><strong>ðŸŽ¯ The "Enemy of My Enemy" Rule:</strong></p>
+                            <p style="margin: 0;">â€¢ Friend Ã— Friend = Friend (+ Ã— + = +)</p>
+                            <p style="margin: 0;">â€¢ Enemy Ã— Enemy = Friend (- Ã— - = +)</p>
+                            <p style="margin: 0;">â€¢ Friend Ã— Enemy = Enemy (+ Ã— - = -)</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="concept-box" style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(15, 23, 42, 0.8));">
+                    <h3>âš ï¸ Common Mistakes to Avoid!</h3>
+                    
+                    <div style="margin: 1rem 0; padding: 1rem; background: rgba(239, 68, 68, 0.1); border-left: 4px solid #ef4444; border-radius: 8px;">
+                        <h4 style="color: #ef4444; margin-bottom: 0.5rem;">âŒ Mistake #1: Confusing Signs</h4>
+                        <p style="margin: 0;"><strong>Wrong:</strong> -5 + -3 = -2</p>
+                        <p style="margin: 0.5rem 0 0 0;"><strong>Right:</strong> -5 + (-3) = -8 (both negative, add and keep sign)</p>
+                    </div>
+                    
+                    <div style="margin: 1rem 0; padding: 1rem; background: rgba(239, 68, 68, 0.1); border-left: 4px solid #ef4444; border-radius: 8px;">
+                        <h4 style="color: #ef4444; margin-bottom: 0.5rem;">âŒ Mistake #2: Forgetting Double Negatives</h4>
+                        <p style="margin: 0;"><strong>Wrong:</strong> 8 - (-2) = 6</p>
+                        <p style="margin: 0.5rem 0 0 0;"><strong>Right:</strong> 8 - (-2) = 8 + 2 = 10 (minus a negative becomes plus)</p>
+                    </div>
+                    
+                    <div style="margin: 1rem 0; padding: 1rem; background: rgba(239, 68, 68, 0.1); border-left: 4px solid #ef4444; border-radius: 8px;">
+                        <h4 style="color: #ef4444; margin-bottom: 0.5rem;">âŒ Mistake #3: Wrong Multiplication Signs</h4>
+                        <p style="margin: 0;"><strong>Wrong:</strong> -4 Ã— -5 = -20</p>
+                        <p style="margin: 0.5rem 0 0 0;"><strong>Right:</strong> -4 Ã— -5 = +20 (same signs make positive)</p>
+                    </div>
+                    
+                    <div style="margin: 1rem 0; padding: 1rem; background: rgba(239, 68, 68, 0.1); border-left: 4px solid #ef4444; border-radius: 8px;">
+                        <h4 style="color: #ef4444; margin-bottom: 0.5rem;">âŒ Mistake #4: Thinking Zero is Positive</h4>
+                        <p style="margin: 0;"><strong>Wrong:</strong> Zero is a positive number</p>
+                        <p style="margin: 0.5rem 0 0 0;"><strong>Right:</strong> Zero is NEITHER positive NOR negative - it's neutral!</p>
+                    </div>
+                </div>
+                
+                <div class="example-box">
+                    <h3>ðŸ“š More Worked Examples</h3>
+                    
+                    <div style="margin-bottom: 2rem; padding: 1.5rem; background: rgba(245, 158, 11, 0.05); border-radius: 12px; border: 1px solid rgba(245, 158, 11, 0.2);">
+                        <h4 style="color: #f59e0b;">Example 2: Temperature Problem</h4>
+                        <p><strong>Problem:</strong> The temperature is -3Â°C in the morning. By afternoon, it rises by 8Â°C. What's the afternoon temperature?</p>
+                        
+                        <div class="solution" style="margin-top: 1rem;">
+                            <p><strong>Step 1:</strong> Start temperature = -3Â°C</p>
+                            <p><strong>Step 2:</strong> Rise means ADD: -3 + 8</p>
+                            <p><strong>Step 3:</strong> Different signs, so subtract: 8 - 3 = 5</p>
+                            <p><strong>Step 4:</strong> Use sign of larger number (8 is larger and positive)</p>
+                            <p style="padding: 0.75rem; background: rgba(34, 197, 94, 0.1); border-radius: 8px; margin-top: 1rem;"><strong>âœ… Answer: 5Â°C</strong></p>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 2rem; padding: 1.5rem; background: rgba(245, 158, 11, 0.05); border-radius: 12px; border: 1px solid rgba(245, 158, 11, 0.2);">
+                        <h4 style="color: #f59e0b;">Example 3: Money Problem (Debt)</h4>
+                        <p><strong>Problem:</strong> You owe R120 (debt = -120). You then owe another R45. How much do you owe in total?</p>
+                        
+                        <div class="solution" style="margin-top: 1rem;">
+                            <p><strong>Step 1:</strong> First debt = -120</p>
+                            <p><strong>Step 2:</strong> Second debt = -45</p>
+                            <p><strong>Step 3:</strong> Total debt = -120 + (-45)</p>
+                            <p><strong>Step 4:</strong> Same signs (both negative), so add: 120 + 45 = 165</p>
+                            <p><strong>Step 5:</strong> Keep the negative sign</p>
+                            <p style="padding: 0.75rem; background: rgba(34, 197, 94, 0.1); border-radius: 8px; margin-top: 1rem;"><strong>âœ… Answer: -R165 (you owe R165)</strong></p>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 2rem; padding: 1.5rem; background: rgba(245, 158, 11, 0.05); border-radius: 12px; border: 1px solid rgba(245, 158, 11, 0.2);">
+                        <h4 style="color: #f59e0b;">Example 4: Multiplication Challenge</h4>
+                        <p><strong>Problem:</strong> (-6) Ã— 4 Ã· (-2) = ?</p>
+                        
+                        <div class="solution" style="margin-top: 1rem;">
+                            <p><strong>Step 1:</strong> First multiply: (-6) Ã— 4 = -24 (different signs = negative)</p>
+                            <p><strong>Step 2:</strong> Then divide: -24 Ã· (-2)</p>
+                            <p><strong>Step 3:</strong> Same signs (both negative) = positive</p>
+                            <p><strong>Step 4:</strong> 24 Ã· 2 = 12</p>
+                            <p style="padding: 0.75rem; background: rgba(34, 197, 94, 0.1); border-radius: 8px; margin-top: 1rem;"><strong>âœ… Answer: +12</strong></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="concept-box" style="background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(15, 23, 42, 0.8));">
+                    <h3>ðŸŽ“ Study Tips & Exam Strategies</h3>
+                    
+                    <div style="display: grid; gap: 1rem; margin-top: 1rem;">
+                        <div style="padding: 1rem; background: rgba(99, 102, 241, 0.1); border-left: 4px solid #6366f1; border-radius: 8px;">
+                            <h4 style="color: #6366f1; margin-bottom: 0.5rem;">ðŸ“Œ Tip 1: Use the Number Line</h4>
+                            <p style="margin: 0;">When stuck, draw a quick number line. It makes adding/subtracting visual and easy!</p>
+                        </div>
+                        
+                        <div style="padding: 1rem; background: rgba(34, 197, 94, 0.1); border-left: 4px solid #22c55e; border-radius: 8px;">
+                            <h4 style="color: #22c55e; margin-bottom: 0.5rem;">ðŸ“Œ Tip 2: Write Out the Steps</h4>
+                            <p style="margin: 0;">Don't try to do it all in your head! Write each step. This helps you find mistakes and gets you marks for working.</p>
+                        </div>
+                        
+                        <div style="padding: 1rem; background: rgba(245, 158, 11, 0.1); border-left: 4px solid #f59e0b; border-radius: 8px;">
+                            <h4 style="color: #f59e0b; margin-bottom: 0.5rem;">ðŸ“Œ Tip 3: Check Your Signs</h4>
+                            <p style="margin: 0;">Before finishing, double-check: Is my answer positive or negative? Does it make sense?</p>
+                        </div>
+                        
+                        <div style="padding: 1rem; background: rgba(236, 72, 153, 0.1); border-left: 4px solid #ec4899; border-radius: 8px;">
+                            <h4 style="color: #ec4899; margin-bottom: 0.5rem;">ðŸ“Œ Tip 4: Practice Word Problems</h4>
+                            <p style="margin: 0;">Real-world problems (temperature, money, altitude) help you understand WHY we use integers, not just HOW.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="rules-box" style="background: linear-gradient(135deg, rgba(251, 191, 36, 0.1), rgba(15, 23, 42, 0.8));">
+                    <h3>ðŸ“‹ Quick Reference Chart - Print This!</h3>
+                    
+                    <table style="width: 100%; margin-top: 1rem; border-collapse: collapse;">
+                        <thead>
+                            <tr style="background: #1e293b;">
+                                <th style="padding: 1rem; border: 1px solid #334155; color: #fbbf24;">Operation</th>
+                                <th style="padding: 1rem; border: 1px solid #334155; color: #fbbf24;">Same Signs</th>
+                                <th style="padding: 1rem; border: 1px solid #334155; color: #fbbf24;">Different Signs</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 0.75rem; border: 1px solid #334155;"><strong>Addition</strong></td>
+                                <td style="padding: 0.75rem; border: 1px solid #334155;">Add & keep sign<br><small>(-3) + (-5) = -8</small></td>
+                                <td style="padding: 0.75rem; border: 1px solid #334155;">Subtract, use bigger sign<br><small>7 + (-4) = 3</small></td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.75rem; border: 1px solid #334155;"><strong>Subtraction</strong></td>
+                                <td style="padding: 0.75rem; border: 1px solid #334155;" colspan="2">Change to adding opposite<br><small>5 - (-3) = 5 + 3 = 8</small></td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.75rem; border: 1px solid #334155;"><strong>Multiplication</strong></td>
+                                <td style="padding: 0.75rem; border: 1px solid #334155;">Result is POSITIVE<br><small>(-4) Ã— (-5) = 20</small></td>
+                                <td style="padding: 0.75rem; border: 1px solid #334155;">Result is NEGATIVE<br><small>4 Ã— (-5) = -20</small></td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.75rem; border: 1px solid #334155;"><strong>Division</strong></td>
+                                <td style="padding: 0.75rem; border: 1px solid #334155;">Result is POSITIVE<br><small>(-20) Ã· (-4) = 5</small></td>
+                                <td style="padding: 0.75rem; border: 1px solid #334155;">Result is NEGATIVE<br><small>20 Ã· (-4) = -5</small></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="practice-box">

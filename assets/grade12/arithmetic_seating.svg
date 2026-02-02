@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="260" viewBox="0 0 900 260">
+  <rect width="900" height="260" fill="#0f172a"/>
+  <text x="24" y="32" fill="#e2e8f0" font-family="Arial" font-size="18">Stadium seating grows by a constant difference</text>
+
+  <g fill="#e2e8f0" font-family="Arial" font-size="14">
+    <text x="70" y="80">Row 1: 14 seats</text>
+    <text x="70" y="120">Row 2: 17 seats</text>
+    <text x="70" y="160">Row 3: 20 seats</text>
+    <text x="70" y="200">Row 4: 23 seats</text>
+  </g>
+
+  <g fill="#22c55e">
+    <rect x="240" y="62" width="420" height="16" rx="4"/>
+    <rect x="240" y="102" width="460" height="16" rx="4"/>
+    <rect x="240" y="142" width="500" height="16" rx="4"/>
+    <rect x="240" y="182" width="540" height="16" rx="4"/>
+  </g>
+
+  <g fill="#38bdf8" font-family="Arial" font-size="16">
+    <text x="700" y="78">+3</text>
+    <text x="740" y="118">+3</text>
+    <text x="780" y="158">+3</text>
+  </g>
+</svg>

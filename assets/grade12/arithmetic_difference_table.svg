@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="260" viewBox="0 0 900 260">
+  <rect width="900" height="260" fill="#0f172a"/>
+  <text x="24" y="32" fill="#e2e8f0" font-family="Arial" font-size="18">Difference table to confirm arithmetic sequence</text>
+
+  <rect x="40" y="60" width="820" height="160" fill="#111827" stroke="#334155" stroke-width="2"/>
+
+  <g fill="#e2e8f0" font-family="Arial" font-size="16">
+    <text x="70" y="105">Terms:</text>
+    <text x="170" y="105">7</text>
+    <text x="270" y="105">12</text>
+    <text x="370" y="105">17</text>
+    <text x="470" y="105">22</text>
+    <text x="570" y="105">27</text>
+
+    <text x="70" y="175">Differences:</text>
+    <text x="200" y="175" fill="#22c55e">+5</text>
+    <text x="300" y="175" fill="#22c55e">+5</text>
+    <text x="400" y="175" fill="#22c55e">+5</text>
+    <text x="500" y="175" fill="#22c55e">+5</text>
+  </g>
+
+  <line x1="40" y1="130" x2="860" y2="130" stroke="#334155" stroke-width="2"/>
+</svg>

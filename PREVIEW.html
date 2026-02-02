@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technology Features Preview</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 2rem; color: white; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        h1 { font-size: 3rem; text-align: center; margin-bottom: 1rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        .subtitle { text-align: center; font-size: 1.3rem; margin-bottom: 3rem; opacity: 0.9; }
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 3rem; }
+        .feature-card { background: white; color: #333; padding: 2rem; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); transition: transform 0.3s; }
+        .feature-card:hover { transform: translateY(-10px); }
+        .feature-icon { font-size: 4rem; text-align: center; margin-bottom: 1rem; }
+        .feature-title { font-size: 1.5rem; font-weight: bold; margin-bottom: 1rem; color: #667eea; text-align: center; }
+        .feature-list { list-style: none; padding: 0; }
+        .feature-list li { padding: 0.5rem 0; padding-left: 1.5rem; position: relative; }
+        .feature-list li:before { content: "✓"; position: absolute; left: 0; color: #22c55e; font-weight: bold; }
+        .demo-section { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 3rem; border-radius: 20px; margin-bottom: 2rem; }
+        .demo-title { font-size: 2rem; margin-bottom: 1.5rem; text-align: center; }
+        .demo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+        .demo-item { background: rgba(255,255,255,0.2); padding: 1.5rem; border-radius: 15px; text-align: center; }
+        .demo-item h3 { margin-bottom: 1rem; }
+        .big-button { display: block; background: linear-gradient(135deg, #fbbf24, #f59e0b); color: white; text-decoration: none; padding: 1.5rem 3rem; border-radius: 15px; font-size: 1.3rem; font-weight: bold; text-align: center; margin: 3rem auto; max-width: 400px; box-shadow: 0 10px 30px rgba(251, 191, 36, 0.4); transition: all 0.3s; }
+        .big-button:hover { transform: scale(1.05); box-shadow: 0 15px 40px rgba(251, 191, 36, 0.6); }
+        .stats { display: flex; justify-content: space-around; flex-wrap: wrap; margin: 2rem 0; }
+        .stat-item { text-align: center; padding: 1rem; }
+        .stat-number { font-size: 3rem; font-weight: bold; color: #fbbf24; }
+        .stat-label { font-size: 1rem; opacity: 0.9; margin-top: 0.5rem; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Technology Subject - Interactive Features</h1>
+        <p class="subtitle">Transform learning with gamification, quizzes, and virtual tools!</p>
+
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-number">10+</div>
+                <div class="stat-label">Interactive Features</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">2</div>
+                <div class="stat-label">Complete Quizzes</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">3</div>
+                <div class="stat-label">Virtual Tools</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">5</div>
+                <div class="stat-label">Achievement Levels</div>
+            </div>
+        </div>
+
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🏆</div>
+                <div class="feature-title">Gamification System</div>
+                <ul class="feature-list">
+                    <li>XP Points for every action</li>
+                    <li>5 progression levels</li>
+                    <li>Achievement badges</li>
+                    <li>Daily streak tracking</li>
+                    <li>Visual progress bar</li>
+                    <li>Level-up celebrations</li>
+                </ul>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <div class="feature-title">Interactive Quizzes</div>
+                <ul class="feature-list">
+                    <li>10 total questions</li>
+                    <li>Instant feedback</li>
+                    <li>Detailed explanations</li>
+                    <li>Score tracking</li>
+                    <li>Review wrong answers</li>
+                    <li>Retry functionality</li>
+                </ul>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🛠️</div>
+                <div class="feature-title">Virtual Tools</div>
+                <ul class="feature-list">
+                    <li>Force Calculator</li>
+                    <li>Material Selector (6 types)</li>
+                    <li>Strength Tester</li>
+                    <li>Shape comparisons</li>
+                    <li>Real-time calculations</li>
+                    <li>Visual demonstrations</li>
+                </ul>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">✨</div>
+                <div class="feature-title">Animations & Effects</div>
+                <ul class="feature-list">
+                    <li>Points popup notifications</li>
+                    <li>Badge unlock animations</li>
+                    <li>Quiz answer feedback</li>
+                    <li>Smooth transitions</li>
+                    <li>Interactive diagrams</li>
+                    <li>Hover effects</li>
+                </ul>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">💾</div>
+                <div class="feature-title">Progress Tracking</div>
+                <ul class="feature-list">
+                    <li>Auto-save to browser</li>
+                    <li>Persistent progress</li>
+                    <li>No login required</li>
+                    <li>Cross-session tracking</li>
+                    <li>Stats dashboard</li>
+                    <li>Streak counter</li>
+                </ul>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🎨</div>
+                <div class="feature-title">Modern Design</div>
+                <ul class="feature-list">
+                    <li>Clean, professional UI</li>
+                    <li>Gradient backgrounds</li>
+                    <li>Color-coded levels</li>
+                    <li>Responsive layout</li>
+                    <li>Icons & emojis</li>
+                    <li>Dark/light themes</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <div class="demo-title">🎮 Gamification Levels</div>
+            <div class="demo-grid">
+                <div class="demo-item">
+                    <h3>🔧 Level 1</h3>
+                    <p>Beginner Builder</p>
+                    <p style="margin-top: 0.5rem; opacity: 0.8;">0-99 XP</p>
+                </div>
+                <div class="demo-item">
+                    <h3>🛠️ Level 2</h3>
+                    <p>Apprentice Maker</p>
+                    <p style="margin-top: 0.5rem; opacity: 0.8;">100-199 XP</p>
+                </div>
+                <div class="demo-item">
+                    <h3>⚙️ Level 3</h3>
+                    <p>Skilled Craftsperson</p>
+                    <p style="margin-top: 0.5rem; opacity: 0.8;">200-299 XP</p>
+                </div>
+                <div class="demo-item">
+                    <h3>🏗️ Level 4</h3>
+                    <p>Expert Engineer</p>
+                    <p style="margin-top: 0.5rem; opacity: 0.8;">300-399 XP</p>
+                </div>
+                <div class="demo-item">
+                    <h3>🏆 Level 5</h3>
+                    <p>Master Innovator</p>
+                    <p style="margin-top: 0.5rem; opacity: 0.8;">400+ XP</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <div class="demo-title">🛠️ Virtual Tools</div>
+            <div class="demo-grid">
+                <div class="demo-item">
+                    <h3>🧮 Force Calculator</h3>
+                    <p>Calculate forces and pressure on structures</p>
+                    <p style="margin-top: 1rem; font-size: 0.9rem;">Input load, area → Get Newtons & Pascals</p>
+                </div>
+                <div class="demo-item">
+                    <h3>🔍 Material Selector</h3>
+                    <p>Compare 6 different materials</p>
+                    <p style="margin-top: 1rem; font-size: 0.9rem;">Wood, Steel, Aluminum, Plastic, Cardboard, Concrete</p>
+                </div>
+                <div class="demo-item">
+                    <h3>🎯 Strength Tester</h3>
+                    <p>Test shape strength virtually</p>
+                    <p style="margin-top: 1rem; font-size: 0.9rem;">Square, Triangle, Circle, Hexagon</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <div class="demo-title">💡 How It Works</div>
+            <div style="max-width: 800px; margin: 0 auto; line-height: 1.8; font-size: 1.1rem;">
+                <p style="margin-bottom: 1rem;">
+                    <strong>1. Students learn content</strong> - Read through well-structured, visual lessons
+                </p>
+                <p style="margin-bottom: 1rem;">
+                    <strong>2. Take interactive quizzes</strong> - Test knowledge with instant feedback
+                </p>
+                <p style="margin-bottom: 1rem;">
+                    <strong>3. Use virtual tools</strong> - Experiment safely with calculators and testers
+                </p>
+                <p style="margin-bottom: 1rem;">
+                    <strong>4. Earn XP and badges</strong> - Get rewarded for every action
+                </p>
+                <p>
+                    <strong>5. Level up!</strong> - Progress from Beginner Builder to Master Innovator
+                </p>
+            </div>
+        </div>
+
+        <a href="subjects/technology/index.html" class="big-button">
+            🚀 Open Technology Subject
+        </a>
+
+        <div style="text-align: center; margin-top: 3rem; opacity: 0.9;">
+            <p style="font-size: 1.2rem; margin-bottom: 1rem;">✨ All features are ready to use!</p>
+            <p>No installation required • Works offline • Progress auto-saved</p>
+        </div>
+    </div>
+</body>
+</html>

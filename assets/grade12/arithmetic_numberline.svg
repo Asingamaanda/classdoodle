@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="220" viewBox="0 0 900 220">
+  <rect width="900" height="220" fill="#0f172a"/>
+  <text x="24" y="32" fill="#e2e8f0" font-family="Arial" font-size="18">Arithmetic sequence on a number line (d = 4)</text>
+  <line x1="60" y1="120" x2="840" y2="120" stroke="#94a3b8" stroke-width="3"/>
+  <polygon points="840,120 826,112 826,128" fill="#94a3b8"/>
+
+  <g font-family="Arial" font-size="16" fill="#e2e8f0">
+    <circle cx="120" cy="120" r="8" fill="#22c55e"/>
+    <text x="108" y="150">5</text>
+
+    <circle cx="240" cy="120" r="8" fill="#22c55e"/>
+    <text x="228" y="150">9</text>
+
+    <circle cx="360" cy="120" r="8" fill="#22c55e"/>
+    <text x="346" y="150">13</text>
+
+    <circle cx="480" cy="120" r="8" fill="#22c55e"/>
+    <text x="466" y="150">17</text>
+
+    <circle cx="600" cy="120" r="8" fill="#22c55e"/>
+    <text x="586" y="150">21</text>
+  </g>
+
+  <g stroke="#38bdf8" stroke-width="2">
+    <line x1="120" y1="80" x2="240" y2="80"/>
+    <line x1="240" y1="80" x2="360" y2="80"/>
+    <line x1="360" y1="80" x2="480" y2="80"/>
+    <line x1="480" y1="80" x2="600" y2="80"/>
+  </g>
+  <g font-family="Arial" font-size="14" fill="#38bdf8">
+    <text x="165" y="70">+4</text>
+    <text x="285" y="70">+4</text>
+    <text x="405" y="70">+4</text>
+    <text x="525" y="70">+4</text>
+  </g>
+</svg>

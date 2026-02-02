@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mathematics - Grade 12 CAPS | ClassDoodle</title>
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <link rel="stylesheet" href="../../../styles/textbook.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../../index.html" class="nav-logo">🎓 ClassDoodle</a>
+            <div class="nav-title">Mathematics - Grade 12</div>
+            <button onclick="window.print()" class="download-btn">📥 Download PDF</button>
+        </div>
+    </nav>
+
+    <div class="container textbook-container">
+        <aside class="sidebar">
+            <h3>📚 Term 1 Chapters</h3>
+            <ul class="chapter-list">
+                <li class="term-header" style="margin-top: 1rem; padding: 0.5rem; background: rgba(99, 102, 241, 0.1); border-radius: 6px; font-weight: bold; color: #6366f1; pointer-events: none; cursor: default;">TERM 1</li>
+                <li><a href="#chapter1" class="active">1. Sequences & Series</a></li>
+            </ul>
+        </aside>
+
+        <main class="content">
+            <!-- Chapter 1: Sequences & Series -->
+            <section id="chapter1" class="chapter">
+                <h1 class="chapter-title">Chapter 1: Sequences & Series - Patterns to Power! 📈</h1>
+
+                <!-- Video Introduction -->
+                <div class="video-intro" style="margin: 2rem 0; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); border-radius: 16px; padding: 1.5rem; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12); border: 1px solid rgba(255, 255, 255, 0.4);">
+                    <h3 style="color: #6366f1; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="font-size: 1.5rem;">🎬</span> Video Introduction: Sequences & Series
+                    </h3>
+                    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; background: #000;">
+                        <iframe 
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
+                            src="https://www.youtube.com/embed/cnW2Re6qzXk" 
+                            title="Sequences and Series"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <p style="margin-top: 1rem; color: #64748b; font-size: 0.9rem;">
+                        📌 <strong>Quick Overview:</strong> Learn arithmetic and geometric sequences and how to sum them
+                    </p>
+                </div>
+
+                <div class="intro-box" style="background: linear-gradient(135deg, rgba(99,102,241,0.1), rgba(236,72,153,0.1));">
+                    <h2>Welcome to Sequences & Series! 🌟</h2>
+                    <p style="font-size: 1.1rem; line-height: 1.8;">A sequence is an ordered list of numbers. A series is the sum of the terms of a sequence. In Grade 12, we master arithmetic and geometric sequences and learn to calculate any term or sum quickly.</p>
+
+                    <div style="margin-top: 1.5rem; padding: 1.25rem; background: rgba(251, 191, 36, 0.1); border-radius: 10px; border: 2px solid rgba(251, 191, 36, 0.3);">
+                        <h4 style="color: #fbbf24; margin-bottom: 0.75rem;">🎯 You Will Learn:</h4>
+                        <div style="display: grid; gap: 0.5rem;">
+                            <p style="margin: 0;">✓ Identify arithmetic and geometric sequences</p>
+                            <p style="margin: 0;">✓ Find the nth term formula</p>
+                            <p style="margin: 0;">✓ Calculate sums of arithmetic and geometric series</p>
+                            <p style="margin: 0;">✓ Solve exam-style application problems</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="concept-box" style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(16, 185, 129, 0.1));">
+                    <h3>🔢 Arithmetic Sequences</h3>
+
+                    <div style="margin: 1.5rem 0; padding: 1rem; background: rgba(6, 182, 212, 0.05); border-radius: 10px; border-left: 4px solid #06b6d4;">
+                        <p style="margin: 0;"><strong>Definition:</strong> An arithmetic sequence has a constant difference <strong>d</strong> between consecutive terms.</p>
+                    </div>
+
+                    <div style="margin-top: 1.5rem; display: grid; gap: 1.5rem;">
+                        <div style="padding: 1.5rem; background: rgba(99, 102, 241, 0.1); border-radius: 10px;">
+                            <h4 style="color: #6366f1; margin-bottom: 1rem;">Nth Term Formula</h4>
+                            <p style="font-size: 1.2rem; font-weight: bold;">Tₙ = a + (n - 1)d</p>
+                            <p style="margin-top: 0.5rem;">Where <strong>a</strong> is the first term, <strong>d</strong> is the common difference.</p>
+                        </div>
+
+                        <div style="padding: 1.5rem; background: rgba(236, 72, 153, 0.1); border-radius: 10px;">
+                            <h4 style="color: #ec4899; margin-bottom: 1rem;">Example</h4>
+                            <p>Sequence: 5, 9, 13, 17, 21, ...</p>
+                            <p>Here, <strong>a = 5</strong>, <strong>d = 4</strong></p>
+                            <p>Find T₁₀:</p>
+                            <p><strong>T₁₀ = 5 + (10 - 1) × 4 = 5 + 36 = 41</strong></p>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(99, 102, 241, 0.08); border-radius: 10px;">
+                        <h4 style="color: #6366f1; margin-bottom: 1rem;">✅ How to Identify an Arithmetic Sequence</h4>
+                        <ol style="margin-left: 1.5rem; line-height: 1.9;">
+                            <li>Subtract consecutive terms: T₂ - T₁, T₃ - T₂, T₄ - T₃</li>
+                            <li>If the differences are the same, it is arithmetic</li>
+                        </ol>
+                        <div style="margin-top: 1rem; padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 8px;">
+                            <p style="margin: 0;"><strong>Example:</strong> 18, 13, 8, 3, ...</p>
+                            <p style="margin-top: 0.5rem;">Differences: -5, -5, -5 → arithmetic with d = -5</p>
+                        </div>
+                        <div style="margin-top: 1rem; background: rgba(15, 23, 42, 0.6); border-radius: 12px; padding: 1rem;">
+                            <img src="../../../assets/grade12/arithmetic_difference_table.svg" alt="Difference table showing constant difference of +5" style="width: 100%; height: auto; border-radius: 10px;">
+                            <p style="margin-top: 0.75rem; color: #cbd5e1; font-size: 0.95rem;">The constant first difference confirms the sequence is arithmetic.</p>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 2rem; display: grid; gap: 1.5rem;">
+                        <div style="padding: 1.5rem; background: rgba(34, 197, 94, 0.1); border-radius: 10px;">
+                            <h4 style="color: #22c55e; margin-bottom: 1rem;">Find the nth Term (Step-by-Step)</h4>
+                            <ol style="margin-left: 1.5rem; line-height: 1.9;">
+                                <li>Identify <strong>a</strong> (first term)</li>
+                                <li>Calculate <strong>d</strong> (common difference)</li>
+                                <li>Substitute into <strong>Tₙ = a + (n - 1)d</strong></li>
+                            </ol>
+                            <div style="margin-top: 1rem; padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 8px;">
+                                <p style="margin: 0;"><strong>Example:</strong> 2, 7, 12, 17, ...</p>
+                                <p style="margin-top: 0.5rem;">a = 2, d = 5</p>
+                                <p style="margin-top: 0.5rem;">Tₙ = 2 + (n - 1)5 = 5n - 3</p>
+                            </div>
+                            <div style="margin-top: 1rem; background: rgba(15, 23, 42, 0.6); border-radius: 12px; padding: 1rem;">
+                                <img src="../../../assets/grade12/arithmetic_numberline.svg" alt="Arithmetic sequence on a number line with constant difference" style="width: 100%; height: auto; border-radius: 10px;">
+                                <p style="margin-top: 0.75rem; color: #cbd5e1; font-size: 0.95rem;">Number line shows equal jumps of +4 between consecutive terms.</p>
+                            </div>
+                        </div>
+
+                        <div style="padding: 1.5rem; background: rgba(16, 185, 129, 0.1); border-radius: 10px;">
+                            <h4 style="color: #10b981; margin-bottom: 1rem;">Find n (Which Term?)</h4>
+                            <p>Set Tₙ equal to the given term and solve for n.</p>
+                            <div style="margin-top: 1rem; padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 8px;">
+                                <p style="margin: 0;"><strong>Example:</strong> In 6, 11, 16, 21, ... which term is 86?</p>
+                                <p style="margin-top: 0.5rem;">Tₙ = 6 + (n - 1)5 = 5n + 1</p>
+                                <p style="margin-top: 0.5rem;">5n + 1 = 86 → 5n = 85 → n = 17</p>
+                                <p style="margin-top: 0.5rem; font-weight: bold; color: #22c55e;">86 is the 17th term</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(236, 72, 153, 0.12); border-radius: 10px;">
+                        <h4 style="color: #ec4899; margin-bottom: 1rem;">Solve for Unknowns (a or d)</h4>
+                        <p>Use two terms to form equations, then solve simultaneously.</p>
+                        <div style="margin-top: 1rem; padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 8px;">
+                            <p style="margin: 0;"><strong>Example:</strong> T₃ = 12 and T₇ = 28. Find a and d.</p>
+                            <p style="margin-top: 0.5rem;">T₃ = a + 2d = 12</p>
+                            <p style="margin-top: 0.5rem;">T₇ = a + 6d = 28</p>
+                            <p style="margin-top: 0.5rem;">Subtract: 4d = 16 → d = 4</p>
+                            <p style="margin-top: 0.5rem;">Then a = 12 - 2(4) = 4</p>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(251, 191, 36, 0.12); border-radius: 10px;">
+                        <h4 style="color: #fbbf24; margin-bottom: 1rem;">Word Problem: Seating Pattern</h4>
+                        <p>Row 1 has 14 seats. Each row has 3 more seats than the previous row.</p>
+                        <div style="margin-top: 1rem; padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 8px;">
+                            <p style="margin: 0;">a = 14, d = 3</p>
+                            <p style="margin-top: 0.5rem;">Find seats in row 25:</p>
+                            <p style="margin-top: 0.5rem;">T₂₅ = 14 + (25 - 1)3 = 14 + 72 = <strong>86</strong></p>
+                        </div>
+                        <div style="margin-top: 1rem; background: rgba(15, 23, 42, 0.6); border-radius: 12px; padding: 1rem;">
+                            <img src="../../../assets/grade12/arithmetic_seating.svg" alt="Stadium seating pattern with constant increase" style="width: 100%; height: auto; border-radius: 10px;">
+                            <p style="margin-top: 0.75rem; color: #cbd5e1; font-size: 0.95rem;">Each row adds the same number of seats, so it is an arithmetic sequence.</p>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(6, 182, 212, 0.1); border-radius: 10px;">
+                        <h4 style="color: #06b6d4; margin-bottom: 1rem;">Quick Practice (Arithmetic Sequences)</h4>
+                        <ol style="margin-left: 1.5rem; line-height: 2;">
+                            <li>Find T₁₅ of 9, 4, -1, -6, ...</li>
+                            <li>Which term is 203 in 5, 11, 17, 23, ...?</li>
+                            <li>If T₄ = 19 and T₁₀ = 43, find a and d.</li>
+                        </ol>
+                    </div>
+
+                    <div style="margin-top: 2rem; padding: 1.5rem; background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(30, 41, 59, 0.6)); border-radius: 12px; border: 1px solid rgba(148, 163, 184, 0.3);">
+                        <h4 style="color: #e2e8f0; margin-bottom: 1rem;">🧩 Cognitive Challenge (Arithmetic Sequences)</h4>
+                        <p style="color: #cbd5e1; margin-bottom: 1.5rem;">These problems require reasoning, pattern-spotting, and equation setup. Try without a calculator first.</p>
+
+                        <div style="display: grid; gap: 1.5rem;">
+                            <div style="padding: 1.25rem; background: rgba(99, 102, 241, 0.12); border-radius: 10px;">
+                                <p style="font-weight: bold; margin-bottom: 0.75rem; color: #e2e8f0;">Challenge 1: Hidden Term Trap</p>
+                                <p style="color: #cbd5e1;">In an arithmetic sequence, T₃ + T₈ = 58 and T₅ = 17. Find a and d.</p>
+                                <details style="cursor: pointer; margin-top: 0.75rem;">
+                                    <summary style="color: #22c55e; font-weight: bold;">Hint</summary>
+                                    <p style="margin-top: 0.5rem; color: #cbd5e1;">Express T₃, T₅, T₈ in terms of a and d.</p>
+                                </details>
+                                <details style="cursor: pointer; margin-top: 0.5rem;">
+                                    <summary style="color: #38bdf8; font-weight: bold;">Show solution</summary>
+                                    <p style="margin-top: 0.5rem; color: #cbd5e1;">T₃ = a + 2d, T₈ = a + 7d ⇒ 2a + 9d = 58. T₅ = a + 4d = 17. Solve: a = 5, d = 3.</p>
+                                </details>
+                            </div>
+
+                            <div style="padding: 1.25rem; background: rgba(34, 197, 94, 0.12); border-radius: 10px;">
+                                <p style="font-weight: bold; margin-bottom: 0.75rem; color: #e2e8f0;">Challenge 2: Term Index Puzzle</p>
+                                <p style="color: #cbd5e1;">In an arithmetic sequence, Tₙ = 3n - 4. Which term equals 260, and what is the sum of the first n terms?</p>
+                                <details style="cursor: pointer; margin-top: 0.75rem;">
+                                    <summary style="color: #22c55e; font-weight: bold;">Hint</summary>
+                                    <p style="margin-top: 0.5rem; color: #cbd5e1;">Solve 3n - 4 = 260, then use Sₙ = n/2 × (T₁ + Tₙ).</p>
+                                </details>
+                                <details style="cursor: pointer; margin-top: 0.5rem;">
+                                    <summary style="color: #38bdf8; font-weight: bold;">Show solution</summary>
+                                    <p style="margin-top: 0.5rem; color: #cbd5e1;">3n - 4 = 260 ⇒ n = 88. T₁ = -1. S₈₈ = 88/2 × (-1 + 260) = 44 × 259 = 11,396.</p>
+                                </details>
+                            </div>
+
+                            <div style="padding: 1.25rem; background: rgba(236, 72, 153, 0.12); border-radius: 10px;">
+                                <p style="font-weight: bold; margin-bottom: 0.75rem; color: #e2e8f0;">Challenge 3: Two Sequences Intersection</p>
+                                <p style="color: #cbd5e1;">Sequence A: 4, 9, 14, 19, ... Sequence B: 2, 8, 14, 20, ... At which term number do they first match?</p>
+                                <details style="cursor: pointer; margin-top: 0.75rem;">
+                                    <summary style="color: #22c55e; font-weight: bold;">Hint</summary>
+                                    <p style="margin-top: 0.5rem; color: #cbd5e1;">Set the nth term of A equal to the nth term of B, or compare term positions.</p>
+                                </details>
+                                <details style="cursor: pointer; margin-top: 0.5rem;">
+                                    <summary style="color: #38bdf8; font-weight: bold;">Show solution</summary>
+                                    <p style="margin-top: 0.5rem; color: #cbd5e1;">A: Tₙ = 4 + (n-1)5 = 5n - 1. B: Tₙ = 2 + (n-1)6 = 6n - 4. Set equal: 5n - 1 = 6n - 4 ⇒ n = 3. They match at term 3 (value 14).</p>
+                                </details>
+                            </div>
+
+                            <div style="padding: 1.25rem; background: rgba(250, 204, 21, 0.12); border-radius: 10px;">
+                                <p style="font-weight: bold; margin-bottom: 0.75rem; color: #e2e8f0;">Challenge 4: Error-Check Reasoning</p>
+                                <p style="color: #cbd5e1;">A student claims the sequence 12, 9, 6, 4, 2, ... is arithmetic with d = -3. Is the claim correct? Explain.</p>
+                                <details style="cursor: pointer; margin-top: 0.75rem;">
+                                    <summary style="color: #22c55e; font-weight: bold;">Hint</summary>
+                                    <p style="margin-top: 0.5rem; color: #cbd5e1;">Check all consecutive differences.</p>
+                                </details>
+                                <details style="cursor: pointer; margin-top: 0.5rem;">
+                                    <summary style="color: #38bdf8; font-weight: bold;">Show solution</summary>
+                                    <p style="margin-top: 0.5rem; color: #cbd5e1;">Differences are -3, -3, -2, -2. Not constant, so it is not arithmetic.</p>
+                                </details>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="concept-box" style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(139, 92, 246, 0.1)); margin-top: 2rem;">
+                    <h3>➕ Arithmetic Series (Sum of Arithmetic Sequence)</h3>
+
+                    <div style="margin: 1.5rem 0; padding: 1rem; background: rgba(168, 85, 247, 0.1); border-radius: 10px;">
+                        <p style="font-size: 1.2rem; font-weight: bold;">Sₙ = n/2 × (2a + (n - 1)d)</p>
+                        <p style="margin-top: 0.5rem;">Where <strong>Sₙ</strong> is the sum of the first n terms.</p>
+                    </div>
+
+                    <div style="padding: 1.5rem; background: rgba(34, 197, 94, 0.1); border-radius: 10px;">
+                        <h4 style="color: #22c55e; margin-bottom: 1rem;">Example</h4>
+                        <p>Find the sum of the first 20 terms of 3, 7, 11, 15, ...</p>
+                        <p>a = 3, d = 4, n = 20</p>
+                        <p>S₂₀ = 20/2 × (2(3) + 19(4))</p>
+                        <p>S₂₀ = 10 × (6 + 76) = 10 × 82 = <strong>820</strong></p>
+                    </div>
+
+                    <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(99, 102, 241, 0.08); border-radius: 10px;">
+                        <h4 style="color: #6366f1; margin-bottom: 1rem;">Why the Formula Works (Pairing Method)</h4>
+                        <p>Take the series and write it forwards and backwards:</p>
+                        <p style="margin-top: 0.5rem;">Sₙ = a + (a + d) + (a + 2d) + ... + l</p>
+                        <p>Reverse: Sₙ = l + (l - d) + (l - 2d) + ... + a</p>
+                        <p style="margin-top: 0.5rem;">Add term‑by‑term: 2Sₙ = (a + l) + (a + l) + ... + (a + l)</p>
+                        <p>There are n pairs, so 2Sₙ = n(a + l) → <strong>Sₙ = n/2 × (a + l)</strong></p>
+                        <p style="margin-top: 0.5rem;">This gives an alternative form of the sum formula.</p>
+                    </div>
+
+                    <div style="margin-top: 2rem; display: grid; gap: 1.5rem;">
+                        <div style="padding: 1.5rem; background: rgba(236, 72, 153, 0.1); border-radius: 10px;">
+                            <h4 style="color: #ec4899; margin-bottom: 1rem;">Two Equivalent Sum Formulas</h4>
+                            <p><strong>Formula A:</strong> Sₙ = n/2 × (2a + (n - 1)d)</p>
+                            <p><strong>Formula B:</strong> Sₙ = n/2 × (a + l)</p>
+                            <p style="margin-top: 0.5rem;">Use Formula B when the last term l is known.</p>
+                        </div>
+
+                        <div style="padding: 1.5rem; background: rgba(59, 130, 246, 0.1); border-radius: 10px;">
+                            <h4 style="color: #3b82f6; margin-bottom: 1rem;">Finding the Last Term First</h4>
+                            <p>Last term: <strong>l = a + (n - 1)d</strong></p>
+                            <p>Then plug into Sₙ = n/2 × (a + l).</p>
+                            <p style="margin-top: 0.5rem;">This is often faster in exams.</p>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(6, 182, 212, 0.1); border-radius: 10px;">
+                        <h4 style="color: #06b6d4; margin-bottom: 1rem;">Step‑By‑Step Method (Any Sum Problem)</h4>
+                        <ol style="margin-left: 1.5rem; line-height: 2;">
+                            <li>Identify <strong>a</strong>, <strong>d</strong>, and <strong>n</strong> (or <strong>l</strong>).</li>
+                            <li>If l is not given, compute <strong>l = a + (n - 1)d</strong>.</li>
+                            <li>Choose the formula that fits: Sₙ = n/2 × (2a + (n - 1)d) or Sₙ = n/2 × (a + l).</li>
+                            <li>Substitute carefully and simplify.</li>
+                        </ol>
+                    </div>
+
+                    <div style="margin-top: 2rem; display: grid; gap: 1.5rem;">
+                        <div style="padding: 1.5rem; background: rgba(34, 197, 94, 0.12); border-radius: 10px;">
+                            <h4 style="color: #22c55e; margin-bottom: 1rem;">Example 1: Given a, d, n</h4>
+                            <p>Sequence: 8, 11, 14, 17, ... Find S₁₂.</p>
+                            <p>a = 8, d = 3, n = 12</p>
+                            <p>S₁₂ = 12/2 × (2(8) + 11(3))</p>
+                            <p>S₁₂ = 6 × (16 + 33) = 6 × 49 = <strong>294</strong></p>
+                        </div>
+
+                        <div style="padding: 1.5rem; background: rgba(14, 165, 233, 0.12); border-radius: 10px;">
+                            <h4 style="color: #0ea5e9; margin-bottom: 1rem;">Example 2: Given a, l, n</h4>
+                            <p>First term 6, last term 66, number of terms 11.</p>
+                            <p>S₁₁ = 11/2 × (6 + 66) = 11/2 × 72 = 11 × 36 = <strong>396</strong></p>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 2rem; display: grid; gap: 1.5rem;">
+                        <div style="padding: 1.5rem; background: rgba(168, 85, 247, 0.12); border-radius: 10px;">
+                            <h4 style="color: #a855f7; margin-bottom: 1rem;">Example 3: Find n (Sum Known)</h4>
+                            <p>The sum of the first n terms of 4, 9, 14, 19, ... is 544. Find n.</p>
+                            <p>a = 4, d = 5</p>
+                            <p>Sₙ = n/2 × (2(4) + (n - 1)5) = 544</p>
+                            <p>Sₙ = n/2 × (8 + 5n - 5) = n/2 × (5n + 3)</p>
+                            <p>n(5n + 3) = 1088 → 5n² + 3n - 1088 = 0</p>
+                            <p>Factor: (5n + 68)(n - 16) = 0 → n = <strong>16</strong></p>
+                        </div>
+
+                        <div style="padding: 1.5rem; background: rgba(251, 191, 36, 0.12); border-radius: 10px;">
+                            <h4 style="color: #fbbf24; margin-bottom: 1rem;">Example 4: Find d (Sum Known)</h4>
+                            <p>The sum of the first 15 terms is 300, and a = 5. Find d.</p>
+                            <p>S₁₅ = 15/2 × (2(5) + 14d) = 300</p>
+                            <p>7.5 × (10 + 14d) = 300 → 10 + 14d = 40</p>
+                            <p>14d = 30 → d = <strong>15/7</strong></p>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(15, 23, 42, 0.6); border-radius: 12px;">
+                        <h4 style="color: #e2e8f0; margin-bottom: 1rem;">Sigma Notation for Arithmetic Series</h4>
+                        <p style="color: #cbd5e1;">If Tₖ = a + (k - 1)d, then:</p>
+                        <p style="color: #cbd5e1; font-weight: bold;">Sₙ = Σ Tₖ = Σ (a + (k - 1)d)</p>
+                        <p style="color: #cbd5e1;">This expands to n/2 × (2a + (n - 1)d).</p>
+                    </div>
+
+                    <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(220, 38, 38, 0.1); border-radius: 10px;">
+                        <h4 style="color: #dc2626; margin-bottom: 1rem;">Common Mistakes to Avoid</h4>
+                        <ul style="margin-left: 1.5rem; line-height: 2;">
+                            <li>Using n instead of n - 1 in the formula for l.</li>
+                            <li>Forgetting to multiply by n/2 after computing (a + l).</li>
+                            <li>Mixing up sequence (terms) and series (sum of terms).</li>
+                            <li>Assuming d is positive; it can be negative.</li>
+                        </ul>
+                    </div>
+
+                    <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(34, 197, 94, 0.1); border-radius: 10px;">
+                        <h4 style="color: #22c55e; margin-bottom: 1rem;">Application: Saving Plan</h4>
+                        <p>You save R50 in week 1, then increase by R20 each week.</p>
+                        <p>How much will you have saved after 10 weeks?</p>
+                        <p>a = 50, d = 20, n = 10</p>
+                        <p>S₁₀ = 10/2 × (2(50) + 9(20)) = 5 × (100 + 180) = <strong>1,400</strong></p>
+                    </div>
+
+                    <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(99, 102, 241, 0.1); border-radius: 10px;">
+                        <h4 style="color: #6366f1; margin-bottom: 1rem;">Mini Quiz (No Solutions)</h4>
+                        <ol style="margin-left: 1.5rem; line-height: 2;">
+                            <li>Find the sum of the first 18 terms of 7, 12, 17, ...</li>
+                            <li>How many terms are in 6, 10, 14, ..., 94?</li>
+                            <li>If Sₙ = n(3n + 1), find Tₙ.</li>
+                            <li>The sum of the first n terms is 210, a = 3, d = 2. Find n.</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="concept-box" style="background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(8, 145, 178, 0.1)); margin-top: 2rem;">
+                    <h3>🔁 Geometric Sequences</h3>
+
+                    <div style="margin: 1.5rem 0; padding: 1rem; background: rgba(6, 182, 212, 0.05); border-radius: 10px; border-left: 4px solid #06b6d4;">
+                        <p style="margin: 0;"><strong>Definition:</strong> A geometric sequence has a constant ratio <strong>r</strong> between consecutive terms.</p>
+                    </div>
+
+                    <div style="margin-top: 1.5rem; display: grid; gap: 1.5rem;">
+                        <div style="padding: 1.5rem; background: rgba(14, 165, 233, 0.1); border-radius: 10px;">
+                            <h4 style="color: #0ea5e9; margin-bottom: 1rem;">Nth Term Formula</h4>
+                            <p style="font-size: 1.2rem; font-weight: bold;">Tₙ = a × r⁽ⁿ⁻¹⁾</p>
+                            <p style="margin-top: 0.5rem;">Where <strong>a</strong> is the first term, <strong>r</strong> is the common ratio.</p>
+                        </div>
+
+                        <div style="padding: 1.5rem; background: rgba(245, 158, 11, 0.1); border-radius: 10px;">
+                            <h4 style="color: #f59e0b; margin-bottom: 1rem;">Example</h4>
+                            <p>Sequence: 2, 6, 18, 54, ...</p>
+                            <p>a = 2, r = 3</p>
+                            <p>Find T₆:</p>
+                            <p><strong>T₆ = 2 × 3⁵ = 2 × 243 = 486</strong></p>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(59, 130, 246, 0.1); border-radius: 10px;">
+                        <h4 style="color: #3b82f6; margin-bottom: 1rem;">✅ How to Identify a Geometric Sequence</h4>
+                        <ol style="margin-left: 1.5rem; line-height: 1.9;">
+                            <li>Divide consecutive terms: T₂/T₁, T₃/T₂, T₄/T₃</li>
+                            <li>If the ratios are equal, it is geometric</li>
+                        </ol>
+                        <div style="margin-top: 1rem; padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 8px;">
+                            <p style="margin: 0;"><strong>Example:</strong> 81, 27, 9, 3, ...</p>
+                            <p style="margin-top: 0.5rem;">Ratios: 27/81 = 1/3, 9/27 = 1/3 → geometric with r = 1/3</p>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 2rem; display: grid; gap: 1.5rem;">
+                        <div style="padding: 1.5rem; background: rgba(16, 185, 129, 0.1); border-radius: 10px;">
+                            <h4 style="color: #10b981; margin-bottom: 1rem;">Find the nth Term (Step‑by‑Step)</h4>
+                            <ol style="margin-left: 1.5rem; line-height: 1.9;">
+                                <li>Identify <strong>a</strong> (first term)</li>
+                                <li>Calculate <strong>r</strong> (common ratio)</li>
+                                <li>Substitute into <strong>Tₙ = a × r⁽ⁿ⁻¹⁾</strong></li>
+                            </ol>
+                            <div style="margin-top: 1rem; padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 8px;">
+                                <p style="margin: 0;"><strong>Example:</strong> 5, 10, 20, 40, ...</p>
+                                <p style="margin-top: 0.5rem;">a = 5, r = 2</p>
+                                <p style="margin-top: 0.5rem;">Tₙ = 5 × 2⁽ⁿ⁻¹⁾</p>
+                            </div>
+                        </div>
+
+                        <div style="padding: 1.5rem; background: rgba(236, 72, 153, 0.1); border-radius: 10px;">
+                            <h4 style="color: #ec4899; margin-bottom: 1rem;">Find n (Which Term?)</h4>
+                            <p>Set Tₙ equal to the given term and solve for n using exponents.</p>
+                            <div style="margin-top: 1rem; padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 8px;">
+                                <p style="margin: 0;"><strong>Example:</strong> In 3, 6, 12, 24, ... which term is 384?</p>
+                                <p style="margin-top: 0.5rem;">Tₙ = 3 × 2⁽ⁿ⁻¹⁾ = 384</p>
+                                <p style="margin-top: 0.5rem;">2⁽ⁿ⁻¹⁾ = 128 = 2⁷</p>
+                                <p style="margin-top: 0.5rem;">n - 1 = 7 → n = <strong>8</strong></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 2rem; display: grid; gap: 1.5rem;">
+                        <div style="padding: 1.5rem; background: rgba(168, 85, 247, 0.12); border-radius: 10px;">
+                            <h4 style="color: #a855f7; margin-bottom: 1rem;">Solve for r (Unknown Ratio)</h4>
+                            <p>Use two known terms to form an equation.</p>
+                            <div style="margin-top: 1rem; padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 8px;">
+                                <p style="margin: 0;"><strong>Example:</strong> T₁ = 4 and T₄ = 108</p>
+                                <p style="margin-top: 0.5rem;">T₄ = 4 × r³ = 108 → r³ = 27 → r = <strong>3</strong></p>
+                            </div>
+                        </div>
+
+                        <div style="padding: 1.5rem; background: rgba(251, 191, 36, 0.12); border-radius: 10px;">
+                            <h4 style="color: #fbbf24; margin-bottom: 1rem;">Solve for a (Unknown First Term)</h4>
+                            <p>If r and another term are known, work backward.</p>
+                            <div style="margin-top: 1rem; padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 8px;">
+                                <p style="margin: 0;"><strong>Example:</strong> r = 2 and T₅ = 80</p>
+                                <p style="margin-top: 0.5rem;">T₅ = a × 2⁴ = 16a = 80 → a = <strong>5</strong></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(15, 23, 42, 0.6); border-radius: 12px;">
+                        <h4 style="color: #e2e8f0; margin-bottom: 1rem;">Negative and Fractional Ratios</h4>
+                        <p style="color: #cbd5e1;">Geometric sequences can alternate or decrease when r is negative or a fraction.</p>
+                        <ul style="margin-left: 1.5rem; line-height: 2; color: #cbd5e1;">
+                            <li>r = -2 → 3, -6, 12, -24, ... (alternating signs)</li>
+                            <li>r = 1/2 → 40, 20, 10, 5, ... (decreasing)</li>
+                        </ul>
+                    </div>
+
+                    <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(34, 197, 94, 0.12); border-radius: 10px;">
+                        <h4 style="color: #22c55e; margin-bottom: 1rem;">Real‑World Application: Bacteria Growth</h4>
+                        <p>A culture doubles every 3 hours. It starts with 150 bacteria.</p>
+                        <p>a = 150, r = 2</p>
+                        <p>After 5 periods: T₆ = 150 × 2⁵ = <strong>4,800</strong></p>
+                    </div>
+
+                    <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(220, 38, 38, 0.1); border-radius: 10px;">
+                        <h4 style="color: #dc2626; margin-bottom: 1rem;">Common Mistakes to Avoid</h4>
+                        <ul style="margin-left: 1.5rem; line-height: 2;">
+                            <li>Using differences instead of ratios to identify the sequence.</li>
+                            <li>Forgetting that r can be negative or fractional.</li>
+                            <li>Misplacing the exponent: it is r⁽ⁿ⁻¹⁾, not rⁿ.</li>
+                        </ul>
+                    </div>
+
+                    <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(99, 102, 241, 0.1); border-radius: 10px;">
+                        <h4 style="color: #6366f1; margin-bottom: 1rem;">Quick Practice (Geometric Sequences)</h4>
+                        <ol style="margin-left: 1.5rem; line-height: 2;">
+                            <li>Find T₁₀ of 7, 14, 28, 56, ...</li>
+                            <li>Which term is 768 in 3, 6, 12, 24, ...?</li>
+                            <li>If T₃ = 12 and T₆ = 96, find a and r.</li>
+                            <li>Determine r for 162, 54, 18, 6, ...</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="concept-box" style="background: linear-gradient(135deg, rgba(251, 191, 36, 0.1), rgba(245, 158, 11, 0.1)); margin-top: 2rem;">
+                    <h3>➕ Geometric Series (Sum of Geometric Sequence)</h3>
+
+                    <div style="margin: 1.5rem 0; padding: 1rem; background: rgba(251, 191, 36, 0.1); border-radius: 10px;">
+                        <p style="font-size: 1.2rem; font-weight: bold;">Sₙ = a(1 - rⁿ) / (1 - r), for r ≠ 1</p>
+                    </div>
+
+                    <div style="padding: 1.5rem; background: rgba(34, 197, 94, 0.1); border-radius: 10px;">
+                        <h4 style="color: #22c55e; margin-bottom: 1rem;">Example</h4>
+                        <p>Find the sum of the first 6 terms of 3, 6, 12, 24, ...</p>
+                        <p>a = 3, r = 2, n = 6</p>
+                        <p>S₆ = 3(1 - 2⁶)/(1 - 2) = 3(1 - 64)/(-1)</p>
+                        <p>S₆ = 3(63) = <strong>189</strong></p>
+                    </div>
+                </div>
+
+                <div class="concept-box" style="background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(59, 130, 246, 0.1)); margin-top: 2rem;">
+                    <h3>🧾 Key Terminology & Notation</h3>
+
+                    <div style="margin-top: 1.5rem; display: grid; gap: 1.5rem;">
+                        <div style="padding: 1.5rem; background: rgba(14, 165, 233, 0.1); border-radius: 10px;">
+                            <h4 style="color: #0ea5e9; margin-bottom: 1rem;">Sequence vs Series</h4>
+                            <p><strong>Sequence:</strong> Ordered list of terms (e.g., 2, 5, 8, 11, ...)</p>
+                            <p><strong>Series:</strong> Sum of terms (e.g., 2 + 5 + 8 + 11 + ...)</p>
+                        </div>
+
+                        <div style="padding: 1.5rem; background: rgba(59, 130, 246, 0.1); border-radius: 10px;">
+                            <h4 style="color: #3b82f6; margin-bottom: 1rem;">Sigma Notation (Σ)</h4>
+                            <p style="font-size: 1.1rem; font-weight: bold;">Σ from k = 1 to n of Tₖ = T₁ + T₂ + ... + Tₙ</p>
+                            <p style="margin-top: 0.5rem;">Example: Σ (3k + 2), k=1→4 = (5) + (8) + (11) + (14) = 38</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="concept-box" style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(16, 185, 129, 0.1)); margin-top: 2rem;">
+                    <h3>🧮 Recursive vs Explicit Formulas</h3>
+
+                    <div style="margin-top: 1.5rem; display: grid; gap: 1.5rem;">
+                        <div style="padding: 1.5rem; background: rgba(34, 197, 94, 0.1); border-radius: 10px;">
+                            <h4 style="color: #22c55e; margin-bottom: 1rem;">Arithmetic (Recursive)</h4>
+                            <p style="font-size: 1.1rem; font-weight: bold;">T₁ = a, &nbsp; Tₙ = Tₙ₋₁ + d</p>
+                            <p style="margin-top: 0.5rem;">Example: T₁ = 4, d = 3 → 4, 7, 10, 13, ...</p>
+                        </div>
+
+                        <div style="padding: 1.5rem; background: rgba(16, 185, 129, 0.1); border-radius: 10px;">
+                            <h4 style="color: #10b981; margin-bottom: 1rem;">Geometric (Recursive)</h4>
+                            <p style="font-size: 1.1rem; font-weight: bold;">T₁ = a, &nbsp; Tₙ = r × Tₙ₋₁</p>
+                            <p style="margin-top: 0.5rem;">Example: T₁ = 2, r = 3 → 2, 6, 18, 54, ...</p>
+                        </div>
+
+                        <div style="padding: 1.5rem; background: rgba(99, 102, 241, 0.1); border-radius: 10px;">
+                            <h4 style="color: #6366f1; margin-bottom: 1rem;">Explicit Forms (Fast nth Term)</h4>
+                            <p>Arithmetic: <strong>Tₙ = a + (n - 1)d</strong></p>
+                            <p>Geometric: <strong>Tₙ = a × r⁽ⁿ⁻¹⁾</strong></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="concept-box" style="background: linear-gradient(135deg, rgba(236, 72, 153, 0.1), rgba(244, 63, 94, 0.1)); margin-top: 2rem;">
+                    <h3>⚖️ Arithmetic & Geometric Means</h3>
+
+                    <div style="margin-top: 1.5rem; display: grid; gap: 1.5rem;">
+                        <div style="padding: 1.5rem; background: rgba(236, 72, 153, 0.1); border-radius: 10px;">
+                            <h4 style="color: #ec4899; margin-bottom: 1rem;">Arithmetic Mean (AM)</h4>
+                            <p>If a, x, b are in arithmetic sequence, then:</p>
+                            <p style="font-size: 1.1rem; font-weight: bold;">x = (a + b) / 2</p>
+                            <p>Example: If 7, x, 19 are in A.P., then x = (7 + 19)/2 = 13</p>
+                        </div>
+
+                        <div style="padding: 1.5rem; background: rgba(244, 63, 94, 0.1); border-radius: 10px;">
+                            <h4 style="color: #f43f5e; margin-bottom: 1rem;">Geometric Mean (GM)</h4>
+                            <p>If a, x, b are in geometric sequence, then:</p>
+                            <p style="font-size: 1.1rem; font-weight: bold;">x = √(ab)</p>
+                            <p>Example: If 4, x, 25 are in G.P., then x = √(4×25) = 10</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="concept-box" style="background: linear-gradient(135deg, rgba(250, 204, 21, 0.1), rgba(234, 179, 8, 0.1)); margin-top: 2rem;">
+                    <h3>♾️ Infinite Geometric Series</h3>
+
+                    <div style="margin: 1.5rem 0; padding: 1rem; background: rgba(250, 204, 21, 0.1); border-radius: 10px;">
+                        <p><strong>Condition:</strong> An infinite geometric series only converges if |r| < 1</p>
+                        <p style="font-size: 1.2rem; font-weight: bold;">S∞ = a / (1 - r)</p>
+                    </div>
+
+                    <div style="padding: 1.5rem; background: rgba(34, 197, 94, 0.1); border-radius: 10px;">
+                        <h4 style="color: #22c55e; margin-bottom: 1rem;">Example</h4>
+                        <p>Find the sum: 12 + 6 + 3 + 1.5 + ...</p>
+                        <p>a = 12, r = 0.5</p>
+                        <p>S∞ = 12 / (1 - 0.5) = 12 / 0.5 = <strong>24</strong></p>
+                    </div>
+                </div>
+
+                <div class="concept-box" style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(248, 113, 113, 0.1)); margin-top: 2rem;">
+                    <h3>⚠️ Common Exam Mistakes</h3>
+
+                    <div style="margin-top: 1.5rem; display: grid; gap: 1.5rem;">
+                        <div style="padding: 1.5rem; background: rgba(239, 68, 68, 0.1); border-radius: 10px;">
+                            <p><strong>Mixing up d and r:</strong> Arithmetic uses a constant difference d, geometric uses a constant ratio r.</p>
+                        </div>
+                        <div style="padding: 1.5rem; background: rgba(248, 113, 113, 0.1); border-radius: 10px;">
+                            <p><strong>Wrong r for geometric:</strong> r = T₂/T₁ (not T₁/T₂).</p>
+                        </div>
+                        <div style="padding: 1.5rem; background: rgba(252, 165, 165, 0.1); border-radius: 10px;">
+                            <p><strong>Sum formula error:</strong> Use Sₙ = a(1 - rⁿ)/(1 - r) or Sₙ = a(rⁿ - 1)/(r - 1). Don’t mix signs.</p>
+                        </div>
+                        <div style="padding: 1.5rem; background: rgba(254, 202, 202, 0.1); border-radius: 10px;">
+                            <p><strong>Infinite series misuse:</strong> S∞ only works when |r| < 1.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="concept-box" style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1)); margin-top: 2rem;">
+                    <h3>🧠 Mixed Practice (Sequences & Series)</h3>
+
+                    <div style="display: grid; gap: 1.5rem; margin-top: 1.5rem;">
+                        <div style="padding: 1.5rem; background: rgba(255, 255, 255, 0.05); border-radius: 10px;">
+                            <p style="font-weight: bold; margin-bottom: 0.5rem;">1) Find the 25th term of the arithmetic sequence: 12, 17, 22, 27, ...</p>
+                            <details style="cursor: pointer;">
+                                <summary style="color: #22c55e; font-weight: bold; padding: 0.5rem;">Show solution</summary>
+                                <p style="margin-top: 0.5rem; padding: 1rem; background: rgba(34, 197, 94, 0.1); border-radius: 8px;">a = 12, d = 5, T₂₅ = 12 + 24(5) = 132</p>
+                            </details>
+                        </div>
+
+                        <div style="padding: 1.5rem; background: rgba(255, 255, 255, 0.05); border-radius: 10px;">
+                            <p style="font-weight: bold; margin-bottom: 0.5rem;">2) Determine r if 5, 15, 45, ... is a geometric sequence.</p>
+                            <details style="cursor: pointer;">
+                                <summary style="color: #22c55e; font-weight: bold; padding: 0.5rem;">Show solution</summary>
+                                <p style="margin-top: 0.5rem; padding: 1rem; background: rgba(34, 197, 94, 0.1); border-radius: 8px;">r = 15/5 = 3</p>
+                            </details>
+                        </div>
+
+                        <div style="padding: 1.5rem; background: rgba(255, 255, 255, 0.05); border-radius: 10px;">
+                            <p style="font-weight: bold; margin-bottom: 0.5rem;">3) The sum of the first n terms of an arithmetic sequence is 3n² + 2n. Find Tₙ.</p>
+                            <details style="cursor: pointer;">
+                                <summary style="color: #22c55e; font-weight: bold; padding: 0.5rem;">Show solution</summary>
+                                <p style="margin-top: 0.5rem; padding: 1rem; background: rgba(34, 197, 94, 0.1); border-radius: 8px;">Tₙ = Sₙ - Sₙ₋₁ = (3n² + 2n) - (3(n-1)² + 2(n-1)) = 6n - 1</p>
+                            </details>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin: 3rem 0; padding: 2rem; background: linear-gradient(135deg, rgba(220, 38, 38, 0.15), rgba(239, 68, 68, 0.1)); border-radius: 16px; border: 3px solid #dc2626;">
+                    <div style="text-align: center; margin-bottom: 2rem;">
+                        <h2 style="color: #dc2626; font-size: 2rem; margin-bottom: 0.5rem;">🔥 ASSESSMENT: Sequences & Series</h2>
+                        <p style="font-size: 1.2rem; font-weight: bold; color: #ef4444;">Total: 30 Marks | Time: 45 minutes</p>
+                        <p style="margin-top: 1rem; padding: 1rem; background: rgba(220, 38, 38, 0.1); border-radius: 8px; font-weight: bold;">⚠️ SHOW ALL WORKING | NO CALCULATORS</p>
+                    </div>
+
+                    <div style="background: rgba(255, 255, 255, 0.95); padding: 2rem; border-radius: 12px; color: #1e293b;">
+                        <div style="margin-bottom: 2rem; padding: 1.5rem; background: rgba(99, 102, 241, 0.1); border-radius: 10px; border-left: 4px solid #6366f1;">
+                            <h3 style="color: #6366f1; margin-bottom: 1rem;">Section A: Arithmetic Sequences (10 marks)</h3>
+                            <p style="margin: 0; font-weight: bold;">1.1 Given the arithmetic sequence: 8, 13, 18, 23, ...</p>
+                            <div style="margin-left: 2rem; margin-top: 0.5rem; line-height: 2;">
+                                <p>(a) Find the 40th term (2 marks)</p>
+                                <p>(b) Which term is 253? (3 marks)</p>
+                                <p>(c) Find the sum of the first 25 terms (5 marks)</p>
+                            </div>
+                        </div>
+
+                        <div style="margin-bottom: 2rem; padding: 1.5rem; background: rgba(236, 72, 153, 0.1); border-radius: 10px; border-left: 4px solid #ec4899;">
+                            <h3 style="color: #ec4899; margin-bottom: 1rem;">Section B: Geometric Sequences (10 marks)</h3>
+                            <p style="margin: 0; font-weight: bold;">2.1 The first term is 3 and the common ratio is 2.</p>
+                            <div style="margin-left: 2rem; margin-top: 0.5rem; line-height: 2;">
+                                <p>(a) Write down the 8th term (2 marks)</p>
+                                <p>(b) Find the sum of the first 8 terms (4 marks)</p>
+                                <p>(c) Determine n if Tₙ = 768 (4 marks)</p>
+                            </div>
+                        </div>
+
+                        <div style="margin-bottom: 2rem; padding: 1.5rem; background: rgba(251, 191, 36, 0.1); border-radius: 10px; border-left: 4px solid #fbbf24;">
+                            <h3 style="color: #fbbf24; margin-bottom: 1rem;">Section C: Mixed Concepts (6 marks)</h3>
+                            <p style="margin: 0; font-weight: bold;">3.1 The sum of the first n terms of a geometric sequence is Sₙ = 5(2ⁿ - 1).</p>
+                            <div style="margin-left: 2rem; margin-top: 0.5rem; line-height: 2;">
+                                <p>(a) Find the first term and common ratio (2 marks)</p>
+                                <p>(b) Calculate S₆ (2 marks)</p>
+                                <p>(c) Determine T₆ (2 marks)</p>
+                            </div>
+                        </div>
+
+                        <div style="padding: 1.5rem; background: rgba(34, 197, 94, 0.1); border-radius: 10px; border-left: 4px solid #22c55e;">
+                            <h3 style="color: #22c55e; margin-bottom: 1rem;">Section D: Applications (4 marks)</h3>
+                            <p style="margin: 0; font-weight: bold;">4.1 A ball is dropped from a height of 8 m. Each bounce is 3/4 of the previous height.</p>
+                            <div style="margin-left: 2rem; margin-top: 0.5rem; line-height: 2;">
+                                <p>(a) Write the sequence of maximum heights for the first 5 bounces (2 marks)</p>
+                                <p>(b) Determine the height of the 8th bounce (2 marks)</p>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(220, 38, 38, 0.05); border-radius: 8px; border: 2px dashed #dc2626;">
+                            <h4 style="color: #dc2626; margin-bottom: 1rem;">📝 Assessment Instructions:</h4>
+                            <ul style="margin-left: 1.5rem; line-height: 2;">
+                                <li>Show all working for full marks</li>
+                                <li>Use correct formulas and define all symbols</li>
+                                <li>Give exact answers unless stated otherwise</li>
+                                <li>Check your answers by substitution where possible</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer style="background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); padding: 2rem; text-align: center; color: #cbd5e1; margin-top: 4rem;">
+        <p>© 2026 ClassDoodle | Grade 12 Mathematics CAPS Curriculum</p>
+        <p style="margin-top: 0.5rem;">Made with ❤️ for South African Learners</p>
+    </footer>
+
+    <script>
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Active chapter highlighting
+        const sections = document.querySelectorAll('.chapter');
+        const navLinks = document.querySelectorAll('.chapter-list a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (scrollY >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

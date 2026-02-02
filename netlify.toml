@@ -1,0 +1,63 @@
+# Netlify Configuration File
+# https://docs.netlify.com/configure-builds/file-based-configuration/
+
+[build]
+  # Directory to publish (use current directory)
+  publish = "."
+  
+  # No build command needed for static HTML site
+  command = ""
+
+# Headers for better performance and security
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # Security headers
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    
+    # Cache control for static assets
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/styles/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/scripts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Redirect rules
+[[redirects]]
+  from = "/subjects/mathematics"
+  to = "/subjects/mathematics/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/subjects/natural-sciences"
+  to = "/subjects/natural-sciences/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/subjects/social-sciences"
+  to = "/subjects/social-sciences/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/subjects/technology"
+  to = "/subjects/technology/index.html"
+  status = 200
+
+# 404 redirect to home page
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 404
+
+# Environment settings
+[build.environment]
+  NODE_VERSION = "18"

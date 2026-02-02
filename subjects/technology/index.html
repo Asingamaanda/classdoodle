@@ -1,0 +1,1453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technology - Grade 8 CAPS | ClassDoodle</title>
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/textbook.css">
+    <style>
+        /* Interactive Features Styles - Softer Color Palette */
+        .points-popup { position: fixed; top: 20%; right: 20px; z-index: 10000; animation: slideInRight 0.3s, fadeOut 0.3s 1.7s; }
+        .points-animation { background: linear-gradient(135deg, #dab88f, #c9a572); color: #fff; padding: 1rem 1.5rem; border-radius: 10px; font-weight: bold; font-size: 1.2rem; box-shadow: 0 10px 30px rgba(200, 170, 120, 0.3); }
+        .points-reason { font-size: 0.8rem; margin-top: 0.3rem; opacity: 0.95; }
+        
+        .level-up-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.85); z-index: 10001; display: flex; align-items: center; justify-content: center; animation: fadeIn 0.3s; }
+        .level-up-card { background: linear-gradient(135deg, #8b9dc3, #c4a5c5); padding: 3rem; border-radius: 20px; text-align: center; color: white; max-width: 500px; animation: scaleIn 0.5s; }
+        .level-up-icon { font-size: 5rem; margin-bottom: 1rem; animation: bounce 1s infinite; }
+        .level-up-card h2 { font-size: 2.5rem; margin: 1rem 0; }
+        .new-level { font-size: 4rem; font-weight: bold; margin: 1rem 0; }
+        .level-badge { font-size: 3rem; margin: 1rem 0; }
+        .level-name { font-size: 1.5rem; margin: 1rem 0; opacity: 0.95; }
+        .continue-btn { background: white; color: #7080a0; padding: 1rem 2rem; border: none; border-radius: 10px; font-size: 1.1rem; font-weight: bold; cursor: pointer; margin-top: 1rem; transition: transform 0.2s; }
+        .continue-btn:hover { transform: scale(1.05); }
+        
+        .badge-unlock { position: fixed; top: 100px; right: 20px; background: white; padding: 1rem; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); z-index: 10000; animation: slideInRight 0.3s; }
+        .badge-content { display: flex; align-items: center; gap: 1rem; }
+        .badge-icon { font-size: 2.5rem; }
+        .badge-title { font-weight: bold; color: #7080a0; }
+        .badge-name { font-size: 0.9rem; color: #666; }
+        
+        #progress-tracker { background: linear-gradient(135deg, rgba(139, 157, 195, 0.15), rgba(196, 165, 197, 0.15)); padding: 1.5rem; border-radius: 15px; margin-bottom: 2rem; border: 1px solid rgba(139, 157, 195, 0.2); }
+        .progress-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 1rem; }
+        .player-info { display: flex; flex-direction: column; gap: 0.3rem; }
+        .player-level { font-size: 1.5rem; font-weight: bold; color: #555; }
+        .player-title { color: #7080a0; font-weight: 600; }
+        .player-stats { display: flex; gap: 1rem; }
+        .stat-item { background: rgba(255,255,255,0.7); padding: 0.5rem 1rem; border-radius: 8px; font-weight: 600; color: #555; border: 1px solid rgba(139, 157, 195, 0.2); }
+        .progress-bar-container { background: rgba(255,255,255,0.5); height: 30px; border-radius: 15px; overflow: hidden; border: 1px solid rgba(139, 157, 195, 0.2); }
+        .progress-bar { background: linear-gradient(90deg, #8b9dc3, #c4a5c5); height: 100%; transition: width 0.5s; border-radius: 15px; }
+        .progress-info { text-align: center; margin-top: 0.5rem; font-size: 0.9rem; color: #666; }
+        .badges-display { margin-top: 1.5rem; }
+        .badges-display h4 { margin-bottom: 1rem; color: #555; }
+        .badges-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 1rem; }
+        .badge-item { background: white; padding: 1rem; border-radius: 10px; text-align: center; border: 2px solid; transition: transform 0.2s; }
+        .badge-item:hover { transform: translateY(-5px); }
+        .badge-icon-large { font-size: 2.5rem; display: block; margin-bottom: 0.5rem; }
+        .badge-name-small { font-size: 0.8rem; font-weight: 600; color: #555; }
+        
+        .quiz-container { background: #fafbfc; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); border: 1px solid #e8eaed; }
+        .quiz-header { display: flex; justify-content: space-between; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 2px solid #e8eaed; color: #555; }
+        .quiz-question { margin-bottom: 2rem; }
+        .quiz-question h4 { font-size: 1.3rem; line-height: 1.6; color: #444; }
+        .quiz-options { display: grid; gap: 1rem; }
+        .quiz-option { background: #f9fafb; border: 2px solid #dfe2e6; padding: 1rem; border-radius: 10px; text-align: left; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 1rem; font-size: 1.05rem; color: #444; }
+        .quiz-option:hover:not(:disabled) { background: #e8eef7; border-color: #8b9dc3; transform: translateX(5px); }
+        .quiz-option.correct { background: #d8f3e6; border-color: #7bb896; animation: pulse 0.5s; }
+        .quiz-option.incorrect { background: #f9e4e4; border-color: #d9a5a5; animation: shake 0.5s; }
+        .quiz-option:disabled { cursor: not-allowed; opacity: 0.7; }
+        .option-letter { background: #8b9dc3; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0; }
+        .quiz-option.correct .option-letter { background: #7bb896; }
+        .quiz-option.incorrect .option-letter { background: #d9a5a5; }
+        .quiz-feedback { margin-top: 1.5rem; }
+        .feedback-content { display: flex; gap: 1rem; padding: 1rem; border-radius: 10px; }
+        .feedback-content.correct { background: #d8f3e6; border-left: 4px solid #7bb896; color: #3d6650; }
+        .feedback-content.incorrect { background: #f9e4e4; border-left: 4px solid #d9a5a5; color: #7a5555; }
+        .feedback-icon { font-size: 2rem; }
+        .quiz-next-btn { background: #8b9dc3; color: white; padding: 0.75rem 2rem; border: none; border-radius: 10px; font-size: 1.05rem; font-weight: bold; cursor: pointer; margin-top: 1rem; transition: background 0.2s; }
+        .quiz-next-btn:hover { background: #7080a0; }
+        
+        .quiz-results { text-align: center; }
+        .results-icon { font-size: 5rem; margin-bottom: 1rem; }
+        .score-circle { background: linear-gradient(135deg, #8b9dc3, #c4a5c5); width: 200px; height: 200px; border-radius: 50%; margin: 2rem auto; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; }
+        .score-number { font-size: 3.5rem; font-weight: bold; }
+        .score-label { font-size: 1rem; opacity: 0.95; }
+        .results-message { font-size: 1.2rem; margin: 2rem 0; padding: 1rem; background: rgba(139, 157, 195, 0.12); border-radius: 10px; color: #555; }
+        .results-details { text-align: left; margin: 2rem 0; }
+        .answer-review { margin: 1rem 0; padding: 1rem; border-radius: 10px; border-left: 4px solid; }
+        .answer-review.correct { background: #d1fae5; border-color: #7bb896; }
+        .answer-review.incorrect { background: #fee2e2; border-color: #d9a5a5; }
+        .review-header { display: flex; align-items: center; gap: 0.5rem; font-weight: bold; margin-bottom: 0.5rem; }
+        .review-icon { font-size: 1.5rem; }
+        .review-answer, .review-correct { margin-top: 0.5rem; }
+        .label { font-weight: 600; color: #666; }
+        .results-actions { display: flex; gap: 1rem; justify-content: center; margin-top: 2rem; }
+        .retry-btn { background: #d9a5a5; color: white; padding: 1rem 2rem; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; }
+        
+        .virtual-tool { background: #fafbfc; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.06); margin: 2rem 0; border: 1px solid #e8eaed; }
+        .virtual-tool h3 { color: #7080a0; margin-bottom: 0.5rem; }
+        .tool-description { color: #666; margin-bottom: 1.5rem; }
+        .calculator-inputs, .tester-controls { display: grid; gap: 1rem; }
+        .input-group { display: flex; flex-direction: column; gap: 0.5rem; }
+        .tool-select, .tool-input { padding: 0.75rem; border: 2px solid #dfe2e6; border-radius: 8px; font-size: 1rem; }
+        .calculate-btn { background: linear-gradient(135deg, #8b9dc3, #c4a5c5); color: white; padding: 1rem; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 1.05rem; transition: transform 0.2s; }
+        .calculate-btn:hover { transform: scale(1.02); }
+        .tool-result { margin-top: 1.5rem; }
+        .result-card { background: linear-gradient(135deg, rgba(139, 157, 195, 0.12), rgba(196, 165, 197, 0.12)); padding: 1.5rem; border-radius: 10px; border: 1px solid rgba(139, 157, 195, 0.2); }
+        .result-header { font-weight: bold; font-size: 1.2rem; margin-bottom: 1rem; color: #555; }
+        .result-item { display: flex; justify-content: space-between; padding: 0.75rem; background: white; border-radius: 8px; margin-bottom: 0.5rem; }
+        .result-value { font-weight: bold; color: #7080a0; }
+        .result-visualization { margin: 1.5rem 0; text-align: center; font-size: 1.5rem; }
+        .result-tip { background: rgba(218, 184, 143, 0.15); padding: 1rem; border-radius: 8px; margin-top: 1rem; border-left: 4px solid #c9a572; }
+        
+        .material-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+        .material-card { background: white; border: 2px solid #dfe2e6; padding: 1.5rem; border-radius: 10px; cursor: pointer; transition: all 0.2s; text-align: center; }
+        .material-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.08); border-color: #8b9dc3; }
+        .material-icon { font-size: 3rem; margin-bottom: 0.5rem; }
+        .material-name { font-weight: bold; margin-bottom: 1rem; color: #555; }
+        .strength-bar { background: #e8eaed; height: 20px; border-radius: 10px; overflow: hidden; margin: 0.5rem 0; }
+        .strength-fill { background: linear-gradient(90deg, #7bb896, #6ba782); height: 100%; transition: width 0.3s; }
+        .strength-label { font-size: 0.85rem; color: #666; }
+        .material-props { display: flex; justify-content: space-around; margin-top: 0.5rem; font-size: 0.9rem; color: #666; }
+        .material-details { margin-top: 2rem; }
+        .details-card { background: linear-gradient(135deg, rgba(139, 157, 195, 0.12), rgba(196, 165, 197, 0.12)); padding: 2rem; border-radius: 15px; border: 1px solid rgba(139, 157, 195, 0.2); }
+        .details-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+        .details-icon { font-size: 3rem; }
+        .details-description { font-size: 1.1rem; margin-bottom: 1.5rem; color: #555; }
+        .property-item { margin: 1rem 0; }
+        .property-label { font-weight: 600; margin-bottom: 0.5rem; display: block; color: #555; }
+        .property-bar { background: rgba(255,255,255,0.7); height: 30px; border-radius: 15px; overflow: hidden; border: 1px solid rgba(139, 157, 195, 0.2); }
+        .property-fill { height: 100%; transition: width 0.5s; }
+        .property-row { display: flex; gap: 2rem; margin-top: 1rem; flex-wrap: wrap; }
+        .details-recommendation { background: white; padding: 1rem; border-radius: 8px; margin-top: 1.5rem; border-left: 4px solid #8b9dc3; }
+        
+        .shape-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 1rem; margin-top: 1rem; }
+        .shape-btn { background: white; border: 2px solid #dfe2e6; padding: 1rem; border-radius: 10px; cursor: pointer; transition: all 0.2s; text-align: center; }
+        .shape-btn:hover { border-color: #8b9dc3; transform: scale(1.05); }
+        .shape-btn.active { background: linear-gradient(135deg, #8b9dc3, #c4a5c5); color: white; border-color: #8b9dc3; }
+        .shape-icon { font-size: 2.5rem; margin-bottom: 0.5rem; }
+        .weight-slider { width: 100%; height: 10px; border-radius: 5px; background: #e8eaed; outline: none; margin: 1rem 0; }
+        .weight-slider::-webkit-slider-thumb { appearance: none; width: 25px; height: 25px; border-radius: 50%; background: #8b9dc3; cursor: pointer; }
+        .weight-display { text-align: center; font-size: 1.5rem; font-weight: bold; color: #7080a0; }
+        .strength-visualization { margin-top: 2rem; text-align: center; }
+        .test-structure { position: relative; min-height: 200px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .structure-shape { font-size: 8rem; transition: all 0.3s; }
+        .applied-weight { position: absolute; top: 20px; font-size: 1.5rem; font-weight: bold; background: #c9a572; color: white; padding: 0.5rem 1rem; border-radius: 10px; }
+        .test-result { margin-top: 1rem; }
+        .result-success, .result-warning, .result-fail { padding: 1rem; border-radius: 10px; font-size: 1.1rem; }
+        .result-success { background: #d8f3e6; border-left: 4px solid #7bb896; }
+        .result-warning { background: #f9f3e6; border-left: 4px solid #c9a572; }
+        .result-fail { background: #f9e4e4; border-left: 4px solid #d9a5a5; }
+        
+        @keyframes slideInRight { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes scaleIn { from { transform: scale(0.5); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+        @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-10px); } 75% { transform: translateX(10px); } }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../../index.html" class="nav-logo">🎓 ClassDoodle</a>
+            <div class="nav-title">Technology - Grade 8</div>
+            <button onclick="window.print()" class="download-btn">📥 Download PDF</button>
+        </div>
+    </nav>
+
+    <div class="container textbook-container">
+        <aside class="sidebar">
+            <!-- Progress Tracker -->
+            <div id="progress-tracker"></div>
+            
+            <h3>📚 Chapters by Term</h3>
+            <ul class="chapter-list">
+                <!-- TERM 1 -->
+                <li class="term-header" style="margin-top: 1rem; padding: 0.5rem; background: rgba(139, 157, 195, 0.12); border-radius: 6px; font-weight: bold; color: #8b9dc3; pointer-events: none; cursor: default;">TERM 1</li>
+                <li><a href="#chapter1" class="active">1. Processing</a></li>
+                <li><a href="#chapter2">2. Structures</a></li>
+                <li><a href="#term1-project" style="background: linear-gradient(135deg, rgba(139, 157, 195, 0.12), rgba(196, 165, 197, 0.12)); border-left: 4px solid #f59e0b; font-weight: bold; padding: 0.5rem 1rem; margin: 0.5rem 0; border-radius: 6px;">🛠️ Term 1 PAT</a></li>
+                
+                <!-- TERM 2 -->
+                <li class="term-header" style="margin-top: 1rem; padding: 0.5rem; background: rgba(196, 165, 197, 0.12); border-radius: 6px; font-weight: bold; color: #c4a5c5; pointer-events: none; cursor: default;">TERM 2</li>
+                <li><a href="#chapter3">3. Systems & Control</a></li>
+                
+                <!-- TERM 3 -->
+                <li class="term-header" style="margin-top: 1rem; padding: 0.5rem; background: rgba(123, 184, 150, 0.12); border-radius: 6px; font-weight: bold; color: #7bb896; pointer-events: none; cursor: default;">TERM 3</li>
+                <li><a href="#chapter4">4. Processing Materials</a></li>
+                
+                <!-- TERM 4 -->
+                <li class="term-header" style="margin-top: 1rem; padding: 0.5rem; background: rgba(218, 184, 143, 0.12); border-radius: 6px; font-weight: bold; color: #c9a572; pointer-events: none; cursor: default;">TERM 4</li>
+                <li><a href="#chapter5">5. Systems Design</a></li>
+            </ul>
+        </aside>
+
+        <main class="content">
+            <!-- Chapter 1: Processing -->
+            <section id="chapter1" class="chapter">
+                <h1 class="chapter-title">Chapter 1: Processing - Transform the World! 🔧</h1>
+                
+                <div class="intro-box" style="background: linear-gradient(135deg, rgba(139, 157, 195, 0.12), rgba(196, 165, 197, 0.12));">
+                    <h2>The Magic of Transformation! 🎨</h2>
+                    <p style="font-size: 1.1rem; line-height: 1.8;">Think about your favorite snack - it didn't just appear! Someone took raw materials (like potatoes) and PROCESSED them into chips. Or your smartphone - it started as metals, plastics, and sand (yes, sand for the glass!). Welcome to Processing - where we learn how humans transform raw materials into amazing products!</p>
+                    
+                    <div style="margin-top: 1.5rem; padding: 1.25rem; background: rgba(218, 184, 143, 0.12); border-radius: 10px; border: 2px solid rgba(218, 184, 143, 0.3);">
+                        <h4 style="color: #c9a572; margin-bottom: 0.75rem;">🎯 Your Learning Journey:</h4>
+                        <div style="display: grid; gap: 0.5rem;">
+                            <p style="margin: 0;">✓ <strong>Stop 1:</strong> Understanding what processing means</p>
+                            <p style="margin: 0;">✓ <strong>Stop 2:</strong> Types of processing (mechanical, thermal, chemical)</p>
+                            <p style="margin: 0;">✓ <strong>Stop 3:</strong> Tools and equipment for processing</p>
+                            <p style="margin: 0;">✓ <strong>Stop 4:</strong> Safety in the workshop</p>
+                            <p style="margin: 0;">✓ <strong>Stop 5:</strong> Design your own processing project</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="concept-box" style="background: linear-gradient(135deg, rgba(123, 184, 150, 0.12), rgba(107, 167, 130, 0.12));">
+                    <h3>🎯 Stop 1: What is Processing?</h3>
+                    
+                    <div style="margin: 1.5rem 0; padding: 1rem; background: rgba(139, 157, 195, 0.08); border-radius: 10px; border-left: 4px solid #8b9dc3;">
+                        <p style="margin: 0;"><strong>🎯 Goal:</strong> Learn how raw materials are transformed into useful products through processing!</p>
+                    </div>
+                    
+                    <div style="margin-top: 1.5rem; padding: 1.5rem; background: rgba(123, 184, 150, 0.12); border-radius: 12px; border-left: 4px solid #7bb896;">
+                        <h4 style="color: #7bb896; margin-bottom: 1rem;">📖 Story Time: From Tree to Table</h4>
+                        <p style="line-height: 1.8; margin-bottom: 1rem;">Imagine a beautiful oak tree in a forest. How does it become your desk? First, it's cut down (harvesting). Then it's transported to a sawmill where it's cut into planks (mechanical processing). The wood is dried and smoothed (thermal and mechanical processing). Finally, it's shaped, joined, and finished (assembly and surface finishing). That's processing - turning raw materials into products we use every day!</p>
+                        <ul style="margin-left: 2rem; line-height: 2;">
+                            <li><strong>Input:</strong> Raw material (tree/wood)</li>
+                            <li><strong>Process:</strong> Cutting, drying, shaping, joining, finishing</li>
+                            <li><strong>Output:</strong> Finished product (desk)</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(139, 157, 195, 0.12); border-radius: 10px;">
+                        <h4 style="color: #8b9dc3; margin-bottom: 0.75rem;">📝 Key Terms:</h4>
+                        <div style="display: grid; gap: 1rem; margin-top: 1rem;">
+                            <div style="padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 8px; border-left: 3px solid #8b9dc3;">
+                                <p style="margin: 0;"><strong style="color: #8b9dc3;">Processing:</strong> Changing raw materials into useful products</p>
+                            </div>
+                            <div style="padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 8px; border-left: 3px solid #7bb896;">
+                                <p style="margin: 0;"><strong style="color: #7bb896;">Raw Materials:</strong> Natural or basic materials before processing (wood, metal, plastic)</p>
+                            </div>
+                            <div style="padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 8px; border-left: 3px solid #c4a5c5;">
+                                <p style="margin: 0;"><strong style="color: #c4a5c5;">Manufacturing:</strong> Making products in large quantities using machinery</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 2rem; padding: 1.5rem; background: linear-gradient(135deg, rgba(139, 157, 195, 0.12), rgba(196, 165, 197, 0.12)); border-radius: 12px;">
+                        <h4 style="color: #8b9dc3; margin-bottom: 1rem;">🔍 Types of Processing</h4>
+                        
+                        <div style="margin-top: 1rem; padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 8px;">
+                            <h5 style="color: #c9a572; margin-bottom: 0.5rem;">1. Mechanical Processing 🔨</h5>
+                            <p style="line-height: 1.6;">Using physical force to change materials</p>
+                            <ul style="margin-left: 1.5rem; line-height: 1.8;">
+                                <li>Cutting (saw, scissors, laser)</li>
+                                <li>Shaping (bending, folding, molding)</li>
+                                <li>Joining (nails, screws, glue, welding)</li>
+                            </ul>
+                        </div>
+
+                        <div style="margin-top: 1rem; padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 8px;">
+                            <h5 style="color: #c9a572; margin-bottom: 0.5rem;">2. Thermal Processing 🔥</h5>
+                            <p style="line-height: 1.6;">Using heat to change materials</p>
+                            <ul style="margin-left: 1.5rem; line-height: 1.8;">
+                                <li>Heating (melting metal, softening plastic)</li>
+                                <li>Cooling (freezing, hardening)</li>
+                                <li>Baking (ceramics, food)</li>
+                            </ul>
+                        </div>
+
+                        <div style="margin-top: 1rem; padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 8px;">
+                            <h5 style="color: #c9a572; margin-bottom: 0.5rem;">3. Chemical Processing 🧪</h5>
+                            <p style="line-height: 1.6;">Using chemicals to change materials</p>
+                            <ul style="margin-left: 1.5rem; line-height: 1.8;">
+                                <li>Painting (adding color and protection)</li>
+                                <li>Varnishing (sealing wood)</li>
+                                <li>Electroplating (coating with metal)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Examples Section -->
+                <div class="concept-box" style="background: linear-gradient(135deg, rgba(196, 165, 197, 0.12), rgba(218, 184, 143, 0.12));">
+                    <h3>🎨 Real-World Examples</h3>
+                    
+                    <div style="display: grid; gap: 1rem; margin-top: 1rem;">
+                        <div style="padding: 1.5rem; background: rgba(139, 157, 195, 0.12); border-radius: 10px; border-left: 4px solid #8b9dc3;">
+                            <h4 style="color: #8b9dc3; margin-bottom: 0.75rem;">📱 Making a Phone Case</h4>
+                            <p><strong>Raw Material:</strong> Plastic pellets</p>
+                            <p><strong>Processing Steps:</strong></p>
+                            <ol style="margin-left: 1.5rem; line-height: 1.8;">
+                                <li>Heat plastic pellets (thermal)</li>
+                                <li>Inject into mold (mechanical)</li>
+                                <li>Cool and harden (thermal)</li>
+                                <li>Add color/design (chemical)</li>
+                                <li>Polish surface (mechanical)</li>
+                            </ol>
+                        </div>
+
+                        <div style="padding: 1.5rem; background: rgba(123, 184, 150, 0.12); border-radius: 10px; border-left: 4px solid #7bb896;">
+                            <h4 style="color: #7bb896; margin-bottom: 0.75rem;">🪑 Building a Wooden Stool</h4>
+                            <p><strong>Raw Material:</strong> Pine wood planks</p>
+                            <p><strong>Processing Steps:</strong></p>
+                            <ol style="margin-left: 1.5rem; line-height: 1.8;">
+                                <li>Measure and mark (planning)</li>
+                                <li>Cut to size (mechanical)</li>
+                                <li>Sand smooth (mechanical)</li>
+                                <li>Join pieces with screws (mechanical)</li>
+                                <li>Apply varnish (chemical)</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Safety Section -->
+                <div class="warning-box" style="background: linear-gradient(135deg, rgba(217, 165, 165, 0.15), rgba(218, 184, 143, 0.12)); border: 2px solid rgba(217, 165, 165, 0.3); border-radius: 12px; padding: 1.5rem; margin-top: 2rem;">
+                    <h3 style="color: #d9a5a5; margin-bottom: 1rem;">⚠️ Workshop Safety Rules</h3>
+                    <div style="display: grid; gap: 0.75rem;">
+                        <p style="margin: 0;">🥽 <strong>Always wear safety glasses</strong> when cutting or shaping materials</p>
+                        <p style="margin: 0;">🧤 <strong>Wear gloves</strong> when handling sharp or hot materials</p>
+                        <p style="margin: 0;">👂 <strong>Wear ear protection</strong> when using loud machinery</p>
+                        <p style="margin: 0;">📏 <strong>Measure twice, cut once</strong> - plan before you act</p>
+                        <p style="margin: 0;">🧹 <strong>Keep workspace clean</strong> - clear away scraps and tools</p>
+                        <p style="margin: 0;">👨‍🏫 <strong>Ask for help</strong> when unsure about a tool or process</p>
+                    </div>
+                </div>
+
+                <!-- DETAILED PROCESSING NOTES -->
+                <div class="concept-box" style="background: linear-gradient(135deg, rgba(139, 157, 195, 0.12), rgba(123, 184, 150, 0.12)); margin-top: 2rem;">
+                    <h3>📚 Detailed Processing Notes</h3>
+
+                    <!-- Mechanical Processing Deep Dive -->
+                    <div style="margin-top: 1.5rem; padding: 1.5rem; background: rgba(255, 255, 255, 0.5); border-radius: 12px;">
+                        <h4 style="color: #8b9dc3; margin-bottom: 1rem;">🔨 Mechanical Processing - Complete Guide</h4>
+                        
+                        <div style="margin-top: 1rem;">
+                            <h5 style="color: #7bb896; margin-bottom: 0.75rem;">1️⃣ CUTTING & SEPARATING</h5>
+                            <div style="background: rgba(123, 184, 150, 0.12); padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                                <p style="margin-bottom: 0.5rem;"><strong>Definition:</strong> Dividing material into smaller parts using sharp edges or force</p>
+                                
+                                <p style="margin-top: 1rem;"><strong>Tools & Equipment:</strong></p>
+                                <ul style="margin-left: 1.5rem; line-height: 1.8;">
+                                    <li><strong>Hand Saw:</strong> Manual cutting of wood, metal, or plastic</li>
+                                    <li><strong>Hacksaw:</strong> Cutting metal pipes and rods</li>
+                                    <li><strong>Tenon Saw:</strong> Precise straight cuts in wood</li>
+                                    <li><strong>Coping Saw:</strong> Curved cuts in thin materials</li>
+                                    <li><strong>Scissors/Shears:</strong> Cutting paper, cloth, thin metal sheets</li>
+                                    <li><strong>Chisel:</strong> Removing small amounts of wood</li>
+                                    <li><strong>Plane:</strong> Shaving thin layers to smooth surfaces</li>
+                                    <li><strong>File:</strong> Smoothing rough edges on metal or wood</li>
+                                </ul>
+
+                                <p style="margin-top: 1rem;"><strong>Step-by-Step: Cutting Wood</strong></p>
+                                <ol style="margin-left: 1.5rem; line-height: 1.8;">
+                                    <li><strong>Measure:</strong> Use a ruler/tape measure and mark with pencil</li>
+                                    <li><strong>Secure:</strong> Clamp wood firmly to workbench</li>
+                                    <li><strong>Position:</strong> Place saw blade on waste side of line</li>
+                                    <li><strong>Start:</strong> Use short strokes to create a groove</li>
+                                    <li><strong>Cut:</strong> Use full-length strokes at 45° angle</li>
+                                    <li><strong>Finish:</strong> Support end piece to prevent splitting</li>
+                                    <li><strong>Sand:</strong> Smooth the cut edge with sandpaper</li>
+                                </ol>
+
+                                <div style="margin-top: 1rem; padding: 1rem; background: rgba(218, 184, 143, 0.12); border-radius: 8px; border-left: 4px solid #c9a572;">
+                                    <p style="margin: 0;"><strong>💡 Pro Tips:</strong></p>
+                                    <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                                        <li>Always cut on the waste side of your mark</li>
+                                        <li>Let the saw do the work - don't force it</li>
+                                        <li>Keep saw blade perpendicular to material</li>
+                                        <li>Support material on both sides of cut</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <h5 style="color: #7bb896; margin-bottom: 0.75rem;">2️⃣ SHAPING & FORMING</h5>
+                            <div style="background: rgba(196, 165, 197, 0.12); padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                                <p style="margin-bottom: 0.5rem;"><strong>Definition:</strong> Changing the shape of material without removing it</p>
+                                
+                                <p style="margin-top: 1rem;"><strong>Methods:</strong></p>
+                                <ul style="margin-left: 1.5rem; line-height: 1.8;">
+                                    <li><strong>Bending:</strong> Curving material (wire, sheet metal, plastic)</li>
+                                    <li><strong>Folding:</strong> Creating sharp angles (paper, cardboard, thin metal)</li>
+                                    <li><strong>Molding:</strong> Pressing material into a shape (clay, plastic, metal)</li>
+                                    <li><strong>Forging:</strong> Hammering hot metal into shape</li>
+                                    <li><strong>Casting:</strong> Pouring liquid material into mold</li>
+                                    <li><strong>Rolling:</strong> Flattening material between rollers</li>
+                                </ul>
+
+                                <p style="margin-top: 1rem;"><strong>Example: Bending Sheet Metal</strong></p>
+                                <ol style="margin-left: 1.5rem; line-height: 1.8;">
+                                    <li>Mark the bend line clearly</li>
+                                    <li>Clamp metal with line at edge of bench</li>
+                                    <li>Use wooden block to protect surface</li>
+                                    <li>Apply steady pressure to create bend</li>
+                                    <li>Check angle with protractor</li>
+                                    <li>Tap with mallet to sharpen bend if needed</li>
+                                </ol>
+                            </div>
+
+                            <h5 style="color: #7bb896; margin-bottom: 0.75rem;">3️⃣ JOINING & FASTENING</h5>
+                            <div style="background: rgba(165, 139, 195, 0.12); padding: 1rem; border-radius: 8px;">
+                                <p style="margin-bottom: 0.5rem;"><strong>Definition:</strong> Connecting separate parts together permanently or temporarily</p>
+                                
+                                <p style="margin-top: 1rem;"><strong>Permanent Joints:</strong></p>
+                                <ul style="margin-left: 1.5rem; line-height: 1.8;">
+                                    <li><strong>Gluing:</strong> Wood glue, PVA, epoxy, super glue</li>
+                                    <li><strong>Welding:</strong> Melting metal pieces together (requires heat)</li>
+                                    <li><strong>Soldering:</strong> Using melted metal to join (electronics, plumbing)</li>
+                                    <li><strong>Riveting:</strong> Permanent metal fasteners</li>
+                                    <li><strong>Nailing:</strong> Hammering nails through materials</li>
+                                </ul>
+
+                                <p style="margin-top: 1rem;"><strong>Temporary Joints:</strong></p>
+                                <ul style="margin-left: 1.5rem; line-height: 1.8;">
+                                    <li><strong>Screws & Bolts:</strong> Can be removed and reused</li>
+                                    <li><strong>Clips & Clamps:</strong> Quick temporary holds</li>
+                                    <li><strong>Pins:</strong> Simple removable fasteners</li>
+                                    <li><strong>Hinges:</strong> Allow movement while joining</li>
+                                </ul>
+
+                                <div style="margin-top: 1rem; padding: 1rem; background: rgba(217, 165, 165, 0.15); border-radius: 8px; border-left: 4px solid #d9a5a5;">
+                                    <p style="margin: 0;"><strong>⚠️ Remember:</strong> Permanent joints cannot be undone! Choose wisely!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Thermal Processing Deep Dive -->
+                    <div style="margin-top: 1.5rem; padding: 1.5rem; background: rgba(255, 255, 255, 0.5); border-radius: 12px;">
+                        <h4 style="color: #d9a5a5; margin-bottom: 1rem;">🔥 Thermal Processing - Heat & Cold</h4>
+                        
+                        <div style="margin-top: 1rem;">
+                            <h5 style="color: #f59e0b; margin-bottom: 0.75rem;">1️⃣ HEATING PROCESSES</h5>
+                            <div style="background: rgba(217, 165, 165, 0.15); padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                                <p style="margin-bottom: 0.5rem;"><strong>Why heat materials?</strong> Heat can soften, melt, harden, or change material properties</p>
+                                
+                                <p style="margin-top: 1rem;"><strong>Common Heating Methods:</strong></p>
+                                <ul style="margin-left: 1.5rem; line-height: 1.8;">
+                                    <li><strong>Baking (150-250°C):</strong> Hardening clay, ceramics, drying wood</li>
+                                    <li><strong>Softening (varies):</strong> Making plastic bendable, heating metal for forging</li>
+                                    <li><strong>Melting (very high temp):</strong> Metal casting, glass forming, plastic molding</li>
+                                    <li><strong>Annealing:</strong> Heating then slow cooling to reduce brittleness</li>
+                                    <li><strong>Tempering:</strong> Heating then quick cooling to increase hardness</li>
+                                </ul>
+
+                                <p style="margin-top: 1rem;"><strong>Example: Thermoplastic Forming</strong></p>
+                                <ol style="margin-left: 1.5rem; line-height: 1.8;">
+                                    <li>Heat plastic sheet in oven until soft (160-180°C)</li>
+                                    <li>Quickly place over or into mold</li>
+                                    <li>Apply pressure or vacuum to form shape</li>
+                                    <li>Hold in place while cooling</li>
+                                    <li>Remove from mold when completely cool</li>
+                                    <li>Trim excess material</li>
+                                </ol>
+
+                                <div style="margin-top: 1rem; padding: 1rem; background: rgba(217, 165, 165, 0.2); border-radius: 8px; border-left: 4px solid #d9a5a5;">
+                                    <p style="margin: 0;"><strong>🔥 Safety Alert:</strong> Always use heat-resistant gloves, work in ventilated area, and have fire extinguisher nearby!</p>
+                                </div>
+                            </div>
+
+                            <h5 style="color: #f59e0b; margin-bottom: 0.75rem;">2️⃣ COOLING PROCESSES</h5>
+                            <div style="background: rgba(6, 182, 212, 0.1); padding: 1rem; border-radius: 8px;">
+                                <p style="margin-bottom: 0.5rem;"><strong>Why cool materials?</strong> Cooling hardens, sets, or preserves materials</p>
+                                
+                                <p style="margin-top: 1rem;"><strong>Applications:</strong></p>
+                                <ul style="margin-left: 1.5rem; line-height: 1.8;">
+                                    <li><strong>Quenching:</strong> Rapid cooling in water/oil to harden metal</li>
+                                    <li><strong>Setting:</strong> Allowing glue, concrete, or plastic to cool and harden</li>
+                                    <li><strong>Freezing:</strong> Food preservation, creating ice products</li>
+                                    <li><strong>Slow Cooling:</strong> Prevents cracking in glass and ceramics</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chemical Processing Deep Dive -->
+                    <div style="margin-top: 1.5rem; padding: 1.5rem; background: rgba(255, 255, 255, 0.5); border-radius: 12px;">
+                        <h4 style="color: #a58bc3; margin-bottom: 1rem;">🧪 Chemical Processing - Surface Finishes</h4>
+                        
+                        <div style="margin-top: 1rem;">
+                            <h5 style="color: #c4a5c5; margin-bottom: 0.75rem;">1️⃣ PAINTING & COATING</h5>
+                            <div style="background: rgba(196, 165, 197, 0.12); padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                                <p style="margin-bottom: 0.5rem;"><strong>Purpose:</strong> Protect materials from water, rust, and damage while adding color</p>
+                                
+                                <p style="margin-top: 1rem;"><strong>Types of Paint:</strong></p>
+                                <ul style="margin-left: 1.5rem; line-height: 1.8;">
+                                    <li><strong>Primer:</strong> Base coat for better adhesion</li>
+                                    <li><strong>Undercoat:</strong> Fills imperfections, provides coverage</li>
+                                    <li><strong>Top Coat:</strong> Final finish (gloss, satin, matte)</li>
+                                    <li><strong>Enamel:</strong> Hard, durable finish for metal</li>
+                                    <li><strong>Acrylic:</strong> Water-based, easy cleanup</li>
+                                    <li><strong>Oil-based:</strong> Durable but requires solvents</li>
+                                </ul>
+
+                                <p style="margin-top: 1rem;"><strong>Professional Painting Steps:</strong></p>
+                                <ol style="margin-left: 1.5rem; line-height: 1.8;">
+                                    <li><strong>Prepare Surface:</strong> Clean, sand smooth, remove dust</li>
+                                    <li><strong>Apply Primer:</strong> Thin even coat, let dry completely</li>
+                                    <li><strong>Sand Primer:</strong> Light sanding with fine paper</li>
+                                    <li><strong>Apply First Coat:</strong> Thin coats better than thick</li>
+                                    <li><strong>Dry:</strong> Wait recommended time (usually 2-4 hours)</li>
+                                    <li><strong>Sand Between Coats:</strong> Very fine sandpaper</li>
+                                    <li><strong>Apply Final Coat:</strong> Smooth, even strokes</li>
+                                    <li><strong>Cure:</strong> Leave for 24-48 hours before handling</li>
+                                </ol>
+                            </div>
+
+                            <h5 style="color: #c4a5c5; margin-bottom: 0.75rem;">2️⃣ VARNISHING & SEALING</h5>
+                            <div style="background: rgba(218, 184, 143, 0.12); padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                                <p style="margin-bottom: 0.5rem;"><strong>Purpose:</strong> Protect wood while showing natural grain</p>
+                                
+                                <p style="margin-top: 1rem;"><strong>Types of Varnish:</strong></p>
+                                <ul style="margin-left: 1.5rem; line-height: 1.8;">
+                                    <li><strong>Polyurethane:</strong> Very durable, waterproof</li>
+                                    <li><strong>Shellac:</strong> Quick-drying, easy to repair</li>
+                                    <li><strong>Lacquer:</strong> Hard finish, professional look</li>
+                                    <li><strong>Danish Oil:</strong> Penetrates wood, natural look</li>
+                                </ul>
+                            </div>
+
+                            <h5 style="color: #c4a5c5; margin-bottom: 0.75rem;">3️⃣ OTHER CHEMICAL PROCESSES</h5>
+                            <div style="background: rgba(165, 139, 195, 0.12); padding: 1rem; border-radius: 8px;">
+                                <ul style="margin-left: 1.5rem; line-height: 1.8;">
+                                    <li><strong>Electroplating:</strong> Coating metal with another metal (chrome, gold)</li>
+                                    <li><strong>Anodizing:</strong> Creating protective layer on aluminum</li>
+                                    <li><strong>Powder Coating:</strong> Dry powder melted onto surface</li>
+                                    <li><strong>Staining:</strong> Adding color to wood while showing grain</li>
+                                    <li><strong>Bleaching:</strong> Lightening or removing color</li>
+                                    <li><strong>Etching:</strong> Using acid to create designs in metal/glass</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tools Reference Guide -->
+                    <div style="margin-top: 1.5rem; padding: 1.5rem; background: rgba(255, 255, 255, 0.5); border-radius: 12px;">
+                        <h4 style="color: #8b9dc3; margin-bottom: 1rem;">🛠️ Essential Workshop Tools Reference</h4>
+                        
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                            <div style="background: rgba(139, 157, 195, 0.12); padding: 1rem; border-radius: 8px;">
+                                <h5 style="color: #8b9dc3; margin-bottom: 0.5rem;">Measuring Tools</h5>
+                                <ul style="margin-left: 1rem; font-size: 0.95rem; line-height: 1.6;">
+                                    <li>Ruler / Tape measure</li>
+                                    <li>Try square (90° angles)</li>
+                                    <li>Protractor (angles)</li>
+                                    <li>Marking gauge</li>
+                                    <li>Calipers (precise measuring)</li>
+                                </ul>
+                            </div>
+
+                            <div style="background: rgba(123, 184, 150, 0.12); padding: 1rem; border-radius: 8px;">
+                                <h5 style="color: #7bb896; margin-bottom: 0.5rem;">Marking Tools</h5>
+                                <ul style="margin-left: 1rem; font-size: 0.95rem; line-height: 1.6;">
+                                    <li>Pencil (HB for wood)</li>
+                                    <li>Scriber (for metal)</li>
+                                    <li>Center punch (marking metal)</li>
+                                    <li>Chalk (temporary marks)</li>
+                                </ul>
+                            </div>
+
+                            <div style="background: rgba(196, 165, 197, 0.12); padding: 1rem; border-radius: 8px;">
+                                <h5 style="color: #c4a5c5; margin-bottom: 0.5rem;">Holding Tools</h5>
+                                <ul style="margin-left: 1rem; font-size: 0.95rem; line-height: 1.6;">
+                                    <li>G-clamp (various sizes)</li>
+                                    <li>Bench vice</li>
+                                    <li>Hand vice (small work)</li>
+                                    <li>Clothespin clamps</li>
+                                </ul>
+                            </div>
+
+                            <div style="background: rgba(218, 184, 143, 0.12); padding: 1rem; border-radius: 8px;">
+                                <h5 style="color: #c9a572; margin-bottom: 0.5rem;">Finishing Tools</h5>
+                                <ul style="margin-left: 1rem; font-size: 0.95rem; line-height: 1.6;">
+                                    <li>Sandpaper (coarse to fine)</li>
+                                    <li>Steel wool (fine smoothing)</li>
+                                    <li>Paint brushes</li>
+                                    <li>Roller (large surfaces)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Industry Applications -->
+                    <div style="margin-top: 1.5rem; padding: 1.5rem; background: linear-gradient(135deg, rgba(139, 157, 195, 0.12), rgba(196, 165, 197, 0.12)); border-radius: 12px;">
+                        <h4 style="color: #8b9dc3; margin-bottom: 1rem;">🏭 Processing in Industry</h4>
+                        
+                        <div style="display: grid; gap: 1rem;">
+                            <div style="background: white; padding: 1rem; border-radius: 8px; border-left: 4px solid #8b9dc3;">
+                                <h5 style="color: #8b9dc3;">Automotive Industry 🚗</h5>
+                                <p style="margin-top: 0.5rem; line-height: 1.6;">
+                                    <strong>Processes:</strong> Sheet metal stamping, welding, painting, assembly<br>
+                                    <strong>Materials:</strong> Steel, aluminum, plastic, glass, rubber<br>
+                                    <strong>Fun Fact:</strong> A single car contains over 30,000 parts!
+                                </p>
+                            </div>
+
+                            <div style="background: white; padding: 1rem; border-radius: 8px; border-left: 4px solid #7bb896;">
+                                <h5 style="color: #7bb896;">Electronics Manufacturing 📱</h5>
+                                <p style="margin-top: 0.5rem; line-height: 1.6;">
+                                    <strong>Processes:</strong> Circuit board etching, soldering, injection molding, surface mounting<br>
+                                    <strong>Materials:</strong> Silicon, copper, plastic, rare metals<br>
+                                    <strong>Fun Fact:</strong> Smartphones have more computing power than 1960s supercomputers!
+                                </p>
+                            </div>
+
+                            <div style="background: white; padding: 1rem; border-radius: 8px; border-left: 4px solid #c9a572;">
+                                <h5 style="color: #c9a572;">Food Processing 🍕</h5>
+                                <p style="margin-top: 0.5rem; line-height: 1.6;">
+                                    <strong>Processes:</strong> Cutting, mixing, heating, freezing, packaging<br>
+                                    <strong>Materials:</strong> Raw ingredients, preservatives, packaging<br>
+                                    <strong>Fun Fact:</strong> Potato chips were invented by accident in 1853!
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Common Mistakes -->
+                    <div style="margin-top: 1.5rem; padding: 1.5rem; background: rgba(217, 165, 165, 0.15); border-radius: 12px; border: 2px solid rgba(217, 165, 165, 0.3);">
+                        <h4 style="color: #d9a5a5; margin-bottom: 1rem;">❌ Common Processing Mistakes & How to Avoid Them</h4>
+                        
+                        <div style="display: grid; gap: 1rem;">
+                            <div style="background: white; padding: 1rem; border-radius: 8px;">
+                                <p style="margin: 0;"><strong>❌ Mistake:</strong> Not measuring accurately</p>
+                                <p style="margin: 0.5rem 0 0 0; color: #7bb896;"><strong>✓ Solution:</strong> Measure twice, cut once! Use sharp pencils and accurate tools.</p>
+                            </div>
+                            
+                            <div style="background: white; padding: 1rem; border-radius: 8px;">
+                                <p style="margin: 0;"><strong>❌ Mistake:</strong> Using dull cutting tools</p>
+                                <p style="margin: 0.5rem 0 0 0; color: #7bb896;"><strong>✓ Solution:</strong> Sharp tools are safer and more accurate. Keep blades sharp!</p>
+                            </div>
+                            
+                            <div style="background: white; padding: 1rem; border-radius: 8px;">
+                                <p style="margin: 0;"><strong>❌ Mistake:</strong> Rushing the finish</p>
+                                <p style="margin: 0.5rem 0 0 0; color: #7bb896;"><strong>✓ Solution:</strong> Proper preparation and drying time = professional results.</p>
+                            </div>
+                            
+                            <div style="background: white; padding: 1rem; border-radius: 8px;">
+                                <p style="margin: 0;"><strong>❌ Mistake:</strong> Not securing workpiece</p>
+                                <p style="margin: 0.5rem 0 0 0; color: #7bb896;"><strong>✓ Solution:</strong> Always clamp or secure materials before cutting/drilling.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Practice Activity -->
+                <div class="practice-box" style="margin-top: 2rem; padding: 1.5rem; background: linear-gradient(135deg, rgba(139, 157, 195, 0.12), rgba(6, 182, 212, 0.1)); border-radius: 12px;">
+                    <h3 style="color: #8b9dc3; margin-bottom: 1rem;">✏️ Activity: Processing Detective</h3>
+                    <p style="line-height: 1.8;">Look around your classroom and identify 5 objects. For each object:</p>
+                    <ol style="margin-left: 1.5rem; line-height: 2;">
+                        <li>What raw materials were used?</li>
+                        <li>What type of processing was done? (mechanical, thermal, chemical)</li>
+                        <li>What tools might have been used?</li>
+                        <li>Draw or describe the processing steps</li>
+                    </ol>
+                </div>
+
+                <!-- INTERACTIVE QUIZ -->
+                <div style="margin-top: 3rem;">
+                    <h3 style="color: #8b9dc3; margin-bottom: 1rem;">🎯 Test Your Knowledge: Processing Quiz</h3>
+                    <div class="interactive-quiz" 
+                         data-quiz-id="processing-quiz"
+                         data-questions='[
+                            {
+                                "question": "What is processing in technology?",
+                                "options": [
+                                    "Leaving materials in their natural state",
+                                    "Changing raw materials into useful products",
+                                    "Buying finished products from a store",
+                                    "Recycling old products"
+                                ],
+                                "correct": 1,
+                                "explanation": "Processing is all about transformation! We take raw materials (like wood, metal, or plastic) and change them into useful products through various methods."
+                            },
+                            {
+                                "question": "Which of these is an example of MECHANICAL processing?",
+                                "options": [
+                                    "Painting a wooden chair",
+                                    "Baking clay in a kiln",
+                                    "Cutting wood with a saw",
+                                    "Melting plastic"
+                                ],
+                                "correct": 2,
+                                "explanation": "Cutting with a saw is mechanical processing because it uses physical force to change the material. Painting is chemical, baking is thermal, and melting is also thermal processing."
+                            },
+                            {
+                                "question": "What type of processing uses HEAT to change materials?",
+                                "options": [
+                                    "Chemical processing",
+                                    "Thermal processing",
+                                    "Mechanical processing",
+                                    "Manual processing"
+                                ],
+                                "correct": 1,
+                                "explanation": "Thermal processing uses heat or cold to change materials. Examples include melting, freezing, baking, or softening materials with heat."
+                            },
+                            {
+                                "question": "Why do we varnish wood?",
+                                "options": [
+                                    "To make it heavier",
+                                    "To cut it easier",
+                                    "To seal and protect it",
+                                    "To make it bend more"
+                                ],
+                                "correct": 2,
+                                "explanation": "Varnish is a chemical process that seals the wood, protecting it from water, dirt, and damage while also giving it a nice finish. This is an example of chemical processing!"
+                            },
+                            {
+                                "question": "Which safety rule is MOST important in a workshop?",
+                                "options": [
+                                    "Always work as fast as possible",
+                                    "Wear safety glasses when cutting or shaping",
+                                    "Never ask for help",
+                                    "Use tools without reading instructions"
+                                ],
+                                "correct": 1,
+                                "explanation": "Safety glasses protect your eyes from flying debris, which is crucial when cutting or shaping materials. Safety should always come first in any workshop!"
+                            }
+                        ]'>
+                    </div>
+                </div>
+
+                <!-- MATERIAL SELECTOR TOOL -->
+                <div id="material-selector" style="margin-top: 3rem;"></div>
+
+                <!-- CASE SCENARIOS -->
+                <div style="margin-top: 3rem;">
+                    <h2 style="color: #7080a0; margin-bottom: 1.5rem; text-align: center;">📋 Real-World Case Scenarios</h2>
+                    
+                    <!-- Case Study 1 -->
+                    <div style="background: white; padding: 2rem; border-radius: 15px; margin-bottom: 2rem; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
+                        <div style="background: linear-gradient(135deg, #6a7a99, #8b7a9c); color: white; padding: 1rem; border-radius: 10px; margin-bottom: 1.5rem;">
+                            <h3 style="margin: 0; font-family: inherit; font-weight: 600;">📱 Case Study 1: Manufacturing a Phone Stand</h3>
+                        </div>
+                        
+                        <div style="background: rgba(218, 184, 143, 0.12); padding: 1rem; border-radius: 8px; margin-bottom: 1rem; border-left: 4px solid #c9a572;">
+                            <p style="margin: 0;"><strong>🎯 Challenge:</strong> A small company needs to manufacture 1000 phone stands. They must choose materials and processes.</p>
+                        </div>
+
+                        <div style="margin: 1.5rem 0;">
+                            <h4 style="color: #8b9dc3;">📊 Options Analysis:</h4>
+                            
+                            <div style="display: grid; gap: 1rem; margin-top: 1rem;">
+                                <div style="background: rgba(139, 157, 195, 0.12); padding: 1rem; border-radius: 8px;">
+                                    <h5 style="color: #8b9dc3; margin-bottom: 0.5rem;">Option A: Plastic Injection Molding</h5>
+                                    <p><strong>Materials:</strong> ABS Plastic pellets</p>
+                                    <p><strong>Processing:</strong> Thermal (heating plastic) → Mechanical (injection into mold) → Thermal (cooling)</p>
+                                    <p><strong>Pros:</strong> Fast production, identical products, smooth finish</p>
+                                    <p><strong>Cons:</strong> High initial mold cost ($5000), requires specialized equipment</p>
+                                    <p><strong>Cost per unit:</strong> $2 (after mold investment)</p>
+                                    <p><strong>Time:</strong> 1 week (after mold ready)</p>
+                                </div>
+
+                                <div style="background: rgba(123, 184, 150, 0.12); padding: 1rem; border-radius: 8px;">
+                                    <h5 style="color: #7bb896; margin-bottom: 0.5rem;">Option B: Laser-Cut Plywood</h5>
+                                    <p><strong>Materials:</strong> 5mm plywood sheets</p>
+                                    <p><strong>Processing:</strong> Mechanical (laser cutting) → Chemical (sanding & varnishing) → Mechanical (assembly)</p>
+                                    <p><strong>Pros:</strong> Low startup cost, eco-friendly, custom designs easy</p>
+                                    <p><strong>Cons:</strong> Slower production, requires finishing, variation in wood grain</p>
+                                    <p><strong>Cost per unit:</strong> $5</p>
+                                    <p><strong>Time:</strong> 3 weeks</p>
+                                </div>
+
+                                <div style="background: rgba(196, 165, 197, 0.12); padding: 1rem; border-radius: 8px;">
+                                    <h5 style="color: #c4a5c5; margin-bottom: 0.5rem;">Option C: Bent Sheet Metal</h5>
+                                    <p><strong>Materials:</strong> Aluminum sheet (1mm thick)</p>
+                                    <p><strong>Processing:</strong> Mechanical (cutting) → Mechanical (bending) → Chemical (powder coating)</p>
+                                    <p><strong>Pros:</strong> Durable, professional look, heat-resistant</p>
+                                    <p><strong>Cons:</strong> Bending equipment needed, sharp edges to smooth</p>
+                                    <p><strong>Cost per unit:</strong> $7</p>
+                                    <p><strong>Time:</strong> 2 weeks</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="background: linear-gradient(135deg, rgba(123, 184, 150, 0.12), rgba(107, 167, 130, 0.12)); padding: 1.5rem; border-radius: 10px; border-left: 4px solid #7bb896; margin-top: 1.5rem;">
+                            <h4 style="color: #7bb896; margin-bottom: 1rem;">✅ Recommended Solution:</h4>
+                            <p style="line-height: 1.8;"><strong>Option A: Plastic Injection Molding</strong></p>
+                            <p style="margin-top: 0.5rem;"><strong>Why?</strong> For 1000 units, the mold cost ($5000) spreads to only $5 per unit. Total cost = $7000 vs $12,000 (Option C) or $5000 (Option B but slower). Best for mass production!</p>
+                            <p style="margin-top: 1rem; padding: 1rem; background: rgba(218, 184, 143, 0.15); border-radius: 8px;">
+                                <strong>💡 Key Lesson:</strong> Initial investment in proper equipment/molds pays off in mass production. For small batches (under 100), wood would be better!
+                            </p>
+                        </div>
+
+                        <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(139, 157, 195, 0.12); border-radius: 8px;">
+                            <h4 style="color: #8b9dc3; margin-bottom: 0.75rem;">🤔 Discussion Questions:</h4>
+                            <ol style="margin-left: 1.5rem; line-height: 2;">
+                                <li>What if they only needed 50 units? Which option would be best?</li>
+                                <li>How would environmental concerns affect the decision?</li>
+                                <li>What quality control checks would be needed for each option?</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <!-- Case Study 2 -->
+                    <div style="background: white; padding: 2rem; border-radius: 15px; margin-bottom: 2rem; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
+                        <div style="background: linear-gradient(135deg, #5a8870, #4d7a65); color: white; padding: 1rem; border-radius: 10px; margin-bottom: 1.5rem;">
+                            <h3 style="margin: 0; font-family: inherit; font-weight: 600;">🪑 Case Study 2: School Furniture Repair</h3>
+                        </div>
+                        
+                        <div style="background: rgba(217, 165, 165, 0.15); padding: 1rem; border-radius: 8px; margin-bottom: 1rem; border-left: 4px solid #d9a5a5;">
+                            <p style="margin: 0;"><strong>🔧 Problem:</strong> 20 wooden chairs have broken joints. Budget is limited. Need quick, strong repairs.</p>
+                        </div>
+
+                        <div style="margin: 1.5rem 0;">
+                            <h4 style="color: #7bb896;">🛠️ Repair Solutions Analysis:</h4>
+                            
+                            <div style="background: rgba(139, 157, 195, 0.12); padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem;">
+                                <h5 style="color: #8b9dc3;">Solution 1: Re-gluing (Chemical Processing)</h5>
+                                <p><strong>Process:</strong></p>
+                                <ol style="margin-left: 1.5rem; line-height: 1.8;">
+                                    <li>Disassemble broken joint</li>
+                                    <li>Clean old glue with sandpaper</li>
+                                    <li>Apply wood glue (PVA) to both surfaces</li>
+                                    <li>Clamp tightly for 24 hours</li>
+                                    <li>Sand any excess glue when dry</li>
+                                </ol>
+                                <p style="margin-top: 1rem;"><strong>Cost:</strong> $2 per chair | <strong>Time:</strong> 2 days | <strong>Strength:</strong> ⭐⭐⭐</p>
+                                <p style="background: rgba(218, 184, 143, 0.15); padding: 0.75rem; border-radius: 6px; margin-top: 0.5rem;">
+                                    <strong>Best for:</strong> Clean breaks, good wood condition
+                                </p>
+                            </div>
+
+                            <div style="background: rgba(196, 165, 197, 0.12); padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem;">
+                                <h5 style="color: #c4a5c5;">Solution 2: Metal Brackets (Mechanical Processing)</h5>
+                                <p><strong>Process:</strong></p>
+                                <ol style="margin-left: 1.5rem; line-height: 1.8;">
+                                    <li>Position metal L-bracket at joint</li>
+                                    <li>Mark screw positions</li>
+                                    <li>Drill pilot holes (prevent splitting)</li>
+                                    <li>Screw bracket firmly in place</li>
+                                    <li>Check alignment and tighten</li>
+                                </ol>
+                                <p style="margin-top: 1rem;"><strong>Cost:</strong> $5 per chair | <strong>Time:</strong> 1 day | <strong>Strength:</strong> ⭐⭐⭐⭐⭐</p>
+                                <p style="background: rgba(218, 184, 143, 0.15); padding: 0.75rem; border-radius: 6px; margin-top: 0.5rem;">
+                                    <strong>Best for:</strong> Heavy use, permanent fix, damaged wood
+                                </p>
+                            </div>
+
+                            <div style="background: rgba(165, 139, 195, 0.12); padding: 1.5rem; border-radius: 8px;">
+                                <h5 style="color: #a58bc3;">Solution 3: Dowel Joint Reinforcement (Mechanical + Chemical)</h5>
+                                <p><strong>Process:</strong></p>
+                                <ol style="margin-left: 1.5rem; line-height: 1.8;">
+                                    <li>Drill matching holes in both pieces (8mm)</li>
+                                    <li>Cut wooden dowel to length</li>
+                                    <li>Apply glue to dowel and holes</li>
+                                    <li>Insert dowel, join pieces</li>
+                                    <li>Clamp and leave for 24 hours</li>
+                                </ol>
+                                <p style="margin-top: 1rem;"><strong>Cost:</strong> $3 per chair | <strong>Time:</strong> 2 days | <strong>Strength:</strong> ⭐⭐⭐⭐</p>
+                                <p style="background: rgba(218, 184, 143, 0.15); padding: 0.75rem; border-radius: 6px; margin-top: 0.5rem;">
+                                    <strong>Best for:</strong> Professional look, hidden repair, medium stress
+                                </p>
+                            </div>
+                        </div>
+
+                        <div style="background: linear-gradient(135deg, rgba(123, 184, 150, 0.12), rgba(107, 167, 130, 0.12)); padding: 1.5rem; border-radius: 10px; border-left: 4px solid #7bb896;">
+                            <h4 style="color: #7bb896; margin-bottom: 1rem;">✅ Best Solution for Schools:</h4>
+                            <p style="line-height: 1.8;"><strong>Combination Approach:</strong></p>
+                            <ul style="margin-left: 1.5rem; line-height: 1.8;">
+                                <li><strong>Lightly damaged (5 chairs):</strong> Re-gluing only ($10 total)</li>
+                                <li><strong>Moderately damaged (10 chairs):</strong> Dowel reinforcement ($30 total)</li>
+                                <li><strong>Heavily damaged (5 chairs):</strong> Metal brackets ($25 total)</li>
+                            </ul>
+                            <p style="margin-top: 1rem;"><strong>Total Cost:</strong> $65 vs buying 20 new chairs ($2000+)</p>
+                            <p style="margin-top: 1rem; padding: 1rem; background: rgba(218, 184, 143, 0.15); border-radius: 8px;">
+                                <strong>💡 Key Lesson:</strong> Choose processing method based on damage severity and usage requirements!
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Case Study 3 -->
+                    <div style="background: white; padding: 2rem; border-radius: 15px; margin-bottom: 2rem; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
+                        <div style="background: linear-gradient(135deg, #c4a5c5, #a58bc3); color: white; padding: 1rem; border-radius: 10px; margin-bottom: 1.5rem;">
+                            <h3 style="margin: 0; font-family: inherit; font-weight: 600;">🏭 Case Study 3: Eco-Friendly Product Packaging</h3>
+                        </div>
+                        
+                        <div style="background: rgba(123, 184, 150, 0.12); padding: 1rem; border-radius: 8px; margin-bottom: 1rem; border-left: 4px solid #7bb896;">
+                            <p style="margin: 0;"><strong>🌍 Challenge:</strong> A soap company wants to switch from plastic to eco-friendly packaging. What processing methods should they use?</p>
+                        </div>
+
+                        <div style="margin: 1.5rem 0;">
+                            <h4 style="color: #8b9dc3; font-family: inherit; font-weight: 600;">♻️ Sustainable Material Options:</h4>
+                            
+                            <div style="display: grid; gap: 1rem; margin-top: 1rem;">
+                                <div style="background: rgba(123, 184, 150, 0.12); padding: 1rem; border-radius: 8px;">
+                                    <h5 style="color: #7bb896;">📦 Recycled Cardboard Box</h5>
+                                    <p><strong>Processing:</strong> Mechanical (cutting, folding, gluing)</p>
+                                    <p><strong>Steps:</strong></p>
+                                    <ol style="margin-left: 1.5rem; line-height: 1.6;">
+                                        <li>Cut cardboard from recycled sheets (die-cutting)</li>
+                                        <li>Score fold lines with scoring tool</li>
+                                        <li>Print design with soy-based ink</li>
+                                        <li>Fold and glue with eco-friendly adhesive</li>
+                                    </ol>
+                                    <p style="margin-top: 0.5rem;"><strong>Pros:</strong> 100% recyclable, biodegradable, cost-effective</p>
+                                    <p><strong>Cons:</strong> Not waterproof, can crush if stacked heavily</p>
+                                </div>
+
+                                <div style="background: rgba(139, 157, 195, 0.12); padding: 1rem; border-radius: 8px;">
+                                    <h5 style="color: #8b9dc3;">🌾 Molded Bamboo Fiber</h5>
+                                    <p><strong>Processing:</strong> Thermal + Mechanical (heat-pressing)</p>
+                                    <p><strong>Steps:</strong></p>
+                                    <ol style="margin-left: 1.5rem; line-height: 1.6;">
+                                        <li>Mix bamboo pulp with water and natural binder</li>
+                                        <li>Pour into heated mold</li>
+                                        <li>Apply pressure while heating (180°C)</li>
+                                        <li>Cool and remove from mold</li>
+                                    </ol>
+                                    <p style="margin-top: 0.5rem;"><strong>Pros:</strong> Waterproof, strong, unique texture</p>
+                                    <p><strong>Cons:</strong> Higher initial cost, needs special equipment</p>
+                                </div>
+
+                                <div style="background: rgba(165, 139, 195, 0.12); padding: 1rem; border-radius: 8px;">
+                                    <h5 style="color: #a58bc3;">🧺 Paper Wrapper (Origami Style)</h5>
+                                    <p><strong>Processing:</strong> Mechanical (folding)</p>
+                                    <p><strong>Steps:</strong></p>
+                                    <ol style="margin-left: 1.5rem; line-height: 1.6;">
+                                        <li>Cut recycled paper to size</li>
+                                        <li>Print minimal design</li>
+                                        <li>Fold using origami technique (no glue!)</li>
+                                        <li>Secure with natural twine</li>
+                                    </ol>
+                                    <p style="margin-top: 0.5rem;"><strong>Pros:</strong> Zero glue, artistic, minimal processing</p>
+                                    <p><strong>Cons:</strong> Time-consuming, requires skilled workers</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="background: rgba(123, 184, 150, 0.12); padding: 1.5rem; border-radius: 10px; border-left: 4px solid #7bb896; margin-top: 1.5rem;">
+                            <h4 style="color: #7bb896; margin-bottom: 1rem;">✅ Environmental Impact Comparison:</h4>
+                            <table style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
+                                <tr style="background: rgba(255,255,255,0.5);">
+                                    <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #7bb896;">Option</th>
+                                    <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #7bb896;">Carbon Footprint</th>
+                                    <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #7bb896;">Biodegradable Time</th>
+                                    <th style="padding: 0.75rem; text-align: left; border-bottom: 2px solid #7bb896;">Water Usage</th>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 0.75rem;">Plastic (current)</td>
+                                    <td style="padding: 0.75rem;">⚫⚫⚫⚫⚫ High</td>
+                                    <td style="padding: 0.75rem;">500+ years</td>
+                                    <td style="padding: 0.75rem;">⚫⚫⚫ Medium</td>
+                                </tr>
+                                <tr style="background: rgba(255,255,255,0.3);">
+                                    <td style="padding: 0.75rem;">Cardboard</td>
+                                    <td style="padding: 0.75rem;">⚫⚫ Low</td>
+                                    <td style="padding: 0.75rem;">2-3 months</td>
+                                    <td style="padding: 0.75rem;">⚫⚫ Low</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 0.75rem;">Bamboo Fiber</td>
+                                    <td style="padding: 0.75rem;">⚫ Very Low</td>
+                                    <td style="padding: 0.75rem;">4-6 months</td>
+                                    <td style="padding: 0.75rem;">⚫ Very Low</td>
+                                </tr>
+                                <tr style="background: rgba(255,255,255,0.3);">
+                                    <td style="padding: 0.75rem;">Paper Wrapper</td>
+                                    <td style="padding: 0.75rem;">⚫ Very Low</td>
+                                    <td style="padding: 0.75rem;">2-6 weeks</td>
+                                    <td style="padding: 0.75rem;">⚫⚫ Low</td>
+                                </tr>
+                            </table>
+                            <p style="margin-top: 1rem; padding: 1rem; background: rgba(218, 184, 143, 0.15); border-radius: 8px;">
+                                <strong>💡 Key Lesson:</strong> Processing choices affect the environment! Consider lifecycle from raw material to disposal.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STUDY NOTES SECTION -->
+                <div style="margin-top: 3rem;">
+                    <h2 style="color: #8b9dc3; margin-bottom: 1.5rem; text-align: center;">📝 Study Notes & Exam Preparation</h2>
+                    
+                    <!-- Quick Reference Sheet -->
+                    <div style="background: white; padding: 2rem; border-radius: 15px; margin-bottom: 2rem; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
+                        <div style="background: linear-gradient(135deg, #8b9dc3, #a58bc3); color: white; padding: 1rem; border-radius: 10px; margin-bottom: 1.5rem;">
+                            <h3 style="margin: 0;">⚡ Quick Reference Sheet - Processing</h3>
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                            <div style="background: rgba(139, 157, 195, 0.12); padding: 1.5rem; border-radius: 10px; border-left: 4px solid #8b9dc3;">
+                                <h4 style="color: #8b9dc3; margin-bottom: 1rem;">🔨 Mechanical Processing</h4>
+                                <p style="font-weight: bold; margin-bottom: 0.5rem;">Definition:</p>
+                                <p style="margin-bottom: 1rem;">Using physical force to change materials</p>
+                                
+                                <p style="font-weight: bold; margin-bottom: 0.5rem;">Methods:</p>
+                                <ul style="margin-left: 1.5rem; line-height: 1.8;">
+                                    <li><strong>Cutting:</strong> Saw, chisel, drill</li>
+                                    <li><strong>Shaping:</strong> Bending, folding, molding</li>
+                                    <li><strong>Joining:</strong> Screws, nails, glue</li>
+                                    <li><strong>Finishing:</strong> Sanding, filing, planing</li>
+                                </ul>
+
+                                <p style="font-weight: bold; margin-top: 1rem; margin-bottom: 0.5rem;">Remember:</p>
+                                <p style="background: rgba(218, 184, 143, 0.15); padding: 0.75rem; border-radius: 6px;">
+                                    "If you can TOUCH, PUSH, PULL, or HIT it to change it - it's MECHANICAL!"
+                                </p>
+                            </div>
+
+                            <div style="background: rgba(217, 165, 165, 0.15); padding: 1.5rem; border-radius: 10px; border-left: 4px solid #d9a5a5;">
+                                <h4 style="color: #d9a5a5; margin-bottom: 1rem;">🔥 Thermal Processing</h4>
+                                <p style="font-weight: bold; margin-bottom: 0.5rem;">Definition:</p>
+                                <p style="margin-bottom: 1rem;">Using heat or cold to change materials</p>
+                                
+                                <p style="font-weight: bold; margin-bottom: 0.5rem;">Methods:</p>
+                                <ul style="margin-left: 1.5rem; line-height: 1.8;">
+                                    <li><strong>Heating:</strong> Melting, softening, baking</li>
+                                    <li><strong>Cooling:</strong> Freezing, hardening, setting</li>
+                                    <li><strong>Special:</strong> Annealing, tempering, forging</li>
+                                </ul>
+
+                                <p style="font-weight: bold; margin-top: 1rem; margin-bottom: 0.5rem;">Remember:</p>
+                                <p style="background: rgba(218, 184, 143, 0.15); padding: 0.75rem; border-radius: 6px;">
+                                    "If TEMPERATURE changes the material - it's THERMAL!"
+                                </p>
+                            </div>
+
+                            <div style="background: rgba(165, 139, 195, 0.12); padding: 1.5rem; border-radius: 10px; border-left: 4px solid #a58bc3;">
+                                <h4 style="color: #a58bc3; margin-bottom: 1rem;">🧪 Chemical Processing</h4>
+                                <p style="font-weight: bold; margin-bottom: 0.5rem;">Definition:</p>
+                                <p style="margin-bottom: 1rem;">Using chemicals to change material surface or properties</p>
+                                
+                                <p style="font-weight: bold; margin-bottom: 0.5rem;">Methods:</p>
+                                <ul style="margin-left: 1.5rem; line-height: 1.8;">
+                                    <li><strong>Coating:</strong> Painting, varnishing</li>
+                                    <li><strong>Treating:</strong> Staining, bleaching</li>
+                                    <li><strong>Plating:</strong> Electroplating, anodizing</li>
+                                </ul>
+
+                                <p style="font-weight: bold; margin-top: 1rem; margin-bottom: 0.5rem;">Remember:</p>
+                                <p style="background: rgba(218, 184, 143, 0.15); padding: 0.75rem; border-radius: 6px;">
+                                    "If you ADD a LIQUID/CHEMICAL to change it - it's CHEMICAL!"
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Exam Tips -->
+                    <div style="background: white; padding: 2rem; border-radius: 15px; margin-bottom: 2rem; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
+                        <div style="background: linear-gradient(135deg, #7bb896, #6ba782); color: white; padding: 1rem; border-radius: 10px; margin-bottom: 1.5rem;">
+                            <h3 style="margin: 0;">🎓 Exam Tips & Common Questions</h3>
+                        </div>
+
+                        <div style="margin-bottom: 2rem;">
+                            <h4 style="color: #7bb896; margin-bottom: 1rem;">📌 How to Identify Processing Types:</h4>
+                            
+                            <div style="background: rgba(139, 157, 195, 0.12); padding: 1.5rem; border-radius: 10px; margin-bottom: 1rem;">
+                                <p style="font-weight: bold; margin-bottom: 0.5rem;">Question Type: "What processing was used to make a wooden chair?"</p>
+                                <p style="margin-bottom: 1rem;"><strong>Answer Strategy:</strong></p>
+                                <ol style="margin-left: 1.5rem; line-height: 1.8;">
+                                    <li>Think about each step in making the product</li>
+                                    <li>Identify the TYPE for each step:
+                                        <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                                            <li>Cutting wood = <span style="color: #8b9dc3; font-weight: bold;">MECHANICAL</span></li>
+                                            <li>Drying wood = <span style="color: #d9a5a5; font-weight: bold;">THERMAL</span></li>
+                                            <li>Varnishing = <span style="color: #a58bc3; font-weight: bold;">CHEMICAL</span></li>
+                                        </ul>
+                                    </li>
+                                    <li>Write: "Mechanical (cutting), Thermal (drying), Chemical (varnishing)"</li>
+                                </ol>
+                            </div>
+
+                            <div style="background: rgba(123, 184, 150, 0.12); padding: 1.5rem; border-radius: 10px; margin-bottom: 1rem;">
+                                <p style="font-weight: bold; margin-bottom: 0.5rem;">Question Type: "Name 3 tools used in mechanical processing"</p>
+                                <p style="margin-bottom: 1rem;"><strong>Answer Strategy:</strong></p>
+                                <ul style="margin-left: 1.5rem; line-height: 1.8;">
+                                    <li>✅ <strong>Good Answer:</strong> "Hand saw (cutting), G-clamp (holding), Screwdriver (joining)"</li>
+                                    <li>✅ Include the PURPOSE in brackets for extra marks!</li>
+                                    <li>❌ <strong>Avoid:</strong> Just listing "saw, clamp, screwdriver" without context</li>
+                                </ul>
+                            </div>
+
+                            <div style="background: rgba(217, 165, 165, 0.15); padding: 1.5rem; border-radius: 10px;">
+                                <p style="font-weight: bold; margin-bottom: 0.5rem;">Question Type: "Why is safety equipment important?"</p>
+                                <p style="margin-bottom: 1rem;"><strong>Answer Strategy:</strong></p>
+                                <ul style="margin-left: 1.5rem; line-height: 1.8;">
+                                    <li>✅ <strong>Good Answer:</strong> "Safety glasses protect eyes from flying debris when cutting. Gloves prevent cuts from sharp edges. Ear protection prevents hearing damage from loud machinery."</li>
+                                    <li>✅ Give SPECIFIC examples and REASONS</li>
+                                    <li>❌ <strong>Avoid:</strong> Generic "to be safe" answers</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div style="background: rgba(218, 184, 143, 0.12); padding: 1.5rem; border-radius: 10px; border-left: 4px solid #c9a572;">
+                            <h4 style="color: #c9a572; margin-bottom: 1rem;">⭐ Top 10 Exam Questions to Practice:</h4>
+                            <ol style="margin-left: 1.5rem; line-height: 2;">
+                                <li>Define processing and give 2 examples</li>
+                                <li>Explain the difference between mechanical, thermal, and chemical processing</li>
+                                <li>List 5 safety rules for the workshop and explain why each is important</li>
+                                <li>Describe the steps to cut wood safely</li>
+                                <li>Name 3 permanent joining methods and 3 temporary methods</li>
+                                <li>Explain why we paint or varnish wood products</li>
+                                <li>Draw and label the processing steps for making a wooden pencil holder</li>
+                                <li>Compare two different materials for making the same product</li>
+                                <li>Identify processing types used in everyday products (phone, desk, bottle)</li>
+                                <li>Explain how to choose the right tool for a specific task</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <!-- Memory Tricks -->
+                    <div style="background: white; padding: 2rem; border-radius: 15px; margin-bottom: 2rem; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
+                        <div style="background: linear-gradient(135deg, #f59e0b, #d97706); color: white; padding: 1rem; border-radius: 10px; margin-bottom: 1.5rem;">
+                            <h3 style="margin: 0;">🧠 Memory Tricks & Mnemonics</h3>
+                        </div>
+
+                        <div style="display: grid; gap: 1rem;">
+                            <div style="background: rgba(139, 157, 195, 0.12); padding: 1rem; border-radius: 8px;">
+                                <p style="font-weight: bold; color: #8b9dc3;">Processing Types: "M.T.C."</p>
+                                <p style="margin-top: 0.5rem;"><strong>M</strong>echanical = <strong>M</strong>uscle power (push, pull, cut)</p>
+                                <p><strong>T</strong>hermal = <strong>T</strong>emperature changes (hot or cold)</p>
+                                <p><strong>C</strong>hemical = <strong>C</strong>oating with liquids</p>
+                            </div>
+
+                            <div style="background: rgba(123, 184, 150, 0.12); padding: 1rem; border-radius: 8px;">
+                                <p style="font-weight: bold; color: #7bb896;">Safety Gear: "G.E.E."</p>
+                                <p style="margin-top: 0.5rem;"><strong>G</strong>loves for hands</p>
+                                <p><strong>E</strong>yes need glasses</p>
+                                <p><strong>E</strong>ars need protection</p>
+                            </div>
+
+                            <div style="background: rgba(196, 165, 197, 0.12); padding: 1rem; border-radius: 8px;">
+                                <p style="font-weight: bold; color: #c4a5c5;">Joining Methods: "P.T."</p>
+                                <p style="margin-top: 0.5rem;"><strong>P</strong>ermanent = Glue, Weld, Nail (can't undo easily)</p>
+                                <p><strong>T</strong>emporary = Screws, Bolts, Clips (can remove and reuse)</p>
+                            </div>
+
+                            <div style="background: rgba(165, 139, 195, 0.12); padding: 1rem; border-radius: 8px;">
+                                <p style="font-weight: bold; color: #a58bc3;">Measuring Rule: "M.M.C."</p>
+                                <p style="margin-top: 0.5rem;"><strong>M</strong>easure twice</p>
+                                <p><strong>M</strong>ark carefully</p>
+                                <p><strong>C</strong>ut once</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Practice Scenarios -->
+                    <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
+                        <div style="background: linear-gradient(135deg, #c4a5c5, #b08ab5); color: white; padding: 1rem; border-radius: 10px; margin-bottom: 1.5rem;">
+                            <h3 style="margin: 0;">💪 Practice Scenarios - Test Yourself!</h3>
+                        </div>
+
+                        <div style="display: grid; gap: 1.5rem;">
+                            <div style="background: rgba(139, 157, 195, 0.05); padding: 1.5rem; border-radius: 10px; border-left: 4px solid #8b9dc3;">
+                                <h4 style="color: #8b9dc3;">Scenario 1: The Broken Toy</h4>
+                                <p style="margin-bottom: 1rem;">Your friend's plastic toy car has a broken wheel axle. You have: super glue, small screws, tape, and a drill. How would you fix it?</p>
+                                <details style="background: white; padding: 1rem; border-radius: 6px; margin-top: 1rem;">
+                                    <summary style="cursor: pointer; font-weight: bold; color: #8b9dc3;">Click to see solution approach</summary>
+                                    <div style="margin-top: 1rem; line-height: 1.8;">
+                                        <p><strong>Best approach:</strong></p>
+                                        <ol style="margin-left: 1.5rem;">
+                                            <li><strong>Drill</strong> small hole through axle ends (mechanical)</li>
+                                            <li>Insert <strong>small screw</strong> to reinforce (mechanical joining)</li>
+                                            <li>Apply <strong>super glue</strong> around joint (chemical)</li>
+                                            <li>Let dry 24 hours before use</li>
+                                        </ol>
+                                        <p style="margin-top: 1rem; background: rgba(218, 184, 143, 0.15); padding: 0.75rem; border-radius: 6px;">
+                                            <strong>Why?</strong> Screws alone might split plastic. Glue alone might not hold stress. Combination gives strongest fix!
+                                        </p>
+                                    </div>
+                                </details>
+                            </div>
+
+                            <div style="background: rgba(123, 184, 150, 0.05); padding: 1.5rem; border-radius: 10px; border-left: 4px solid #7bb896;">
+                                <h4 style="color: #7bb896;">Scenario 2: The Science Fair Project</h4>
+                                <p style="margin-bottom: 1rem;">You need to make a display board stand. You have cardboard, wooden dowels, and fabric. Design a solution that uses at least 2 processing types.</p>
+                                <details style="background: white; padding: 1rem; border-radius: 6px; margin-top: 1rem;">
+                                    <summary style="cursor: pointer; font-weight: bold; color: #7bb896;">Click to see solution approach</summary>
+                                    <div style="margin-top: 1rem; line-height: 1.8;">
+                                        <p><strong>Design solution:</strong></p>
+                                        <ol style="margin-left: 1.5rem;">
+                                            <li><strong>Cut</strong> cardboard to size (mechanical)</li>
+                                            <li><strong>Score and fold</strong> for support flaps (mechanical)</li>
+                                            <li><strong>Insert</strong> wooden dowels for stability (mechanical)</li>
+                                            <li><strong>Glue</strong> fabric covering for professional look (chemical)</li>
+                                            <li><strong>Paint/decorate</strong> with poster paint (chemical)</li>
+                                        </ol>
+                                        <p style="margin-top: 1rem; background: rgba(218, 184, 143, 0.15); padding: 0.75rem; border-radius: 6px;">
+                                            <strong>Processing types used:</strong> Mechanical (cutting, folding) + Chemical (gluing, painting)
+                                        </p>
+                                    </div>
+                                </details>
+                            </div>
+
+                            <div style="background: rgba(217, 165, 165, 0.1); padding: 1.5rem; border-radius: 10px; border-left: 4px solid #d9a5a5;">
+                                <h4 style="color: #d9a5a5;">Scenario 3: Outdoor Bird House</h4>
+                                <p style="margin-bottom: 1rem;">You're making a birdhouse that will stay outside. What finish would you use and why? Consider weather, durability, and bird safety.</p>
+                                <details style="background: white; padding: 1rem; border-radius: 6px; margin-top: 1rem;">
+                                    <summary style="cursor: pointer; font-weight: bold; color: #d9a5a5;">Click to see solution approach</summary>
+                                    <div style="margin-top: 1rem; line-height: 1.8;">
+                                        <p><strong>Best finish:</strong> Exterior polyurethane varnish (chemical processing)</p>
+                                        <p style="margin-top: 1rem;"><strong>Reasoning:</strong></p>
+                                        <ul style="margin-left: 1.5rem;">
+                                            <li>✅ Waterproof - protects from rain</li>
+                                            <li>✅ UV resistant - won't fade in sun</li>
+                                            <li>✅ Non-toxic when dry - safe for birds</li>
+                                            <li>✅ Durable - lasts multiple years</li>
+                                        </ul>
+                                        <p style="margin-top: 1rem;"><strong>Application:</strong></p>
+                                        <ol style="margin-left: 1.5rem;">
+                                            <li>Sand wood smooth</li>
+                                            <li>Apply thin first coat</li>
+                                            <li>Sand lightly when dry</li>
+                                            <li>Apply 2-3 more coats</li>
+                                            <li>Let cure 48 hours before use</li>
+                                        </ol>
+                                        <p style="margin-top: 1rem; background: rgba(217, 165, 165, 0.2); padding: 0.75rem; border-radius: 6px;">
+                                            <strong>❌ Avoid:</strong> Paint (chips easily), oil (attracts insects), nothing (wood rots quickly)
+                                        </p>
+                                    </div>
+                                </details>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- Chapter 2: Structures -->
+            <section id="chapter2" class="chapter">
+                <h1 class="chapter-title">Chapter 2: Structures - Build Strong & Smart! 🏗️</h1>
+                
+                <div class="intro-box" style="background: linear-gradient(135deg, rgba(139, 157, 195, 0.12), rgba(196, 165, 197, 0.12));">
+                    <h2>The Science of Standing Strong! 💪</h2>
+                    <p style="font-size: 1.1rem; line-height: 1.8;">Why doesn't a skyscraper fall over? How can a bridge hold hundreds of cars? It's all about STRUCTURES! A structure is anything that supports a load - your skeleton, a building, a bridge, even your backpack. Let's discover how engineers design structures that are strong, stable, and smart!</p>
+                    
+                    <div style="margin-top: 1.5rem; padding: 1.25rem; background: rgba(218, 184, 143, 0.12); border-radius: 10px; border: 2px solid rgba(218, 184, 143, 0.3);">
+                        <h4 style="color: #c9a572; margin-bottom: 0.75rem;">🎯 Your Building Journey:</h4>
+                        <div style="display: grid; gap: 0.5rem;">
+                            <p style="margin: 0;">✓ <strong>Foundation:</strong> What makes a structure strong?</p>
+                            <p style="margin: 0;">✓ <strong>Frame:</strong> Types of structures and forces</p>
+                            <p style="margin: 0;">✓ <strong>Strength:</strong> Materials and their properties</p>
+                            <p style="margin: 0;">✓ <strong>Design:</strong> Planning your own structure</p>
+                            <p style="margin: 0;">✓ <strong>Build:</strong> Create and test your design</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="concept-box" style="background: linear-gradient(135deg, rgba(123, 184, 150, 0.12), rgba(107, 167, 130, 0.12));">
+                    <h3>🎯 What is a Structure?</h3>
+                    
+                    <div style="margin-top: 1.5rem; padding: 1.5rem; background: rgba(123, 184, 150, 0.12); border-radius: 12px; border-left: 4px solid #7bb896;">
+                        <p style="line-height: 1.8;"><strong>Structure:</strong> A structure is a framework or support that carries a load and stays in place.</p>
+                        <p style="margin-top: 1rem; padding: 1rem; background: rgba(218, 184, 143, 0.12); border-radius: 8px;">Think about it: A house is a structure that protects you from weather. A bridge is a structure that helps you cross a river. Your body's skeleton is a structure that keeps you upright!</p>
+                    </div>
+
+                    <div style="margin-top: 2rem; padding: 1.5rem; background: linear-gradient(135deg, rgba(139, 157, 195, 0.12), rgba(196, 165, 197, 0.12)); border-radius: 12px;">
+                        <h4 style="color: #8b9dc3; margin-bottom: 1rem;">🏛️ Types of Structures</h4>
+                        
+                        <div style="margin-top: 1rem; padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 8px;">
+                            <h5 style="color: #c9a572; margin-bottom: 0.5rem;">1. Natural Structures 🌳</h5>
+                            <p style="line-height: 1.6;">Structures found in nature</p>
+                            <ul style="margin-left: 1.5rem; line-height: 1.8;">
+                                <li>Bones (skeleton)</li>
+                                <li>Trees and plants</li>
+                                <li>Shells and honeycombs</li>
+                                <li>Mountains and caves</li>
+                            </ul>
+                        </div>
+
+                        <div style="margin-top: 1rem; padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 8px;">
+                            <h5 style="color: #c9a572; margin-bottom: 0.5rem;">2. Man-Made Structures 🏗️</h5>
+                            <p style="line-height: 1.6;">Structures built by humans</p>
+                            <ul style="margin-left: 1.5rem; line-height: 1.8;">
+                                <li>Buildings and houses</li>
+                                <li>Bridges and towers</li>
+                                <li>Dams and tunnels</li>
+                                <li>Furniture and toys</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Forces Section -->
+                <div class="concept-box" style="background: linear-gradient(135deg, rgba(196, 165, 197, 0.12), rgba(218, 184, 143, 0.12)); margin-top: 2rem;">
+                    <h3>⚡ Forces Acting on Structures</h3>
+                    
+                    <p style="line-height: 1.8; margin-bottom: 1rem;">Every structure experiences FORCES - pushes and pulls that try to change its shape or position. Understanding forces helps us build stronger structures!</p>
+
+                    <div style="display: grid; gap: 1rem;">
+                        <div style="padding: 1.5rem; background: rgba(139, 157, 195, 0.12); border-radius: 10px; border-left: 4px solid #8b9dc3;">
+                            <h4 style="color: #8b9dc3;">🔽 Compression (Squeezing)</h4>
+                            <p>When forces push together, squeezing the material</p>
+                            <p style="margin-top: 0.5rem;"><strong>Example:</strong> Columns in a building, legs of a table</p>
+                        </div>
+
+                        <div style="padding: 1.5rem; background: rgba(123, 184, 150, 0.12); border-radius: 10px; border-left: 4px solid #7bb896;">
+                            <h4 style="color: #7bb896;">🔼 Tension (Stretching)</h4>
+                            <p>When forces pull apart, stretching the material</p>
+                            <p style="margin-top: 0.5rem;"><strong>Example:</strong> Cables on a suspension bridge, strings on a guitar</p>
+                        </div>
+
+                        <div style="padding: 1.5rem; background: rgba(196, 165, 197, 0.12); border-radius: 10px; border-left: 4px solid #c4a5c5;">
+                            <h4 style="color: #c4a5c5;">↔️ Shear (Sliding)</h4>
+                            <p>When forces slide past each other in opposite directions</p>
+                            <p style="margin-top: 0.5rem;"><strong>Example:</strong> Scissors cutting paper, bolts in a structure</p>
+                        </div>
+
+                        <div style="padding: 1.5rem; background: rgba(218, 184, 143, 0.12); border-radius: 10px; border-left: 4px solid #c9a572;">
+                            <h4 style="color: #c9a572;">🌊 Torsion (Twisting)</h4>
+                            <p>When forces twist the material</p>
+                            <p style="margin-top: 0.5rem;"><strong>Example:</strong> Wringing out a wet towel, turning a screwdriver</p>
+                        </div>
+
+                        <div style="padding: 1.5rem; background: rgba(165, 139, 195, 0.12); border-radius: 10px; border-left: 4px solid #a58bc3;">
+                            <h4 style="color: #a58bc3;">⤵️ Bending</h4>
+                            <p>When force causes the material to curve</p>
+                            <p style="margin-top: 0.5rem;"><strong>Example:</strong> A shelf holding books, a diving board</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Practice Activity -->
+                <div class="practice-box" style="margin-top: 2rem; padding: 1.5rem; background: linear-gradient(135deg, rgba(139, 157, 195, 0.12), rgba(6, 182, 212, 0.1)); border-radius: 12px;">
+                    <h3 style="color: #8b9dc3; margin-bottom: 1rem;">✏️ Activity: Bridge Builder Challenge</h3>
+                    <p style="line-height: 1.8;"><strong>Challenge:</strong> Design and build a bridge using only paper and tape that can hold a book!</p>
+                    <div style="margin-top: 1rem; padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 8px;">
+                        <h4 style="margin-bottom: 0.75rem;">Steps:</h4>
+                        <ol style="margin-left: 1.5rem; line-height: 2;">
+                            <li>Sketch your bridge design (think about forces!)</li>
+                            <li>Build your bridge (max 10 sheets of paper, 1m of tape)</li>
+                            <li>Test it - how many books can it hold?</li>
+                            <li>Improve your design based on what you learned</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <!-- VIRTUAL TOOLS SECTION -->
+                <div style="margin-top: 3rem;">
+                    <h2 style="color: #8b9dc3; margin-bottom: 1.5rem;">🛠️ Virtual Engineering Lab</h2>
+                    
+                    <!-- Force Calculator -->
+                    <div id="force-calculator"></div>
+                    
+                    <!-- Strength Tester -->
+                    <div id="strength-tester"></div>
+                </div>
+
+                <!-- INTERACTIVE QUIZ FOR STRUCTURES -->
+                <div style="margin-top: 3rem;">
+                    <h3 style="color: #8b9dc3; margin-bottom: 1rem;">🎯 Test Your Knowledge: Structures Quiz</h3>
+                    <div class="interactive-quiz" 
+                         data-quiz-id="structures-quiz"
+                         data-questions='[
+                            {
+                                "question": "What is a structure?",
+                                "options": [
+                                    "Only buildings made of concrete",
+                                    "A framework that carries a load and stays in place",
+                                    "Something that moves around",
+                                    "Only natural things like trees"
+                                ],
+                                "correct": 1,
+                                "explanation": "A structure is any framework or support that carries a load and stays in place. This includes buildings, bridges, furniture, and even natural structures like trees and bones!"
+                            },
+                            {
+                                "question": "Which force SQUEEZES a material together?",
+                                "options": [
+                                    "Tension",
+                                    "Shear",
+                                    "Compression",
+                                    "Torsion"
+                                ],
+                                "correct": 2,
+                                "explanation": "Compression squeezes materials together. Think of the legs of a table being compressed by the weight on top, or columns in a building being squeezed."
+                            },
+                            {
+                                "question": "A guitar string being played experiences which force?",
+                                "options": [
+                                    "Compression",
+                                    "Tension (stretching)",
+                                    "Bending",
+                                    "Shear"
+                                ],
+                                "correct": 1,
+                                "explanation": "Guitar strings are under tension - they are being pulled and stretched tight. When you pluck them, they vibrate while still under tension!"
+                            },
+                            {
+                                "question": "Why is a triangle such a strong shape for structures?",
+                                "options": [
+                                    "It looks the nicest",
+                                    "It uses the least material",
+                                    "It cannot be deformed easily - forces are distributed evenly",
+                                    "It is the easiest to build"
+                                ],
+                                "correct": 2,
+                                "explanation": "Triangles are incredibly strong because they distribute forces evenly along all three sides. Unlike a square which can collapse into a diamond shape, a triangle stays rigid!"
+                            },
+                            {
+                                "question": "What type of structure is a human skeleton?",
+                                "options": [
+                                    "Man-made structure",
+                                    "Natural structure",
+                                    "Temporary structure",
+                                    "Weak structure"
+                                ],
+                                "correct": 1,
+                                "explanation": "The human skeleton is a natural structure! It is a framework that supports our body (the load), protects our organs, and allows us to move. Nature is an amazing engineer!"
+                            }
+                        ]'>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- Term 1 PAT -->
+            <section id="term1-project" class="chapter">
+                <h1 class="chapter-title">🛠️ Term 1 PAT: Design & Make Project</h1>
+                
+                <div class="intro-box" style="background: linear-gradient(135deg, rgba(218, 184, 143, 0.12), rgba(217, 165, 165, 0.15));">
+                    <h2>Practical Assessment Task 🎯</h2>
+                    <p style="font-size: 1.1rem; line-height: 1.8;">Time to put your knowledge into action! This Practical Assessment Task (PAT) will test your understanding of processing and structures. You'll design, build, and evaluate a real product!</p>
+                </div>
+
+                <div class="concept-box" style="background: linear-gradient(135deg, rgba(139, 157, 195, 0.12), rgba(196, 165, 197, 0.12));">
+                    <h3>📋 Project Brief</h3>
+                    
+                    <div style="margin-top: 1rem; padding: 1.5rem; background: rgba(218, 184, 143, 0.12); border-radius: 10px;">
+                        <h4 style="color: #c9a572; margin-bottom: 1rem;">The Challenge</h4>
+                        <p style="line-height: 1.8;">Design and make a <strong>pencil holder structure</strong> that can:</p>
+                        <ul style="margin-left: 1.5rem; line-height: 2;">
+                            <li>Hold at least 10 pencils/pens</li>
+                            <li>Stand stable on a desk</li>
+                            <li>Be made from recyclable materials</li>
+                            <li>Look attractive and creative</li>
+                        </ul>
+                    </div>
+
+                    <div style="margin-top: 1.5rem; padding: 1.5rem; background: rgba(139, 157, 195, 0.12); border-radius: 10px;">
+                        <h4 style="color: #8b9dc3; margin-bottom: 1rem;">Requirements</h4>
+                        <p><strong>Materials allowed:</strong> Cardboard, paper, wood, recyclables (bottles, cans), glue, tape</p>
+                        <p style="margin-top: 0.5rem;"><strong>Size:</strong> Maximum 20cm x 20cm x 30cm (L x W x H)</p>
+                        <p style="margin-top: 0.5rem;"><strong>Time:</strong> 4 weeks to complete</p>
+                    </div>
+
+                    <div style="margin-top: 1.5rem; padding: 1.5rem; background: rgba(123, 184, 150, 0.12); border-radius: 10px;">
+                        <h4 style="color: #7bb896; margin-bottom: 1rem;">What You Need to Submit</h4>
+                        <ol style="margin-left: 1.5rem; line-height: 2;">
+                            <li><strong>Design Sketches:</strong> At least 3 different ideas with labels</li>
+                            <li><strong>Working Drawings:</strong> Detailed plan with measurements</li>
+                            <li><strong>The Product:</strong> Your finished pencil holder</li>
+                            <li><strong>Evaluation:</strong> What worked? What would you improve?</li>
+                        </ol>
+                    </div>
+
+                    <div class="warning-box" style="background: linear-gradient(135deg, rgba(217, 165, 165, 0.15), rgba(218, 184, 143, 0.12)); border: 2px solid rgba(217, 165, 165, 0.3); border-radius: 12px; padding: 1.5rem; margin-top: 1.5rem;">
+                        <h4 style="color: #d9a5a5; margin-bottom: 1rem;">⚠️ Remember Safety!</h4>
+                        <p>Always wear safety glasses and follow workshop rules when making your project!</p>
+                    </div>
+                </div>
+
+            </section>
+
+        </main>
+    </div>
+
+    <script src="../../scripts/textbook.js"></script>
+    <script src="../../scripts/technology.js"></script>
+</body>
+</html>

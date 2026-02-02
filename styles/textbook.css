@@ -1,0 +1,751 @@
+/* ================================
+   CLASSDOODLE CINEMATIC TEXTBOOK
+================================ */
+
+/* ===== GLOBAL RESETS ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #0f172a;
+  color: #e5e7eb;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  line-height: 1.7;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 1rem 2rem;
+  box-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.navbar-content {
+  max-width: 1600px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar h1 {
+  font-size: 1.5rem;
+  background: linear-gradient(90deg, #6366f1, #22c55e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 800;
+}
+
+.nav-logo {
+  font-size: 1.5rem;
+  font-weight: 800;
+  text-decoration: none;
+  background: linear-gradient(135deg, #fbbf24, #f97316, #ec4899, #a855f7, #6366f1, #06b6d4, #10b981);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: logoGradientFlow 5s ease infinite, logoGlow 3s ease-in-out infinite;
+  filter: drop-shadow(0 0 20px rgba(251, 191, 36, 0.5)) drop-shadow(0 0 40px rgba(99, 102, 241, 0.3));
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.nav-logo:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 30px rgba(251, 191, 36, 0.8)) drop-shadow(0 0 60px rgba(236, 72, 153, 0.6)) drop-shadow(0 0 90px rgba(99, 102, 241, 0.5));
+}
+
+@keyframes logoGradientFlow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes logoGlow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.85; }
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.nav-links a {
+  color: #cbd5e1;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #6366f1;
+}
+
+/* ===== LAYOUT ===== */
+.textbook-container {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 2rem;
+  max-width: 1600px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+  align-items: start;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+  position: sticky;
+  top: 90px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 16px;
+  padding: 1.5rem;
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+  box-shadow: 
+    0 10px 40px rgba(0, 0, 0, 0.12),
+    0 4px 12px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.sidebar h2 {
+  font-size: 1.2rem;
+  color: #6366f1;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.sidebar h3 {
+  font-size: 1rem;
+  color: #1e293b;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.chapter-list {
+  list-style: none;
+}
+
+.chapter-list li {
+  margin-bottom: 0.5rem;
+}
+
+.chapter-list a {
+  display: block;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  color: #334155;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid transparent;
+}
+
+.chapter-list a:hover {
+  background: rgba(99, 102, 241, 0.1);
+  color: #6366f1;
+  transform: translateX(5px);
+  border-color: rgba(99, 102, 241, 0.2);
+}
+
+.chapter-list a.active {
+  background: linear-gradient(90deg, #6366f1, #8b5cf6);
+  color: white;
+  font-weight: 700;
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+  border-color: #8b5cf6;
+}
+
+/* Term headers in sidebar */
+.chapter-list .term-header {
+  list-style: none;
+  padding: 0.5rem;
+  margin-top: 1rem;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+  border: none;
+  cursor: default;
+}
+
+.chapter-list .term-header:hover {
+  transform: none;
+  background: inherit !important;
+}
+
+/* Custom scrollbar for sidebar */
+.sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: rgba(248, 250, 252, 0.5);
+  border-radius: 10px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #6366f1, #8b5cf6);
+  border-radius: 10px;
+}
+
+/* ===== CONTENT AREA ===== */
+.content {
+  background: rgba(2, 6, 23, 0.6);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  padding: 3rem;
+  border: 1px solid #1e293b;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  min-height: 80vh;
+}
+
+/* ===== CHAPTERS ===== */
+.chapter {
+  margin-bottom: 6rem;
+  scroll-margin-top: 90px;
+}
+
+.chapter:last-child {
+  margin-bottom: 3rem;
+}
+
+.chapter-title {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(90deg, #6366f1, #22c55e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 900;
+  letter-spacing: -0.5px;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #1e293b;
+}
+
+/* ===== CONTENT BOXES ===== */
+.intro-box,
+.concept-box,
+.example-box,
+.rules-box,
+.practice-box,
+.visual-diagram {
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid #1e293b;
+  border-radius: 16px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
+}
+
+.intro-box:hover,
+.concept-box:hover,
+.example-box:hover,
+.rules-box:hover,
+.practice-box:hover {
+  border-color: #334155;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* Box Headers */
+.intro-box h3,
+.concept-box h3,
+.example-box h3,
+.rules-box h3,
+.practice-box h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.intro-box h3 {
+  color: #6366f1;
+}
+
+.concept-box h3 {
+  color: #22c55e;
+}
+
+.example-box h3 {
+  color: #f59e0b;
+}
+
+.rules-box h3 {
+  color: #ec4899;
+}
+
+.practice-box h3 {
+  color: #06b6d4;
+}
+
+/* Special styling for different box types */
+.intro-box {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(15, 23, 42, 0.8));
+  border-left: 4px solid #6366f1;
+}
+
+.concept-box {
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(15, 23, 42, 0.8));
+  border-left: 4px solid #22c55e;
+}
+
+.example-box {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(15, 23, 42, 0.8));
+  border-left: 4px solid #f59e0b;
+}
+
+.rules-box {
+  background: linear-gradient(135deg, rgba(236, 72, 153, 0.1), rgba(15, 23, 42, 0.8));
+  border-left: 4px solid #ec4899;
+}
+
+.practice-box {
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(15, 23, 42, 0.8));
+  border-left: 4px solid #06b6d4;
+}
+
+/* ===== VISUAL DIAGRAMS ===== */
+.visual-diagram {
+  text-align: center;
+  background: rgba(2, 6, 23, 0.5);
+  padding: 2.5rem;
+}
+
+.visual-diagram svg {
+  max-width: 100%;
+  height: auto;
+  filter: drop-shadow(0 4px 20px rgba(99, 102, 241, 0.2));
+}
+
+/* ===== TABLES ===== */
+.sign-table,
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  background: rgba(15, 23, 42, 0.5);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.sign-table th,
+.sign-table td,
+table th,
+table td {
+  border: 1px solid #334155;
+  padding: 1rem;
+  text-align: left;
+}
+
+.sign-table th,
+table th {
+  background: #1e293b;
+  color: #6366f1;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+}
+
+.sign-table td,
+table td {
+  color: #cbd5e1;
+}
+
+.sign-table tr:hover,
+table tr:hover {
+  background: rgba(99, 102, 241, 0.05);
+}
+
+/* ===== LISTS ===== */
+ul, ol {
+  margin: 1rem 0 1rem 1.5rem;
+  color: #cbd5e1;
+}
+
+li {
+  margin-bottom: 0.5rem;
+  line-height: 1.8;
+}
+
+strong {
+  color: #6366f1;
+  font-weight: 700;
+}
+
+/* ===== PRACTICE PROBLEMS ===== */
+.practice-box ol {
+  counter-reset: practice-counter;
+  list-style: none;
+  margin-left: 0;
+}
+
+.practice-box ol li {
+  counter-increment: practice-counter;
+  padding-left: 2.5rem;
+  position: relative;
+  margin-bottom: 1rem;
+  background: rgba(6, 182, 212, 0.05);
+  padding: 1rem;
+  padding-left: 3rem;
+  border-radius: 8px;
+  border-left: 3px solid #06b6d4;
+}
+
+.practice-box ol li::before {
+  content: counter(practice-counter);
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  background: linear-gradient(135deg, #6366f1, #06b6d4);
+  color: white;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+/* ===== DETAILS/SUMMARY (Answer Reveals) ===== */
+details {
+  background: rgba(99, 102, 241, 0.05);
+  border: 1px solid #334155;
+  border-radius: 10px;
+  padding: 1rem;
+  margin: 1rem 0;
+  transition: all 0.3s ease;
+}
+
+details:hover {
+  border-color: #6366f1;
+  background: rgba(99, 102, 241, 0.1);
+}
+
+summary {
+  cursor: pointer;
+  font-weight: 700;
+  color: #6366f1;
+  user-select: none;
+  padding: 0.5rem;
+  transition: color 0.3s ease;
+}
+
+summary:hover {
+  color: #8b5cf6;
+}
+
+details[open] summary {
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #334155;
+}
+
+/* ===== BUTTONS ===== */
+.download-btn,
+.download-btn-large,
+button {
+  background: linear-gradient(90deg, #6366f1, #22c55e);
+  border: none;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+  text-decoration: none;
+  display: inline-block;
+}
+
+.download-btn-large {
+  font-size: 1.2rem;
+  padding: 1.2rem 2.5rem;
+  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+}
+
+.download-btn:hover,
+.download-btn-large:hover,
+button:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 30px rgba(99, 102, 241, 0.5);
+  background: linear-gradient(90deg, #22c55e, #6366f1);
+}
+
+/* ===== FOOTER ===== */
+footer {
+  opacity: 0.6;
+  margin-top: 4rem;
+  text-align: center;
+  padding: 2rem;
+  color: #94a3b8;
+  border-top: 1px solid #1e293b;
+}
+
+footer p {
+  margin: 0.5rem 0;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 1024px) {
+  .textbook-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .sidebar {
+    position: relative;
+    top: 0;
+    max-height: none;
+    margin-bottom: 2rem;
+  }
+  
+  .content {
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0.75rem 1rem;
+  }
+  
+  .navbar h1 {
+    font-size: 1.2rem;
+  }
+  
+  .nav-links {
+    gap: 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .textbook-container {
+    padding: 0 1rem;
+    margin: 1rem auto;
+  }
+  
+  .content {
+    padding: 1.5rem;
+  }
+  
+  .chapter-title {
+    font-size: 2rem;
+  }
+  
+  .intro-box,
+  .concept-box,
+  .example-box,
+  .rules-box,
+  .practice-box {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .chapter-title {
+    font-size: 1.6rem;
+  }
+  
+  .content {
+    padding: 1rem;
+  }
+  
+  .intro-box,
+  .concept-box,
+  .example-box,
+  .rules-box,
+  .practice-box {
+    padding: 1rem;
+  }
+  
+  .practice-box ol li {
+    padding-left: 2.5rem;
+  }
+}
+
+/* ================================
+   PRINT MODE (PDF EXPORT)
+================================ */
+@media print {
+  /* Hide UI elements */
+  .navbar,
+  .sidebar,
+  footer,
+  button,
+  .download-btn,
+  .download-btn-large {
+    display: none !important;
+  }
+  
+  /* Reset colors for printing */
+  body {
+    background: white;
+    color: black;
+  }
+  
+  .content {
+    background: white;
+    border: none;
+    padding: 0;
+    box-shadow: none;
+  }
+  
+  .textbook-container {
+    display: block;
+    max-width: 100%;
+    padding: 0;
+  }
+  
+  /* Chapter styling for print */
+  .chapter {
+    page-break-after: always;
+    margin-bottom: 0;
+    page-break-inside: avoid;
+  }
+  
+  .chapter:last-child {
+    page-break-after: auto;
+  }
+  
+  .chapter-title {
+    -webkit-text-fill-color: #6366f1;
+    color: #6366f1;
+    border-bottom-color: #e5e7eb;
+    page-break-after: avoid;
+  }
+  
+  /* Box styling for print */
+  .intro-box,
+  .concept-box,
+  .example-box,
+  .rules-box,
+  .practice-box,
+  .visual-diagram {
+    background: white;
+    border: 2px solid #e5e7eb;
+    box-shadow: none;
+    page-break-inside: avoid;
+    margin-bottom: 1.5rem;
+  }
+  
+  .intro-box {
+    border-left-color: #6366f1;
+  }
+  
+  .concept-box {
+    border-left-color: #22c55e;
+  }
+  
+  .example-box {
+    border-left-color: #f59e0b;
+  }
+  
+  .rules-box {
+    border-left-color: #ec4899;
+  }
+  
+  .practice-box {
+    border-left-color: #06b6d4;
+  }
+  
+  /* Text colors for print */
+  .intro-box h3 {
+    color: #6366f1 !important;
+  }
+  
+  .concept-box h3 {
+    color: #22c55e !important;
+  }
+  
+  .example-box h3 {
+    color: #f59e0b !important;
+  }
+  
+  .rules-box h3 {
+    color: #ec4899 !important;
+  }
+  
+  .practice-box h3 {
+    color: #06b6d4 !important;
+  }
+  
+  /* Table styling for print */
+  .sign-table,
+  table {
+    background: white;
+    border: 1px solid #333;
+    page-break-inside: avoid;
+  }
+  
+  .sign-table th,
+  .sign-table td,
+  table th,
+  table td {
+    border-color: #999;
+    color: black;
+  }
+  
+  .sign-table th,
+  table th {
+    background: #f3f4f6;
+    color: #6366f1;
+  }
+  
+  /* List and text colors */
+  ul, ol, li, p, strong {
+    color: black;
+  }
+  
+  strong {
+    color: #6366f1;
+  }
+  
+  /* SVG diagrams */
+  .visual-diagram svg {
+    filter: none;
+  }
+  
+  /* Details/Summary */
+  details {
+    background: white;
+    border-color: #e5e7eb;
+  }
+  
+  summary {
+    color: #6366f1;
+  }
+  
+  /* Practice problems */
+  .practice-box ol li {
+    background: white;
+    border-left-color: #06b6d4;
+    page-break-inside: avoid;
+  }
+}
