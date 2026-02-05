@@ -152,6 +152,26 @@ const observer = new IntersectionObserver(
 // Observe all chapter sections
 sections.forEach(section => observer.observe(section));
 
+// ===== REVEAL ON SCROLL =====
+const revealTargets = document.querySelectorAll(
+  '.chapter, .intro-box, .concept-box, .example-box, .rules-box, .practice-box, .visual-diagram, .video-intro'
+);
+
+revealTargets.forEach(target => target.classList.add('reveal'));
+
+const revealObserver = new IntersectionObserver(
+  entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+      }
+    });
+  },
+  { threshold: 0.2, rootMargin: '0px 0px -80px 0px' }
+);
+
+revealTargets.forEach(target => revealObserver.observe(target));
+
 // ===== SMOOTH SCROLL FOR CHAPTER LINKS =====
 links.forEach(link => {
   link.addEventListener('click', function(e) {
@@ -282,7 +302,7 @@ function updateScrollProgress() {
       left: 0;
       width: 0%;
       height: 3px;
-      background: linear-gradient(90deg, #6366f1, #22c55e);
+      background: #6366f1;
       z-index: 9999;
       transition: width 0.1s ease;
     `;
@@ -323,8 +343,120 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
+// ===== ACCESS GATE (SIMPLE) =====
+const ACCESS_STORAGE_KEY = 'classdoodle_access';
+const ACCESS_PLANS = [
+  {
+    id: 'free',
+    label: 'Free',
+    code: 'FREE2026',
+    description: 'Basic reading access'
+  },
+  {
+    id: 'standard',
+    label: 'Standard',
+    code: 'CLASS2026',
+    description: 'Full lessons + downloads'
+  },
+  {
+    id: 'premium',
+    label: 'Premium',
+    code: 'PRO2026',
+    description: 'All access + extras'
+  }
+];
+
+function getStoredAccess() {
+  try {
+    return JSON.parse(localStorage.getItem(ACCESS_STORAGE_KEY));
+  } catch (error) {
+    return null;
+  }
+}
+
+function hasAccess() {
+  const stored = getStoredAccess();
+  if (!stored || !stored.plan) return false;
+  return ACCESS_PLANS.some(plan => plan.id === stored.plan);
+}
+
+function createAccessGate() {
+  if (hasAccess()) return;
+
+  document.body.classList.add('access-locked');
+
+  const gate = document.createElement('div');
+  gate.className = 'access-gate';
+
+  const optionsHtml = ACCESS_PLANS.map((plan, index) => {
+    const checked = index === 0 ? 'checked' : '';
+    return `
+      <label class="access-option">
+        <input type="radio" name="access-plan" value="${plan.id}" ${checked} />
+        <div>
+          <span>${plan.label}</span>
+          <small>${plan.description}</small>
+        </div>
+      </label>
+    `;
+  }).join('');
+
+  gate.innerHTML = `
+    <div class="access-card">
+      <h2>Access Required</h2>
+      <p>Select a plan and enter your access code to continue.</p>
+      <div class="access-options">${optionsHtml}</div>
+      <input class="access-input" type="password" placeholder="Enter access code" aria-label="Access code" />
+      <div class="access-actions">
+        <button class="access-submit" type="button">Unlock</button>
+        <button class="access-clear" type="button">Clear Access</button>
+      </div>
+      <div class="access-error">Invalid code. Try again.</div>
+    </div>
+  `;
+
+  document.body.appendChild(gate);
+
+  const input = gate.querySelector('.access-input');
+  const submit = gate.querySelector('.access-submit');
+  const clear = gate.querySelector('.access-clear');
+  const error = gate.querySelector('.access-error');
+
+  function getSelectedPlan() {
+    const selected = gate.querySelector('input[name="access-plan"]:checked');
+    return selected ? selected.value : 'free';
+  }
+
+  submit.addEventListener('click', () => {
+    const planId = getSelectedPlan();
+    const plan = ACCESS_PLANS.find(p => p.id === planId);
+    const code = input.value.trim();
+
+    if (plan && code === plan.code) {
+      localStorage.setItem(
+        ACCESS_STORAGE_KEY,
+        JSON.stringify({ plan: planId, grantedAt: Date.now() })
+      );
+      document.body.classList.remove('access-locked');
+      gate.remove();
+    } else {
+      error.style.display = 'block';
+      input.value = '';
+      input.focus();
+    }
+  });
+
+  clear.addEventListener('click', () => {
+    localStorage.removeItem(ACCESS_STORAGE_KEY);
+    input.value = '';
+    error.style.display = 'none';
+  });
+}
+
 // ===== INITIALIZE ON PAGE LOAD =====
 document.addEventListener('DOMContentLoaded', function() {
+  createAccessGate();
+
   // Highlight first chapter by default if no hash in URL
   if (!window.location.hash && links.length > 0) {
     links[0].classList.add('active');

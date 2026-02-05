@@ -186,6 +186,47 @@
         <p>Made with ❤️ for South African High School Learners</p>
     </footer>
 
+    <!-- AI Tutor Modal -->
+    <div id="ai-tutor-modal" class="ai-modal" aria-hidden="true">
+        <div class="ai-modal-content" role="dialog" aria-modal="true" aria-labelledby="ai-title">
+            <div class="ai-header">
+                <div>
+                    <h2 id="ai-title">🤖 ClassDoodle AI Tutor</h2>
+                    <p class="ai-subtitle">Ask questions about any topic in your subjects</p>
+                </div>
+                <button class="ai-close" aria-label="Close AI Tutor">✕</button>
+            </div>
+
+            <div class="ai-quick-actions">
+                <button type="button" class="ai-chip" data-prompt="Explain this topic simply with examples.">Explain simply</button>
+                <button type="button" class="ai-chip" data-prompt="Create a short quiz (5 questions) on this topic.">Make a quiz</button>
+                <button type="button" class="ai-chip" data-prompt="Give me step-by-step practice problems.">Practice problems</button>
+                <button type="button" class="ai-chip" data-prompt="Summarize the key points and definitions.">Summarize</button>
+            </div>
+
+            <div class="ai-body">
+                <div id="ai-chat-log" class="ai-chat" aria-live="polite"></div>
+            </div>
+
+            <div class="ai-controls">
+                <label class="ai-toggle">
+                    <input type="checkbox" id="ai-web-toggle" checked>
+                    <span>Allow web search</span>
+                </label>
+                <button type="button" class="ai-clear">New chat</button>
+            </div>
+
+            <form id="ai-form" class="ai-input" autocomplete="off" data-endpoint="/api/tutor">
+                <textarea id="ai-input" rows="1" placeholder="Ask your tutor anything..." required></textarea>
+                <button type="submit" class="ai-send">Send</button>
+            </form>
+
+            <div class="ai-footer">
+                ClassDoodle AI is a tutor assistant. Verify important facts with your textbook.
+            </div>
+        </div>
+    </div>
+
     <!-- Floating AI Tutor Button -->
 <button class="floating-ai" style="position:fixed;bottom:30px;right:30px;z-index:100;">
   🤖 Ask ClassDoodle AI
@@ -223,5 +264,6 @@
             });
         });
     </script>
+    <script src="scripts/ai-tutor.js"></script>
 </body>
 </html>

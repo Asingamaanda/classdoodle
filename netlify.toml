@@ -8,6 +8,9 @@
   # No build command needed for static HTML site
   command = ""
 
+[functions]
+  directory = "netlify/functions"
+
 # Headers for better performance and security
 [[headers]]
   for = "/*"
@@ -50,6 +53,11 @@
 [[redirects]]
   from = "/subjects/technology"
   to = "/subjects/technology/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/api/tutor"
+  to = "/.netlify/functions/tutor"
   status = 200
 
 # 404 redirect to home page
