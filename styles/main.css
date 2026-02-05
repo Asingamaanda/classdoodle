@@ -315,14 +315,14 @@ a:not(.btn):not(.nav-logo):not(.chapter-list a):hover::after {
 }
 
 .ai-modal-content {
-  width: min(900px, 96vw);
-  max-height: 90vh;
+  width: min(1100px, 96vw);
+  height: 92vh;
   background: var(--bg-card);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-deep);
   border: 1px solid #e2e8f0;
   display: grid;
-  grid-template-rows: auto auto 1fr auto auto;
+  grid-template-rows: auto auto auto 1fr auto auto;
   overflow: hidden;
 }
 
@@ -366,6 +366,33 @@ a:not(.btn):not(.nav-logo):not(.chapter-list a):hover::after {
   padding: 0 var(--space-4) var(--space-2);
 }
 
+.ai-settings {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr 1fr;
+  gap: var(--space-3);
+  align-items: center;
+  padding: 0 var(--space-4) var(--space-3);
+}
+
+.ai-mode {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.ai-mode label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.ai-mode select {
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 0.5rem 0.75rem;
+  font-weight: 600;
+  background: #fff;
+}
+
 .ai-chip {
   border: 1px solid #e2e8f0;
   background: #f8fafc;
@@ -389,7 +416,7 @@ a:not(.btn):not(.nav-logo):not(.chapter-list a):hover::after {
 
 .ai-chat {
   height: 100%;
-  max-height: 45vh;
+  max-height: 55vh;
   overflow-y: auto;
   background: #f8fafc;
   border-radius: var(--radius-md);
@@ -430,6 +457,26 @@ a:not(.btn):not(.nav-logo):not(.chapter-list a):hover::after {
 .ai-message.system .ai-bubble {
   background: #fef3c7;
   border: 1px solid #fde68a;
+}
+
+.ai-sources {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.ai-sources ul {
+  margin: 0.35rem 0 0;
+  padding-left: 1.2rem;
+}
+
+.ai-sources a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.ai-sources a:hover {
+  text-decoration: underline;
 }
 
 .ai-controls {
@@ -509,6 +556,10 @@ a:not(.btn):not(.nav-logo):not(.chapter-list a):hover::after {
 @media (max-width: 700px) {
   .ai-modal-content {
     grid-template-rows: auto auto 1fr auto auto;
+  }
+
+  .ai-settings {
+    grid-template-columns: 1fr;
   }
 
   .ai-input {

@@ -204,6 +204,25 @@
                 <button type="button" class="ai-chip" data-prompt="Summarize the key points and definitions.">Summarize</button>
             </div>
 
+            <div class="ai-settings">
+                <div class="ai-mode">
+                    <label for="ai-mode">Mode</label>
+                    <select id="ai-mode">
+                        <option value="tutor" selected>Smart Tutor</option>
+                        <option value="quiz">Quiz Generator</option>
+                        <option value="homework">Homework Checker</option>
+                    </select>
+                </div>
+                <label class="ai-toggle">
+                    <input type="checkbox" id="ai-page-toggle" checked>
+                    <span>Use current page</span>
+                </label>
+                <label class="ai-toggle">
+                    <input type="checkbox" id="ai-all-toggle" checked>
+                    <span>Connect all subjects</span>
+                </label>
+            </div>
+
             <div class="ai-body">
                 <div id="ai-chat-log" class="ai-chat" aria-live="polite"></div>
             </div>
