@@ -344,6 +344,7 @@ style.textContent = `
 document.head.appendChild(style);
 
 // ===== ACCESS GATE (SIMPLE) =====
+const ACCESS_ENABLED = false;
 const ACCESS_STORAGE_KEY = 'classdoodle_access';
 const ACCESS_PLANS = [
   {
@@ -381,6 +382,7 @@ function hasAccess() {
 }
 
 function createAccessGate() {
+  if (!ACCESS_ENABLED) return;
   if (hasAccess()) return;
 
   document.body.classList.add('access-locked');
