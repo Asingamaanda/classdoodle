@@ -223,7 +223,7 @@
 
     if (allToggle?.checked) {
       const index = await fetchSubjectIndex();
-      const currentPath = window.location.pathname.replace(/\/g, '/');
+      const currentPath = window.location.pathname.replace(/\\/g, '/');
       for (const item of index) {
         if (sources.length >= 6) break;
         if (item.path === currentPath) continue;
