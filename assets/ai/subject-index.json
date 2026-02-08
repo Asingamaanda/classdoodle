@@ -5,5 +5,6 @@
   {"title": "Technology - Grade 8", "path": "/subjects/technology/index.html"},
   {"title": "Mathematics - Grade 9", "path": "/subjects/grade9/mathematics/index.html"},
   {"title": "Mathematics - Grade 12", "path": "/subjects/grade12/mathematics/index.html"},
-  {"title": "Physical Sciences - Grade 12", "path": "/subjects/grade12/physical-sciences/index.html"}
+  {"title": "Physical Sciences - Grade 12", "path": "/subjects/grade12/physical-sciences/index.html"},
+  {"title": "Mathematics Literacy - Grade 10", "path": "/subjects/grade10/mathematics-literacy/index.html"}
 ]
